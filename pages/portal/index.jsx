@@ -3,12 +3,22 @@ import css from './Home.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import thisButton from './THIS.png'
-
+import thisButton from './thisButton.png'
+import thisButtonPressed from './thisButtonPressed.png'
+import { useState, useEffect } from 'react'
 export default function Portal() {
   const router = useRouter()
   const { id } = router.query
 
+  const [ isButtonPressed, setIsButtonPressed ] = useState(false);
+  
+  useEffect(()=>{
+    if (isButtonPressed){
+      router.push('/google');
+    }
+    
+    // return ()=>{ setIsButtonPressed(false) }
+  },[isButtonPressed])
   return (
     <>
       <Head>
@@ -18,14 +28,18 @@ export default function Portal() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={css.main}>
-        <div className={css.thisButtonContainer}>
-          <Image
-            src={thisButton}
-            alt={'THIS button'}
-            fill
-          />
-        </div>
-
+          <div 
+            className={isButtonPressed?  css.thisButtonPressedContainer : css.thisButtonContainer}
+            onClick={()=>{
+              setIsButtonPressed(true);
+            }}
+          >
+            <Image
+              src={isButtonPressed? thisButtonPressed : thisButton}
+              alt={'THIS button'}
+              fill
+            />
+          </div>
         {/* <Link href={'/'}> home {id} </Link> */}
       </main>
     </>

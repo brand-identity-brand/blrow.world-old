@@ -3,12 +3,13 @@
   background-size: 100%;
   background-repeat: no-repeat;
   background-color: white;
-  width: 100vw;
-  height: 100vh;
-  /**/
+
   display: flex;
   align-items: center;
   justify-content: center;
+  /**/
+  width: 100vw;
+  height: 100vh;
 }
 
 .thisButtonContainer{
@@ -17,4 +18,12 @@
   height: 25vw;
   /**/
   margin-top: 500px;
+}
+
+.thisButtonPressedContainer{
+  position: relative;
+  width: 30vw;
+  height: 22vw;
+  /**/
+  margin-top: calc(500px + 3vw);
 }
