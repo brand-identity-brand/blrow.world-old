@@ -2,7 +2,8 @@ import Head from 'next/head'
 import css from './Home.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
+import Image from 'next/image'
+import thisButton from './THIS.png'
 
 export default function Portal() {
   const router = useRouter()
@@ -17,7 +18,15 @@ export default function Portal() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={css.main}>
-        <Link href={'/'}> home {id} </Link>
+        <div className={css.thisButtonContainer}>
+          <Image
+            src={thisButton}
+            alt={'THIS button'}
+            fill
+          />
+        </div>
+
+        {/* <Link href={'/'}> home {id} </Link> */}
       </main>
     </>
   )
