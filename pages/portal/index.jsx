@@ -12,13 +12,7 @@ export default function Portal() {
 
   const [ isButtonPressed, setIsButtonPressed ] = useState(false);
   
-  useEffect(()=>{
-    if (isButtonPressed){
-      router.push('/google');
-    }
-    
-    // return ()=>{ setIsButtonPressed(false) }
-  },[isButtonPressed])
+
   return (
     <>
       <Head>
@@ -30,8 +24,12 @@ export default function Portal() {
       <main className={css.main}>
           <div 
             className={isButtonPressed?  css.thisButtonPressedContainer : css.thisButtonContainer}
-            onClick={()=>{
+            onMouseDown={()=>{
               setIsButtonPressed(true);
+            }}
+            onClick={()=>{
+              setIsButtonPressed(false);
+              router.push('/gallery');
             }}
           >
             <Image
