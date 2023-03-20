@@ -1,6 +1,7 @@
 .main {
-  background-image: url("reddit.gif");
+  background-image: url("./reddit.gif");
   background-size: 100%;
   background-repeat: no-repeat;
-  background-color: white;
+  background-color: black;
+  height: 100vh;
 }

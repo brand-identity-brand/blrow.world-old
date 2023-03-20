@@ -28,7 +28,7 @@ export default function Portal() {
               setIsButtonPressed(true);
             }}
             onClick={()=>{
-              setIsButtonPressed(false);
+              // setIsButtonPressed(false);
               router.push('/twitter'); //gallery
             }}
           >

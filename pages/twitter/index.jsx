@@ -5,9 +5,10 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import GogglesIcon from './GogglesIcon.png';
 import Hand from './Hand.png';
+import { use } from 'react'
 
 export default function Google() {
-
+  const router = useRouter();
   return (<>
     <Head>
         <title>blrow.world</title>
@@ -24,6 +25,9 @@ export default function Google() {
             height: '30px',
             width: '60px',
             position: 'relative'
+          }}
+          onClick={()=>{
+            router.push('/google');
           }}
         >
           <Image

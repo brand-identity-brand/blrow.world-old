@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 export default function Google() {
-
+  const router = useRouter();
   return (
     <>
         <Head>
@@ -15,7 +15,11 @@ export default function Google() {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={css.main}>
-            GOOGLE
+          <div
+            onClick={()=>{
+              router.push('/reddit');
+            }}
+          >GOOGLE</div>
         </main>
     </>
   )
