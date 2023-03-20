@@ -29,7 +29,8 @@ export default function Portal() {
             }}
             onClick={()=>{
               // setIsButtonPressed(false);
-              router.push('/twitter'); //gallery
+              setTimeout(()=>{router.push('/twitter')}, 300)
+              // router.push('/twitter'); //gallery
             }}
           >
             <Image
