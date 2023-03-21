@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import GogglesIcon from './GogglesIcon.png';
 import Hand from './Hand.png';
+import Face from './face.png';
 import { use } from 'react'
 
 export default function Google() {
@@ -35,6 +36,25 @@ export default function Google() {
             fill
           />
         </div>
+      </div>
+      <div
+        style={{
+          width: '100vw',
+          mixBlendMode: 'hard-light', //hard-light, screen
+          position: 'relative',
+          right: '0',
+          display: 'flex',
+          flexDirection: 'row-reverse',
+        }}
+      >
+        <Image
+          src={Face}
+          style={{
+            width: '69%',
+            height: 'auto',
+            objectFit: 'contain'
+          }}
+        />
       </div>
 
       <div
