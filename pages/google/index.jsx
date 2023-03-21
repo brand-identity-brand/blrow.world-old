@@ -3,6 +3,7 @@ import css from './index.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import Logo from './logo.png'
 
 export default function Google() {
   const router = useRouter();
@@ -15,11 +16,36 @@ export default function Google() {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={css.main}>
-          <div
+          <div className={css.logoContainer}>
+            <Image
+              src={Logo}
+              fill
+              style={{
+                objectFit: 'contain'
+              }}
+            />
+          </div>
+          <input 
+            className={css.input}
+            type={'search'}
+
+          />
+          <button
+            className={css.searchButton}
             onClick={()=>{
               router.push('/reddit');
             }}
-          >GOOGLE</div>
+          >
+            SEARCH
+          </button>
+          <button
+            className={css.luckyButton}
+            onClick={()=>{
+              router.push('/reddit');
+            }}
+          >
+            I'm feeling lucky
+          </button>
         </main>
     </>
   )

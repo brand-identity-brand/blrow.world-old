@@ -22,24 +22,53 @@ export default function Portal() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={css.main}>
-          <div 
-            className={isButtonPressed?  css.thisButtonPressedContainer : css.thisButtonContainer}
-            onMouseDown={()=>{
-              setIsButtonPressed(true);
-            }}
-            onClick={()=>{
-              // setIsButtonPressed(false);
-              setTimeout(()=>{router.push('/twitter')}, 300)
-              // router.push('/twitter'); //gallery
-            }}
-          >
-            <Image
-              draggable={false}
-              src={isButtonPressed? thisButtonPressed : thisButton}
-              alt={'THIS button'}
-              fill
-            />
+        <div className={css.messageContainer}>
+          <div>
+            <span  className={css.messageLines} >
+              Hi Aritsts #00000001
+            </span>
           </div>
+          <div
+            className={css.messageLines}
+          >
+              You have 30:00 to finish <br/> decorating your exhibition.
+          </div>
+          <div 
+            className={css.messageLines}
+          >
+              You know what you should and <br/> shouldn't do.
+          </div>
+          <div>
+            <span className={css.messageLines2}>
+              Have Fun,
+            </span>
+          </div>
+          <div className={css.messageLines2}>
+              Sir Real. <br/>
+              Director of THE GALLERY.
+          </div>
+        </div>
+        <div className={css.messageLines3}>
+          press THIS button to begin
+        </div>
+        <div 
+          className={isButtonPressed?  css.thisButtonPressedContainer : css.thisButtonContainer}
+          onMouseDown={()=>{
+            setIsButtonPressed(true);
+          }}
+          onClick={()=>{
+            // setIsButtonPressed(false);
+            setTimeout(()=>{router.push('/twitter')}, 300)
+            // router.push('/twitter'); //gallery
+          }}
+        >
+          <Image
+            draggable={false}
+            src={isButtonPressed? thisButtonPressed : thisButton}
+            alt={'THIS button'}
+            fill
+          />
+        </div>
         {/* <Link href={'/'}> home {id} </Link> */}
       </main>
     </>
