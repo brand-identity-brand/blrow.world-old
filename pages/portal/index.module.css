@@ -20,21 +20,23 @@
   /* align-items: baseline;
   justify-content: flex-start; */
   gap: 5vw;
-  font-size: 7vw;
+  font-size: 5vw; 
   margin-top: 20vw;
+  font-family: Courier, monospace;
 }
 
 .messageLines{
-  padding-left: 3vw;
+  padding: 3vw 1vw 0vw 3vw;
   background-color: rgba(237, 28, 36, 1);
   width: fit-content;
   mix-blend-mode: darken;
 }
 .messageLines2{
+  padding: 3vw 1vw 0vw 3vw;
   padding-left: 3vw;
-  background-color: rgba(237, 28, 36, 0.7);
+  background-color: rgba(237, 28, 36, 1);
   width: fit-content;
-  mix-blend-mode: normal;
+  mix-blend-mode: hard-light;
 }
 
 .messageLines3{

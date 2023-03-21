@@ -23,10 +23,8 @@ export default function Portal() {
       </Head>
       <main className={css.main}>
         <div className={css.messageContainer}>
-          <div>
-            <span  className={css.messageLines} >
-              Hi Aritsts #00000001
-            </span>
+          <div className={css.messageLines}>
+            Hi Aritsts #00000001
           </div>
           <div
             className={css.messageLines}
@@ -34,7 +32,7 @@ export default function Portal() {
               You have 30:00 to finish <br/> decorating your exhibition.
           </div>
           <div 
-            className={css.messageLines}
+            className={css.messageLines2}
           >
               You know what you should and <br/> shouldn't do.
           </div>
