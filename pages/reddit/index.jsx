@@ -29,7 +29,7 @@ export default function Reddit() {
             timeLimit: timeLimit,
             speed: 2147483647
           })
-          router.push('/facebook')
+          router.push('/youtube')
         }}
       >
         PROCEED THIS WAY

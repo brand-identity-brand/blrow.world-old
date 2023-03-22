@@ -54,7 +54,7 @@ export default function Google() {
                 timeLimit: timeLimit,
                 speed: 2147483647
               })
-              router.push('/reddit');
+              router.push('/youtube');
             }}
           >
             I'm feeling lucky

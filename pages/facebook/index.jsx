@@ -22,14 +22,14 @@ export default function Facebook() {
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={css.main}>
-      <Timer speed={250}/>
+      <Timer speed={100}/>
       <button
         onClick={()=>{
           setTimerState({
             timeLimit: timeLimit,
             speed: 2147483647
           });
-          router.push('/youtube');
+          router.push('/twitter');
         }}
       >
         THIS

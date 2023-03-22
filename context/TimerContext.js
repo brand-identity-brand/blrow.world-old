@@ -24,7 +24,7 @@ function convertTime(timeLimit) {
         return `${second}`
     }
 
-    return `${minute} : ${convertSecond()}`;
+    return `${minute}:${convertSecond()}`;
 }
 
 export {

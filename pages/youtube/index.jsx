@@ -21,14 +21,14 @@ export default function Youtube() {
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={css.main}>
-      <Timer speed={100}/>
+      <Timer speed={250}/>
       <button
         onClick={()=>{
           setTimerState({
             timeLimit: timeLimit,
             speed: 2147483647
           });
-          router.push('/twitter');
+          router.push('/facebook');
         }}
       >
         QR
