@@ -3,6 +3,7 @@ import css from './index.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import Timer from '@/component/Timer'
 
 export default function Reddit() {
 
@@ -14,6 +15,7 @@ export default function Reddit() {
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={css.main}>
+      <Timer/>
     </main>
   </>)
 }
