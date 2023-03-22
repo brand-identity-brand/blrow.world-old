@@ -1,0 +1,16 @@
+.container {
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    background-color: black;
+}
+
+.timer {
+    color: greenyellow;
+    font-family: 'VT323', monospace;
+    font-size: 10vw;
+}

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Logo from './public/logo.png'
+import Timer from '@/component/Timer'
 
 export default function Google() {
   const router = useRouter();
@@ -16,6 +17,7 @@ export default function Google() {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={css.main}>
+          <Timer/>
           <div className={css.logoContainer}>
             <Image
               src={Logo}
@@ -29,7 +31,6 @@ export default function Google() {
             autoFocus={true}
             className={css.input}
             type={'text'}
-
           />
           <button
             className={css.searchButton}
