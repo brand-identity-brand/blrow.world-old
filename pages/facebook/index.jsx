@@ -3,10 +3,16 @@ import css from './index.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import Timer from '@/component/Timer'
+
+import Timer from '@/component/Timer';
+import { useContext } from 'react';
+import { TimerContext } from '@/context/TimerContext';
 
 export default function Facebook() {
   const router = useRouter();
+  
+  const { TimerState, setTimerState } = useContext(TimerContext);
+  const { timeLimit } = TimerState;
   
   return (<>
     <Head>
@@ -16,10 +22,14 @@ export default function Facebook() {
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={css.main}>
-      <Timer/>
+      <Timer speed={250}/>
       <button
         onClick={()=>{
-          router.push('/youtube')
+          setTimerState({
+            timeLimit: timeLimit,
+            speed: 2147483647
+          });
+          router.push('/youtube');
         }}
       >
         THIS

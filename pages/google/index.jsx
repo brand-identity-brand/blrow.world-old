@@ -4,10 +4,17 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Logo from './public/logo.png'
+
 import Timer from '@/component/Timer'
+import { useContext } from 'react';
+import { TimerContext } from '@/context/TimerContext';
 
 export default function Google() {
   const router = useRouter();
+
+  const { TimerState, setTimerState } = useContext(TimerContext);
+  const { timeLimit } = TimerState;
+
   return (
     <>
         <Head>
@@ -17,7 +24,7 @@ export default function Google() {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={css.main}>
-          <Timer/>
+          <Timer speed={1000}/>
           <div className={css.logoContainer}>
             <Image
               src={Logo}
@@ -43,6 +50,10 @@ export default function Google() {
           <button
             className={css.luckyButton}
             onClick={()=>{
+              setTimerState({
+                timeLimit: timeLimit,
+                speed: 2147483647
+              })
               router.push('/reddit');
             }}
           >

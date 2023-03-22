@@ -6,12 +6,17 @@ import Image from 'next/image'
 import thisButton from './thisButton.png'
 import thisButtonPressed from './thisButtonPressed.png'
 import { useState, useEffect } from 'react'
+import { useContext } from 'react';
+import { TimerContext, convertTime } from '@/context/TimerContext';
+
 export default function Portal() {
   const router = useRouter()
   const { id } = router.query
 
   const [ isButtonPressed, setIsButtonPressed ] = useState(false);
-  
+
+  const { TimerState, setTimerState } = useContext(TimerContext);
+  const { timeLimit } = TimerState;
 
   return (
     <>
@@ -29,7 +34,7 @@ export default function Portal() {
           <div
             className={css.messageLines}
           >
-              You have <span style={{color: 'greenyellow', fontFamily: 'VT323, monospace', fontSize: '6vw'}}>30:00</span> to finish <br/> decorating your exhibition.
+              You have <span style={{color: 'greenyellow', fontFamily: 'VT323, monospace', fontSize: '6vw'}}>{convertTime(timeLimit)}</span> to finish <br/> decorating your exhibition.
           </div>
           <div 
             className={css.messageLines2}

@@ -7,9 +7,15 @@ import Hand from './public/Hand.png';
 import Face from './public/face.png';
 import { use } from 'react'
 import NavBar from './component/NavBar'
+import { useContext } from 'react';
+import { TimerContext, convertTime } from '@/context/TimerContext';
 
 export default function Google() {
   const router = useRouter();
+
+  const { TimerState, setTimerState } = useContext(TimerContext);
+  const { timeLimit } = TimerState;
+
   return (<>
     <Head>
         <title>blrow.world</title>
@@ -34,7 +40,7 @@ export default function Google() {
             Artist #0000001
           </div>
           <div>
-            begins in <span style={{color: 'greenyellow'}}>30:00</span>
+            begins in <span style={{color: 'greenyellow'}}>{convertTime(timeLimit)}</span>
           </div>
         </div>
 
