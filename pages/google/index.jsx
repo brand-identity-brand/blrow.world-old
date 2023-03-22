@@ -3,7 +3,7 @@ import css from './index.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import Logo from './logo.png'
+import Logo from './public/logo.png'
 
 export default function Google() {
   const router = useRouter();
@@ -27,7 +27,7 @@ export default function Google() {
           </div>
           <input 
             className={css.input}
-            type={'search'}
+            type={'text'}
 
           />
           <button
