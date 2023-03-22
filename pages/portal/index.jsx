@@ -36,10 +36,9 @@ export default function Portal() {
           >
               You know what you should and <br/> shouldn't do.
           </div>
-          <div>
-            <span className={css.messageLines2}>
-              Have Fun,
-            </span>
+          <div className={css.messageLines2}>
+            Have Fun,
+      
           </div>
           <div className={css.messageLines2}>
               Sir Real. <br/>

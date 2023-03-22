@@ -27,14 +27,13 @@
 
 .messageLines{
   padding: 3vw 1vw 0vw 3vw;
-  background-color: rgba(237, 28, 36, 1);
+  background-color: rgba(237, 28, 36, 0.78);
   width: fit-content;
   mix-blend-mode: darken;
 }
 .messageLines2{
   padding: 3vw 1vw 0vw 3vw;
-  padding-left: 3vw;
-  background-color: rgba(237, 28, 36, 1);
+  background-color: rgba(237, 28, 36, 0.78);
   width: fit-content;
   mix-blend-mode: hard-light;
 }
@@ -48,7 +47,7 @@
   flex-direction: column;
   align-items: center;
   font-size: 5vw;
-  margin-top: 19vw;
+  margin-top: 16vw;
   padding: 1vw;
 }
 .thisButtonContainer{

@@ -1,0 +1,20 @@
+.navBarContainer{
+    position: fixed;
+    background-color: black;
+    width: 100%;
+    height: 50px;
+    top: -1px;
+  
+    z-index: 999999;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconContainer{
+    height: 30px;
+    width: 60px;
+    position: relative;
+}
