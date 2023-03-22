@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Timer from '@/component/Timer'
 
-export default function Reddit() {
+export default function Facebook() {
   const router = useRouter();
   
   return (<>
@@ -19,10 +19,10 @@ export default function Reddit() {
       <Timer/>
       <button
         onClick={()=>{
-          router.push('/facebook')
+          router.push('/youtube')
         }}
       >
-        PROCEED THIS WAY
+        THIS
       </button>
     </main>
   </>)
