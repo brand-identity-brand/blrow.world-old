@@ -20,8 +20,8 @@ function convertTime(timeLimit) {
     const second = timeLimit % 60;
 
     const convertSecond = () => {
-        if (second < 10) return `0${second}`;
-        return `${second}`
+        if (second < 10 && second >= 0) return `0${second}`;
+        return `${Math.abs(second)}`
     }
 
     return `${minute}:${convertSecond()}`;

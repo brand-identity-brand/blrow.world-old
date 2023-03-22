@@ -29,7 +29,7 @@ export default function Facebook() {
             timeLimit: timeLimit,
             speed: 2147483647
           });
-          router.push('/twitter');
+          router.push('/youtube');
         }}
       >
         THIS
