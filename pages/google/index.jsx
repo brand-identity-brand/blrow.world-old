@@ -26,6 +26,7 @@ export default function Google() {
             />
           </div>
           <input 
+            autoFocus={true}
             className={css.input}
             type={'text'}
 
