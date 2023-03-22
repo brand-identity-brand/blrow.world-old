@@ -37,6 +37,33 @@
   padding-bottom: 27vw;
 }
 
+.titleContainer{
+  font-size: 20vw;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+
+  margin-top: 15vw;
+  /* margin-bottom: 10vw; */
+}
+
+.titleContainer > div {
+  width: min-content;
+}
+
+.subTitleContainer {
+  width: 100vw;
+  flex-direction: column;
+  
+  margin-top: 5vw;
+}
+
+.subTitleContainer div {
+  text-align: center;
+}
+
 .paintingSetContainer{
   width: 100%;
   height: auto;

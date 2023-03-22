@@ -24,15 +24,20 @@ export default function Google() {
         <ZeFace zIndex={2} mixBlendMode={'hard-light'} opacity={'20%'}/>
       </div>
       <div className={css.headingContainer}>
-        <div>
-          THE EXHIBITION
+        <div className={css.titleContainer}>
+          <div>
+            THE EXHIBITION
+          </div>
         </div>
-        <div>
-          by Artist #0000001
+        <div className={css.subTitleContainer}>
+          <div>
+            Artist #0000001
+          </div>
+          <div>
+            begins in <span style={{color: 'greenyellow'}}>30:00</span>
+          </div>
         </div>
-        <div>
-          coming soon in 30:00
-        </div>
+
       </div>
 
       <div

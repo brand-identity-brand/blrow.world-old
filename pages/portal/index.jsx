@@ -29,7 +29,7 @@ export default function Portal() {
           <div
             className={css.messageLines}
           >
-              You have 30:00 to finish <br/> decorating your exhibition.
+              You have <span style={{color: 'greenyellow', fontFamily: 'VT323, monospace', fontSize: '6vw'}}>30:00</span> to finish <br/> decorating your exhibition.
           </div>
           <div 
             className={css.messageLines2}
@@ -46,7 +46,7 @@ export default function Portal() {
           </div>
         </div>
         <div className={css.messageLines3}>
-          press THIS button to begin
+          press <span className={css.messageLines3_span}>THIS</span> button to begin
         </div>
         <div 
           className={isButtonPressed?  css.thisButtonPressedContainer : css.thisButtonContainer}
