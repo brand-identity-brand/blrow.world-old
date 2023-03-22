@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import css from './index.module.css'
-import Link from 'next/link'
+
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import GogglesIcon from './GogglesIcon.png';
-import Hand from './Hand.png';
-import Face from './face.png';
+import Hand from './public/Hand.png';
+import Face from './public/face.png';
 import { use } from 'react'
+import NavBar from './component/NavBar'
 
 export default function Google() {
   const router = useRouter();
@@ -18,48 +18,22 @@ export default function Google() {
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={css.main}>
-      <div
-        className={css.navBarContainer}
-      >
-        <div
-          style={{
-            height: '30px',
-            width: '60px',
-            position: 'relative'
-          }}
-          onClick={()=>{
-            router.push('/google');
-          }}
-        >
-          <Image
-            src={GogglesIcon}
-            fill
-          />
+      <NavBar/>
+      <div className={css.faceContainer} >
+        <ZeFace zIndex={9} mixBlendMode={'screen'} opacity={'50%'}/>
+        <ZeFace zIndex={2} mixBlendMode={'hard-light'} opacity={'20%'}/>
+      </div>
+      <div className={css.headingContainer}>
+        <div>
+          THE EXHIBITION
+        </div>
+        <div>
+          by Artist #0000001
+        </div>
+        <div>
+          coming soon in 30:00
         </div>
       </div>
-      <div
-        style={{
-          width: '100vw',
-          mixBlendMode: 'hard-light', //hard-light, screen
-          position: 'relative',
-          right: '0',
-          display: 'flex',
-          flexDirection: 'row-reverse',
-        }}
-      >
-        <Image
-          src={Face}
-          style={{
-            width: '69%',
-            height: 'auto',
-            objectFit: 'contain'
-          }}
-        />
-      </div>
-
-      <div
-        className={css.headingContainer}
-      ></div>
 
       <div
         className={css.paintingSetContainer}
@@ -160,5 +134,31 @@ function ZeHand(){
       height: 'auto'
     }}
   />
+  )
+}
+
+function ZeFace({zIndex, mixBlendMode, opacity}){
+  return(
+    <div
+      style={{
+        opacity: opacity,
+        zIndex: zIndex,
+        width: '100vw',
+        mixBlendMode: mixBlendMode, //hard-light, screen
+        position: 'fixed', //'absolute'
+        right: '0',
+        display: 'flex',
+        flexDirection: 'row-reverse',
+      }}
+    >
+      <Image
+        src={Face}
+        style={{
+          width: '69%',
+          height: 'auto',
+          objectFit: 'contain'
+        }}
+      />
+    </div>
   )
 }
