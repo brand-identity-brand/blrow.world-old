@@ -25,28 +25,34 @@ export default function Google() {
         </Head>
         <main className={css.main}>
           <Timer speed={1000}/>
-          <div className={css.logoContainer}>
-            <Image
-              src={Logo}
-              fill
-              style={{
-                objectFit: 'contain'
-              }}
-            />
+          <div className={css.top}>
+            <div className={css.logoContainer}>
+              <Image
+                src={Logo}
+                fill
+                style={{
+                  objectFit: 'contain'
+                }}
+              />
+            </div>
           </div>
-          <input 
-            autoFocus={true}
-            className={css.input}
-            type={'text'}
-          />
-          <button
-            className={css.searchButton}
-            onClick={()=>{
-              router.push('/reddit');
-            }}
-          >
-            SEARCH
-          </button>
+          <div className={css.mid}>
+            <input 
+              autoFocus={true}
+              className={css.input}
+              type={'text'}
+            />
+            <button
+              className={css.searchButton}
+              onClick={()=>{
+                router.push('/reddit');
+              }}
+            >
+              SEARCH
+            </button>
+          </div>
+
+
           <button
             className={css.luckyButton}
             onClick={()=>{
