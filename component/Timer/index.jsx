@@ -30,7 +30,7 @@ export default function Timer(props){
     }, [TimerState]);
 
     return (
-        <div className={css.container}>
+        <div className={`${css.container} ${css.global}`}>
             <span 
                 className={css.timer}
                 onClick={()=>{

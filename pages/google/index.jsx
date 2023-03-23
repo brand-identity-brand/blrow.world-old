@@ -20,9 +20,13 @@ export default function Google(props) {
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
 
+  // const [ doneTyping, setDoneTyping ] = useState(false);
+
 	const inputRef = useRef(null);
 
   const validSearchTermsRef = useRef(searchTerms);
+
+  const doneTypingRef = useRef(false);
 
   useEffect(()=>{
     setTimeout(inputRef.current.focus(), 1000);
@@ -67,20 +71,30 @@ export default function Google(props) {
                   processTerm(forcedTerm);
                 } else {
                   const forcedTerm = validSearchTermsRef.current.filter( term => term.substring(0, value.length) === value);
-                  processTerm(forcedTerm)
+                  processTerm(forcedTerm);
                 }
                 function processTerm(forcedTerm){
                   forcedTerm.length > 0
                     ? validSearchTermsRef.current = forcedTerm
                     : validSearchTermsRef.current = [ validSearchTermsRef.current[ getRandomInt(validSearchTermsRef.current.length) ] ];
                   inputRef.current.value = validSearchTermsRef.current[0].substring(0, value.length);
+
+                  inputRef.current.value.length === validSearchTermsRef.current[0].length
+                    ? doneTypingRef.current = true
+                    : doneTypingRef.current = false;
                 }
               }}
             />
             <button
               className={css.searchButton}
               onClick={()=>{
-                router.push('/reddit');
+                if ( inputRef.current.value.length === 0 ) {
+                  router.push('/reddit');
+                } else if (doneTypingRef.current) {
+                  router.push(`/google/search?keyword=${inputRef.current.value}`)
+                } else {
+                  alert('you need to finish typing your keyword(s)')
+                }
               }}
             >
               Go
@@ -105,7 +119,7 @@ export default function Google(props) {
   )
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
 
   return {
     props: {

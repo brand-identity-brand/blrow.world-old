@@ -1,3 +1,8 @@
+.global {
+    position: sticky;
+    top: -1px;
+}
+
 .container {
     width: 100vw;
     height: 50px;
