@@ -55,8 +55,8 @@
 
 .searchButton {
   border: 0px;
-  background-color: black;
-  color: red;
+  background-color: rgb(36, 102, 255);
+  color: white;
   font-family: 'VT323', monospace;
   font-size: 7vw;
   border-radius: 0vw 5vw 5vw 0vw;
@@ -66,6 +66,10 @@
 }
 
 .luckyButton {
+  border: 0px;
+  text-decoration: underline;
+  background-color: transparent;
+  color: red;
   height: 10vw;
   width: 30vw
 }
