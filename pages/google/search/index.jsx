@@ -72,7 +72,7 @@ export default function Google(props) {
 export async function getServerSideProps({query}) {
     const { keyword } = query;
 
-    let randomResultLength = Math.floor(Math.random() * 30);
+    let randomResultLength = Math.floor(Math.random() * 29) + 1;
     let randomSearchResult = [];
     while (randomResultLength) {
         [ ...randomSearchResult, randomResultLength ]
