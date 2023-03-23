@@ -41,7 +41,7 @@
 }
 
 .input {
-  border: none;
+  border: 3px solid rgb(36, 102, 255);
   border-radius: 5vw 0vw 0vw 5vw;
   width: 70vw;
   height: 10vw;
@@ -54,7 +54,7 @@
 }
 
 .searchButton {
-  border: 0px;
+  border: 3px solid rgb(36, 102, 255);
   background-color: rgb(36, 102, 255);
   color: white;
   font-family: 'VT323', monospace;
@@ -70,6 +70,7 @@
   text-decoration: underline;
   background-color: transparent;
   color: red;
-  height: 10vw;
-  width: 30vw
+  height: min-content;
+  width: max-content;
+  margin-top: 2vw;
 }

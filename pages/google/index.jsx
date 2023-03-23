@@ -6,14 +6,31 @@ import Image from 'next/image'
 import Logo from './public/logo.png'
 
 import Timer from '@/component/Timer'
-import { useContext } from 'react';
+import { useContext, useRef, useEffect, useState } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 
-export default function Google() {
+import ReactTestUtils from "react-dom/test-utils";
+
+export default function Google(props) {
+  const {
+    searchTerms
+  } = props;
   const router = useRouter();
 
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
+
+	const inputRef = useRef(null);
+
+  const validSearchTermsRef = useRef(searchTerms);
+
+  useEffect(()=>{
+    setTimeout(inputRef.current.focus(), 1000);
+    setTimeout(inputRef.current.blur(), 1000);
+    setTimeout(inputRef.current.click(), 1000);
+    setTimeout(inputRef.current.focus(), 1000);
+    // ReactTestUtils.Simulate.click(inputRef.current);
+  },[]);
 
   return (
     <>
@@ -38,9 +55,27 @@ export default function Google() {
           </div>
           <div className={css.mid}>
             <input 
-              autoFocus={true}
+              ref={inputRef}
+              // autoFocus={true}
               className={css.input}
               type={'text'}
+              onChange={(e)=>{
+                const value = e.target.value;
+                // let forcedTerm = [];
+                if ( value.length < 2 ) {
+                  const forcedTerm = searchTerms.filter( term => term.substring(0, value.length) === value);
+                  processTerm(forcedTerm);
+                } else {
+                  const forcedTerm = validSearchTermsRef.current.filter( term => term.substring(0, value.length) === value);
+                  processTerm(forcedTerm)
+                }
+                function processTerm(forcedTerm){
+                  forcedTerm.length > 0
+                    ? validSearchTermsRef.current = forcedTerm
+                    : validSearchTermsRef.current = [ validSearchTermsRef.current[ getRandomInt(validSearchTermsRef.current.length) ] ];
+                  inputRef.current.value = validSearchTermsRef.current[0].substring(0, value.length);
+                }
+              }}
             />
             <button
               className={css.searchButton}
@@ -73,6 +108,15 @@ export default function Google() {
 export async function getStaticProps(context) {
 
   return {
-    props: {}, // will be passed to the page component as props
+    props: {
+      searchTerms: [
+        'this is freedom',
+        'eye eye eye'
+      ]
+    }, // will be passed to the page component as props
   }
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
