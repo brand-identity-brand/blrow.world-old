@@ -54,9 +54,15 @@
 }
 
 .searchButton {
+  border: 0px;
+  background-color: black;
+  color: red;
+  font-family: 'VT323', monospace;
+  font-size: 7vw;
   border-radius: 0vw 5vw 5vw 0vw;
   height: 10vw;
-  width: 20vw
+  width: 12vw;
+  padding-right: 2vw;
 }
 
 .luckyButton {

@@ -48,7 +48,7 @@ export default function Google() {
                 router.push('/reddit');
               }}
             >
-              SEARCH
+              Go
             </button>
           </div>
 
