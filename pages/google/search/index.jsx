@@ -74,9 +74,9 @@ export async function getServerSideProps({query}) {
 
     let randomResultLength = Math.floor(Math.random() * 29) + 1;
     let randomSearchResult = [];
-    while (randomResultLength) {
-        [ ...randomSearchResult, randomResultLength ]
-        randomResultLength = randomResultLength - 1;
+    while (randomResultLength > 0) {
+      randomSearchResult = [ ...randomSearchResult, randomResultLength ]
+      randomResultLength = randomResultLength - 1;
     }
     return {
         props: {
