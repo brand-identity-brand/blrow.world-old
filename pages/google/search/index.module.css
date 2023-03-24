@@ -1,7 +1,7 @@
 .main {
   background-image: url('../public/background.png');
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat:repeat;
   background-color: white;
   background-attachment: fixed;
   /*size*/

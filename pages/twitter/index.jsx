@@ -10,9 +10,26 @@ import NavBar from './component/NavBar'
 import { useContext } from 'react';
 import { TimerContext, convertTime } from '@/context/TimerContext';
 
-export default function Google() {
-  const router = useRouter();
+import { ProgressContext } from '@/context/ProgressContext';
 
+const imageSrc = [
+  'https://drive.google.com/uc?id=1sbow1TD7X1_bKfWue7BhMiuFCC5XLlh3',
+  'https://drive.google.com/uc?id=1JFsu8n8_wHpQSnGz3KPIggTjIHOjvOgu',
+  'https://drive.google.com/uc?id=163GJORwNxy3GWVX7sEwnULAJNwX4PyuA',
+  'https://drive.google.com/uc?id=1efclxG_s_e0PX9pUAbBtEAIQLqfh0VSY',
+  'https://drive.google.com/uc?id=1i8d4in8IHfxNRiAiRtaqvUAHrieF37M-',
+  'https://drive.google.com/uc?id=1axMDqAY4wpZe5MoScz3m52p9sA8kTLH8',
+  'https://drive.google.com/uc?id=1LWBWdSGzutPe927qF4YorwdgrvBrj12T',
+  'https://drive.google.com/uc?id=1IFqvSr__o7zLJ3IRmlZLsQ_CVXJERo_I',
+  'https://drive.google.com/uc?id=17Ch1OLVh_NrwS-eOI8Kgt95arMG1hlss',
+  'https://drive.google.com/uc?id=18aakjB8VfZSXGm9PgrAxiZIlb5JmCVG3',
+]
+
+export default function Twitter() {
+  
+  const { progressState, setProgressState } = useContext(ProgressContext);
+
+  const router = useRouter();
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
 
@@ -49,79 +66,31 @@ export default function Google() {
       <div
         className={css.paintingSetContainer}
       >
-        <div
-          className={css.paintingContainer + ' ' + css.size1}
-        >
-          <Image
-            src={Hand}
-            style={{
-              // objectFit: 'contain',
-              // position: 'absolute',
-              width: '100%',
-              height: 'auto'
-            }}
-          />
-        </div>
+        <ZePlaceholder progressState={progressState} stage={0} art={0}/>
       </div>
 
       <div
         className={css.paintingSetContainer}
       >
-        <div
-          className={css.paintingContainer + ' ' + css.size2}
-        >
-          <ZeHand/>
-        </div>
-        <div
-          className={css.paintingContainer + ' ' + css.size2}
-        >
-          <ZeHand/>
-        </div>
+        <ZePlaceholder progressState={progressState} stage={1} art={0}/>
+        <ZePlaceholder progressState={progressState} stage={1} art={1}/>
       </div>
 
       <div
         className={css.paintingSetContainer}
       >
-        <div
-          className={css.paintingContainer + ' ' + css.size3}
-        >
-          <ZeHand/>
-        </div>
-        <div
-          className={css.paintingContainer + ' ' + css.size3}
-        >
-          <ZeHand/>
-        </div>
-        <div
-          className={css.paintingContainer + ' ' + css.size3}
-        >
-          <ZeHand/>
-        </div>
+        <ZePlaceholder progressState={progressState} stage={2} art={0}/>
+        <ZePlaceholder progressState={progressState} stage={2} art={1}/>
+        <ZePlaceholder progressState={progressState} stage={2} art={2}/>
       </div>
 
       <div
         className={css.paintingSetContainer}
       >
-        <div
-          className={css.paintingContainer + ' ' + css.size4}
-        >
-          <ZeHand/>
-        </div>
-        <div
-          className={css.paintingContainer + ' ' + css.size4}
-        >
-          <ZeHand/>
-        </div>
-        <div
-          className={css.paintingContainer + ' ' + css.size4}
-        >
-          <ZeHand/>
-        </div>
-        <div
-          className={css.paintingContainer + ' ' + css.size4}
-        >
-          <ZeHand/>
-        </div>
+        <ZePlaceholder progressState={progressState} stage={3} art={0}/>
+        <ZePlaceholder progressState={progressState} stage={3} art={1}/>
+        <ZePlaceholder progressState={progressState} stage={3} art={2}/>
+        <ZePlaceholder progressState={progressState} stage={3} art={3}/>
       </div>
     </main>
   </>)
@@ -134,9 +103,52 @@ export async function getStaticProps(context) {
   }
 }
 
+function ZePlaceholder({progressState, stage, art}){
+
+  let counter = 0;
+  let value = stage;
+  while ( value ) {
+    counter = counter + value;
+    value = value - 1;
+  }
+  counter = counter + art;
+
+  return(
+    <div
+      className={css.paintingContainer + ' ' + css[`size${stage}`]}
+      style={progressState[stage].paths.blue
+        ? { 
+          backgroundColor: 'rgb(128, 0, 128, 0)',
+          filter: 'drop-shadow( 0vw 3vw 2vw black)'
+        }
+        : {}
+    }
+    >
+      {progressState[stage].paths.blue
+        ? <ZeArt src={imageSrc[counter]} alt={`${stage}-${art}`} /> 
+        : <ZeHand/>
+      }
+    </div>
+  )
+}
+
+function ZeArt({alt, src}){
+  return( 
+    <Image
+      src = {src}
+      alt = {alt}
+      fill
+      style={{
+        objectFit: 'contain',
+      }}
+    />
+  )
+}
+
 function ZeHand(){
   return( 
     <Image
+    alt={'五指山'}
     src={Hand}
     style={{
       // objectFit: 'contain',
@@ -163,6 +175,7 @@ function ZeFace({zIndex, mixBlendMode, opacity}){
       }}
     >
       <Image
+        alt={'mask'}
         src={Face}
         style={{
           width: '69%',

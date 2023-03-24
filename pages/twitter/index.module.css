@@ -77,32 +77,31 @@
 }
 
 .paintingContainer{
-  background-color: purple;
+  background-color: rgb(128, 0, 128, 0.8);
   position: relative;
 
   margin-bottom: 250px;
 
   display: flex;
   flex-direction: column-reverse;
+}
 
+.size0{
+  width: 64vw;
+  height: 80vw;
 }
 
 .size1{
-  width: 58vw;
-  height: 60vw;
+  width: 40vw;
+  height: 45vw; 
 }
 
 .size2{
-  width: 35vw;
-  height: 40vw; 
+  width: 30vw;
+  height: 39vw;  
 }
 
 .size3{
-  width: 25vw;
-  height: 35vw;  
-}
-
-.size4{
-  width: 18vw;
-  height: 18vw;  
+  width: 24vw;
+  height: 24vw;  
 }

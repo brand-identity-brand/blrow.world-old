@@ -8,6 +8,7 @@ import Logo from './public/logo.png'
 import Timer from '@/component/Timer'
 import { useContext, useRef, useEffect, useState } from 'react';
 import { TimerContext } from '@/context/TimerContext';
+import { ProgressContext } from '@/context/ProgressContext';
 
 import ReactTestUtils from "react-dom/test-utils";
 
@@ -15,8 +16,9 @@ export default function Google(props) {
   const {
     searchTerms
   } = props;
-  const router = useRouter();
 
+  const router = useRouter();
+  const { pathBlueUnlocked } = useContext(ProgressContext);
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
 
@@ -34,7 +36,7 @@ export default function Google(props) {
     setTimeout(inputRef.current.click(), 1000);
     setTimeout(inputRef.current.focus(), 1000);
     // ReactTestUtils.Simulate.click(inputRef.current);
-  },[]);
+  },[]); 
 
   return (
     <>
@@ -49,6 +51,7 @@ export default function Google(props) {
           <div className={css.top}>
             <div className={css.logoContainer}>
               <Image
+                alt={'goggles logo'}
                 src={Logo}
                 fill
                 style={{
@@ -89,6 +92,7 @@ export default function Google(props) {
               className={css.searchButton}
               onClick={()=>{
                 if ( inputRef.current.value.length === 0 ) {
+                  pathBlueUnlocked(1);
                   router.push('/reddit');
                 } else if (doneTypingRef.current) {
                   router.push(`/google/search?keyword=${inputRef.current.value}`)

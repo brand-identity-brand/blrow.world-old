@@ -7,10 +7,11 @@ import Image from 'next/image'
 import Timer from '@/component/Timer';
 import { useContext } from 'react';
 import { TimerContext } from '@/context/TimerContext';
+import { ProgressContext } from '@/context/ProgressContext';
 
 export default function Reddit() {
   const router = useRouter();
-  
+  const { pathBlueUnlocked } = useContext(ProgressContext);
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
 
@@ -29,7 +30,8 @@ export default function Reddit() {
             timeLimit: timeLimit,
             speed: 2147483647
           })
-          router.push('/facebook')
+          pathBlueUnlocked(2);
+          router.push('/facebook');
         }}
       >
         PROCEED THIS WAY

@@ -7,10 +7,11 @@ import Image from 'next/image'
 import Timer from '@/component/Timer';
 import { useContext } from 'react';
 import { TimerContext } from '@/context/TimerContext';
+import { ProgressContext } from '@/context/ProgressContext';
 
 export default function Facebook() {
   const router = useRouter();
-  
+  const { pathBlueUnlocked } = useContext(ProgressContext);
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
   
@@ -29,6 +30,7 @@ export default function Facebook() {
             timeLimit: timeLimit,
             speed: 2147483647
           });
+          pathBlueUnlocked(3);
           router.push('/youtube');
         }}
       >
