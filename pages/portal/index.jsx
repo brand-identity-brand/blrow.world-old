@@ -95,9 +95,8 @@ export async function getStaticProps(context) {
 
 function ThisButton({onClick}){
   const [ isButtonPressed, setIsButtonPressed ] = useState(false);
-  
+
   if ( isButtonPressed ){
-    console.log('aight', isButtonPressed)
     onClick();
   }
 
