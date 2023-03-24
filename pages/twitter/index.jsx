@@ -3,8 +3,8 @@ import css from './index.module.css'
 
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import Hand from './public/Hand.png';
-import Face from './public/face.png';
+import Hand from '@/public/twitter/Hand.png';
+import Face from '@/public/twitter/face.png';
 import { use } from 'react'
 import NavBar from './component/NavBar'
 import { useContext } from 'react';
@@ -12,19 +12,41 @@ import { TimerContext, convertTime } from '@/context/TimerContext';
 
 import { ProgressContext } from '@/context/ProgressContext';
 
-const imageSrc = [
-  'https://drive.google.com/uc?id=1sbow1TD7X1_bKfWue7BhMiuFCC5XLlh3',
-  'https://drive.google.com/uc?id=1JFsu8n8_wHpQSnGz3KPIggTjIHOjvOgu',
-  'https://drive.google.com/uc?id=163GJORwNxy3GWVX7sEwnULAJNwX4PyuA',
-  'https://drive.google.com/uc?id=1efclxG_s_e0PX9pUAbBtEAIQLqfh0VSY',
-  'https://drive.google.com/uc?id=1i8d4in8IHfxNRiAiRtaqvUAHrieF37M-',
-  'https://drive.google.com/uc?id=1axMDqAY4wpZe5MoScz3m52p9sA8kTLH8',
-  'https://drive.google.com/uc?id=1LWBWdSGzutPe927qF4YorwdgrvBrj12T',
-  'https://drive.google.com/uc?id=1IFqvSr__o7zLJ3IRmlZLsQ_CVXJERo_I',
-  'https://drive.google.com/uc?id=17Ch1OLVh_NrwS-eOI8Kgt95arMG1hlss',
-  'https://drive.google.com/uc?id=18aakjB8VfZSXGm9PgrAxiZIlb5JmCVG3',
-]
+import Art00 from '@/public/fakeFileServer/Asset 1.png';
+import Art01 from '@/public/fakeFileServer/Asset 2.png';
+import Art02 from '@/public/fakeFileServer/Asset 3.png';
+import Art03 from '@/public/fakeFileServer/Asset 4.png';
+import Art04 from '@/public/fakeFileServer/Asset 5.png';
+import Art05 from '@/public/fakeFileServer/Asset 6.png';
+import Art06 from '@/public/fakeFileServer/Asset 7.png';
+import Art07 from '@/public/fakeFileServer/Asset 8.png';
+import Art08 from '@/public/fakeFileServer/Asset 9.png';
+import Art09 from '@/public/fakeFileServer/Asset 10.png';
+// const imageSrc = [
+//   'https://drive.google.com/uc?id=1sbow1TD7X1_bKfWue7BhMiuFCC5XLlh3',
+//   'https://drive.google.com/uc?id=1JFsu8n8_wHpQSnGz3KPIggTjIHOjvOgu',
+//   'https://drive.google.com/uc?id=163GJORwNxy3GWVX7sEwnULAJNwX4PyuA',
+//   'https://drive.google.com/uc?id=1efclxG_s_e0PX9pUAbBtEAIQLqfh0VSY',
+//   'https://drive.google.com/uc?id=1i8d4in8IHfxNRiAiRtaqvUAHrieF37M-',
+//   'https://drive.google.com/uc?id=1axMDqAY4wpZe5MoScz3m52p9sA8kTLH8',
+//   'https://drive.google.com/uc?id=1LWBWdSGzutPe927qF4YorwdgrvBrj12T',
+//   'https://drive.google.com/uc?id=1IFqvSr__o7zLJ3IRmlZLsQ_CVXJERo_I',
+//   'https://drive.google.com/uc?id=17Ch1OLVh_NrwS-eOI8Kgt95arMG1hlss',
+//   'https://drive.google.com/uc?id=18aakjB8VfZSXGm9PgrAxiZIlb5JmCVG3',
+// ]
+const imageSrc=[
+  Art09,
+  Art01,
+  Art02,
+  Art06,
+  Art07,
+  Art08,
 
+  Art05,
+  Art00,
+  Art03,
+  Art04,
+]
 export default function Twitter() {
   
   const { progressState, setProgressState } = useContext(ProgressContext);

@@ -1,17 +1,25 @@
 .main {
-  background-image: url("./public/sky.jpg");
-  background-size: 100%;
-  background-repeat: repeat;
-  background-color: white;
-
   /* height: 500vh; */
-
+  background-color: white;
   display: flex;
   flex-direction: column;
   /* align-items: center; */
   justify-content: baseline;
+  position: relative;
 }
+.main::before {    
+  content: "";
+  background-image: url("../../public/twitter/sky.jpg");
+  background-size: 100%;
+  background-repeat: repeat;
 
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.5;
+}
 .faceContainer{
   position: relative;
   height: 111vw;

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import GogglesIcon from '../public/GogglesIcon.png';
+import GogglesIcon from '@/public/twitter/GogglesIcon.png';
 
 import { ProgressContext } from '@/context/ProgressContext';
 
