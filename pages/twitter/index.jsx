@@ -36,14 +36,16 @@ import Art09 from '@/public/fakeFileServer/Asset 10.png';
 // ]
 const imageSrc=[
   Art09,
+
   Art01,
-  Art02,
+  Art00,
+
   Art06,
   Art07,
   Art08,
-
+  
   Art05,
-  Art00,
+  Art02,
   Art03,
   Art04,
 ]
