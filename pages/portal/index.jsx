@@ -95,20 +95,25 @@ export async function getStaticProps(context) {
 
 function ThisButton({onClick}){
   const [ isButtonPressed, setIsButtonPressed ] = useState(false);
+  
+  if ( isButtonPressed ){
+    console.log('aight', isButtonPressed)
+    onClick();
+  }
 
   return (
   <div className={css.bot}>
 
     <div 
       style={isButtonPressed
-        ? { visibility: 'none' }
+        ? { visibility: 'hidden' }
         : {}
       }
       className={css.thisButtonContainer}
       onMouseDown={()=>{
         setIsButtonPressed(true);
       }}
-      onClick={onClick}
+      // onClick={onClick}
     >
       <Image
         draggable={false}
