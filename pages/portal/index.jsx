@@ -71,7 +71,13 @@ export default function Portal() {
             fill
           />
         </div> */}
-          <ThisButton/>
+          <ThisButton
+            onClick={()=>{
+              // setIsButtonPressed(false);
+              setTimeout(()=>{router.push('/twitter')}, 300)
+              // router.push('/twitter'); //gallery
+            }}
+          />
 
         {/* <Link href={'/'}> home {id} </Link> */}
       </main>
@@ -87,7 +93,7 @@ export async function getStaticProps(context) {
 }
 
 
-function ThisButton(){
+function ThisButton({onClick}){
   const [ isButtonPressed, setIsButtonPressed ] = useState(false);
 
   return (
@@ -102,11 +108,7 @@ function ThisButton(){
       onMouseDown={()=>{
         setIsButtonPressed(true);
       }}
-      onClick={()=>{
-        // setIsButtonPressed(false);
-        setTimeout(()=>{router.push('/twitter')}, 300)
-        // router.push('/twitter'); //gallery
-      }}
+      onClick={onClick}
     >
       <Image
         draggable={false}
