@@ -61,12 +61,23 @@
   margin-right: 2vw;
 }
 
+.bot {
+  width: 100vw;
+  height: fit-content;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  padding-left: 21vw;
+}
 .thisButtonContainer{
   position: relative;
   width: 40vw;
   height: 30vw;
   /**/
   margin-top: 14vw;
+  /**/
+  z-index: 3;
+  position: absolute;
 }
 
 .thisButtonPressedContainer{
@@ -75,4 +86,7 @@
   height: 27vw;
   /**/
   margin-top: calc(14vw + 3vw);
+  /**/
+  z-index: 2;
+  position: absolute;
 }

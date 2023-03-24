@@ -53,7 +53,7 @@ export default function Portal() {
         <div className={css.messageLines3}>
           press <span className={css.messageLines3_span}>THIS</span> button to begin
         </div>
-        <div 
+        {/* <div 
           className={isButtonPressed?  css.thisButtonPressedContainer : css.thisButtonContainer}
           onMouseDown={()=>{
             setIsButtonPressed(true);
@@ -70,7 +70,9 @@ export default function Portal() {
             alt={'THIS button'}
             fill
           />
-        </div>
+        </div> */}
+          <ThisButton/>
+
         {/* <Link href={'/'}> home {id} </Link> */}
       </main>
     </>
@@ -82,4 +84,49 @@ export async function getStaticProps(context) {
   return {
     props: {}, // will be passed to the page component as props
   }
+}
+
+
+function ThisButton(){
+  const [ isButtonPressed, setIsButtonPressed ] = useState(false);
+
+  return (
+  <div className={css.bot}>
+
+    <div 
+      style={isButtonPressed
+        ? { visibility: 'none' }
+        : {}
+      }
+      className={css.thisButtonContainer}
+      onMouseDown={()=>{
+        setIsButtonPressed(true);
+      }}
+      onClick={()=>{
+        // setIsButtonPressed(false);
+        setTimeout(()=>{router.push('/twitter')}, 300)
+        // router.push('/twitter'); //gallery
+      }}
+    >
+      <Image
+        draggable={false}
+        src={thisButton}
+        alt={'THIS button'}
+        fill
+      />
+    </div>
+    
+    <div 
+      className={css.thisButtonPressedContainer }
+    >
+      <Image
+        draggable={false}
+        src={thisButtonPressed}
+        alt={'THIS button'}
+        fill
+      />
+    </div>
+
+  </div>
+  )
 }
