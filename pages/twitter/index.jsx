@@ -43,7 +43,7 @@ const imageSrc=[
   Art06,
   Art07,
   Art08,
-  
+
   Art05,
   Art02,
   Art03,
@@ -143,7 +143,9 @@ function ZePlaceholder({progressState, stage, art}){
       style={progressState[stage].paths.blue
         ? { 
           backgroundColor: 'rgb(128, 0, 128, 0)',
-          filter: 'drop-shadow( 0vw 3vw 2vw black)'
+          filter: stage === 3
+          ? 'drop-shadow( 0vw 1vw 1vw black)'
+          : 'drop-shadow( 0vw 3vw 2vw black)'
         }
         : {}
     }

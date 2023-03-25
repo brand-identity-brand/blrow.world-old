@@ -11,35 +11,40 @@ export default function ProgressContextProvider({children}){
             paths: {
                 blue: false,
                 red: false
-            }
+            },
+            visits: 0
         },{
             stageUrl: '/google',
             stageName: 'Goggles.com',
             paths: {
                 blue: false,
                 red: false
-            }
+            },
+            visits: 0
         },{
             stageUrl: '/reddit',
             stageName: 'reddit',
             paths: {
                 blue: false,
                 red: false
-            }
+            },
+            visits: 0
         },{
             stageUrl: '/facebook',
             stageName: 'facebook',
             paths: {
                 blue: false,
                 red: false
-            }
+            },
+            visits: 0
         },{
             stageUrl: '/youtube',
             stageName: 'Invitation',
             paths: {
                 blue: false,
                 red: false
-            }
+            },
+            visits: 0
         }
     ]);
 
@@ -50,9 +55,13 @@ export default function ProgressContextProvider({children}){
             setProgressState(updatedProgressState);
         }
     }
-
+    const stageVisited = function (stage){
+        const updatedProgressState = [...progressState];
+        updatedProgressState[stage].visits = progressState[stage].visits + 1;
+        setProgressState(updatedProgressState);
+    }
     return (
-        <ProgressContext.Provider value={{ progressState, setProgressState, pathBlueUnlocked }}>
+        <ProgressContext.Provider value={{ progressState, setProgressState, pathBlueUnlocked, stageVisited }}>
             {children}
         </ProgressContext.Provider>
     )

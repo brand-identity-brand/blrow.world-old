@@ -3,13 +3,16 @@ import css from './index.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import Logo from '../public/logo.png'
+import Logo from '@/public/google/logo.png'
 
 import Timer from '@/component/Timer'
 import { useContext, useRef, useEffect, useState } from 'react';
 import { TimerContext } from '@/context/TimerContext';
+import { ProgressContext } from '@/context/ProgressContext';
 
 import ReactTestUtils from "react-dom/test-utils";
+
+import Art1 from '@/public/fakeFileServer/Asset 10.png'
 
 export default function Google(props) {
   const {
@@ -17,9 +20,9 @@ export default function Google(props) {
     searchResult
   } = props;
   const router = useRouter();
-
+  const { stageVisited } = useState(ProgressContext);
   const { TimerState, setTimerState } = useContext(TimerContext);
-  const { timeLimit } = TimerState;
+
 
 
   return (
@@ -54,14 +57,31 @@ export default function Google(props) {
           </div>
           <div className={css.mid}>
             { searchResult.map(item => {
-                return (
-                    <div
-                        key = { item }
-                        className = { css.searchResultCard}
-                    >
-                        {keyword}
-                    </div>
-                )
+              return (
+                <div
+                    key = { item }  
+                    className = { css.searchResultCard}
+                >
+                  <div
+                    className = { css.searchResultCard_img}
+                  >
+                    <Image
+                      alt={'mask'}
+                      src={Art1}
+                      fill
+                      style={{
+                        // width: '100%',
+                        // height: 'auto',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div>
+                    {keyword}
+                  </div>
+                  
+                </div>
+              )
             })}
           </div>
         </main>

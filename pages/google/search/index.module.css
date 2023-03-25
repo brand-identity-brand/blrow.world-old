@@ -1,5 +1,5 @@
 .main {
-  background-image: url('../public/background.png');
+  background-image: url('../../../public/google/background.png');
   background-size: cover;
   background-repeat:repeat;
   background-color: white;
@@ -76,4 +76,14 @@
   color: white;
   width: 80vw;
   height: 30vw;
+  /* layout */
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.searchResultCard_img {
+  position: relative;
+  width: 20vw;
+  height: 20vw;
 }
