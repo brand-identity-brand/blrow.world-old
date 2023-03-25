@@ -6,13 +6,16 @@ import Image from 'next/image'
 import Timer from '@/component/Timer'
 import { useContext } from 'react';
 import { TimerContext } from '@/context/TimerContext';
+import { ProgressContext } from '@/context/ProgressContext';
 
 export default function Youtube() {
   const router = useRouter();
-  
+  const { pathUnlocked, stageVisited } = useContext(ProgressContext);
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
-
+  useEffect(()=>{
+    stageVisited(5);
+  },[])
   return (<>
     <Head>
         <title>blrow.world</title>
@@ -28,6 +31,7 @@ export default function Youtube() {
             timeLimit: timeLimit,
             speed: 2147483647
           });
+          pathUnlocked(5, 'blue');
           router.push('/twitter');
         }}
       >

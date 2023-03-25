@@ -18,7 +18,7 @@ export default function Google(props) {
   } = props;
 
   const router = useRouter();
-  const { progressState, pathBlueUnlocked, stageVisited } = useContext(ProgressContext);
+  const { progressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
 
@@ -34,12 +34,13 @@ export default function Google(props) {
 
   useEffect(()=>{
     // inputRef.current.focus();
-    stageVisited(1);
+    stageVisited(2);
     ReactTestUtils.Simulate.click(inputRef.current);
-    if ( progressState[1].visits < 3 ) {
+    if ( progressState[2].visits < 2 ) {
       ReactTestUtils.Simulate.change(inputRef.current, { target: { value: searchTerms[0]} });
     }
     // ReactTestUtils.Simulate.click(inputRef.current);
+    console.log(progressState)
   },[]); 
 
   return (
@@ -97,7 +98,7 @@ export default function Google(props) {
               className={css.searchButton}
               onClick={()=>{
                 if ( inputRef.current.value.length === 0 ) {
-                  pathBlueUnlocked(1);
+                  pathUnlocked(1 , 'blue');
                   router.push('/reddit');
                 } else if (doneTypingRef.current) {
                   router.push(`/google/search?keyword=${inputRef.current.value}`)
@@ -118,6 +119,7 @@ export default function Google(props) {
                 timeLimit: timeLimit,
                 speed: 2147483647
               })
+              pathUnlocked(1 , 'red');
               router.push('/youtube');
             }}
           >

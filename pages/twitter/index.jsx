@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Hand from '@/public/twitter/Hand.png';
 import Face from '@/public/twitter/face.png';
-import { use } from 'react'
+import { use, useEffect } from 'react'
 import NavBar from './component/NavBar'
 import { useContext } from 'react';
 import { TimerContext, convertTime } from '@/context/TimerContext';
@@ -51,12 +51,16 @@ const imageSrc=[
 ]
 export default function Twitter() {
   
-  const { progressState, setProgressState } = useContext(ProgressContext);
+  const { progressState, setProgressState, pathUnlocked } = useContext(ProgressContext);
 
   const router = useRouter();
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
 
+  useEffect(()=>{
+    stageVisited(1);
+  },[]);
+  
   return (<>
     <Head>
         <title>blrow.world</title>

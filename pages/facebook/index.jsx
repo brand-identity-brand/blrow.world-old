@@ -11,10 +11,12 @@ import { ProgressContext } from '@/context/ProgressContext';
 
 export default function Facebook() {
   const router = useRouter();
-  const { pathBlueUnlocked } = useContext(ProgressContext);
+  const { pathUnlocked, stageVisited } = useContext(ProgressContext);
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
-  
+  useEffect(()=>{
+    stageVisited(4);
+  },[])
   return (<>
     <Head>
         <title>blrow.world</title>
@@ -30,7 +32,7 @@ export default function Facebook() {
             timeLimit: timeLimit,
             speed: 2147483647
           });
-          pathBlueUnlocked(3);
+          pathUnlocked(4 , 'blue');
           router.push('/youtube');
         }}
       >

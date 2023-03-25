@@ -75,15 +75,39 @@
   background-color: black;
   color: white;
   width: 80vw;
-  height: 30vw;
+  height: 50vw;
   /* layout */
   display: flex;
   flex-direction: row;
   
 }
 
-.searchResultCard_img {
+.searchResultCard_left {
   position: relative;
-  width: 20vw;
-  height: 20vw;
+  width: 30vw;
+  height: 30vw;
+}
+
+.searchResultCard_right {
+  position: relative;
+  width: 50vw;
+  height: 50vw;
+  /* layout */
+  display: flex;
+  flex-direction: column;
+}
+
+.searchResultCard_right_top {
+  width: 50vw;
+  height: 10vw;
+}
+
+.searchResultCard_right_mid {
+  width: 50vw;
+  height: 30vw;
+}
+
+.searchResultCard_right_bot{
+  width: 50vw;
+  height: 10vw;
 }

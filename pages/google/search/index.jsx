@@ -46,7 +46,11 @@ export default function Google(props) {
               />
             </div> */}
             <div className={css.searchBarContainer}>
-                <input className={css.input}/>
+                <input 
+                  type={'text'}
+                  defaultValue={router.query.keyword}
+                  className={css.input}
+                />
                 <button
                     className={css.searchButton}
                 >
@@ -63,7 +67,7 @@ export default function Google(props) {
                     className = { css.searchResultCard}
                 >
                   <div
-                    className = { css.searchResultCard_img}
+                    className = { css.searchResultCard_left}
                   >
                     <Image
                       alt={'mask'}
@@ -76,8 +80,18 @@ export default function Google(props) {
                       }}
                     />
                   </div>
-                  <div>
-                    {keyword}
+                  <div
+                    className = { css.searchResultCard_right}
+                  >
+                    <div className={css.searchResultCard_right_top}>
+                      {keyword}
+                    </div>
+                    <div className={css.searchResultCard_right_mid}>
+                      {keyword}
+                    </div>
+                    <div className={css.searchResultCard_right_bot}>
+                      {keyword}
+                    </div>
                   </div>
                   
                 </div>
@@ -101,7 +115,7 @@ export async function getServerSideProps({query}) {
     return {
         props: {
             keyword,
-            searchResult: randomSearchResult
+            searchResult: [0]//randomSearchResult
         }, // will be passed to the page component as props
     }
 }

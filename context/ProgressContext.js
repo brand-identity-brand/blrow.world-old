@@ -6,6 +6,14 @@ ProgressContext.displayName = 'ProgressContext';
 export default function ProgressContextProvider({children}){
     const [ progressState, setProgressState ] = useState([
         {
+            stageUrl: '/portal',
+            stageName: 'Portal',
+            paths: {
+                blue: false,
+                red: false
+            },
+            visits: 0
+        },{
             stageUrl: '/twitter',
             stageName: 'The Gallery',
             paths: {
@@ -47,21 +55,27 @@ export default function ProgressContextProvider({children}){
             visits: 0
         }
     ]);
-
-    const pathBlueUnlocked = function (stage){
-        if ( progressState[stage].paths.blue === false ) {
+    const pathUnlocked = function (stage, colour){
+        if ( progressState[stage].paths[colour] === false ) {
             const updatedProgressState = [...progressState];
-            updatedProgressState[stage].paths.blue = true;
+            updatedProgressState[stage].paths[colour] = true;
             setProgressState(updatedProgressState);
         }
     }
+    // const pathBlueUnlocked = function (stage){
+    //     if ( progressState[stage].paths.blue === false ) {
+    //         const updatedProgressState = [...progressState];
+    //         updatedProgressState[stage].paths.blue = true;
+    //         setProgressState(updatedProgressState);
+    //     }
+    // }
     const stageVisited = function (stage){
         const updatedProgressState = [...progressState];
         updatedProgressState[stage].visits = progressState[stage].visits + 1;
         setProgressState(updatedProgressState);
     }
     return (
-        <ProgressContext.Provider value={{ progressState, setProgressState, pathBlueUnlocked, stageVisited }}>
+        <ProgressContext.Provider value={{ progressState, setProgressState, pathUnlocked, stageVisited }}>
             {children}
         </ProgressContext.Provider>
     )

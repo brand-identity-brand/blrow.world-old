@@ -9,14 +9,14 @@ import { ProgressContext } from '@/context/ProgressContext';
 
 export default function NavBar(props){
 
-    const { pathBlueUnlocked } = useContext(ProgressContext);
+    const { pathUnlocked } = useContext(ProgressContext);
     const router = useRouter();
     
     return (
         <div className={css.navBarContainer}>
             <div className={css.iconContainer}
                 onClick={()=>{
-                    pathBlueUnlocked(0);
+                    pathUnlocked(1 , 'blue');
                     router.push('/google');
                 }}
             >

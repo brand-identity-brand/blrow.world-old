@@ -8,6 +8,7 @@ import thisButtonPressed from './thisButtonPressed.png'
 import { useState, useEffect } from 'react'
 import { useContext } from 'react';
 import { TimerContext, convertTime } from '@/context/TimerContext';
+import { ProgressContext } from '@/context/ProgressContext';
 
 export default function Portal() {
   const router = useRouter()
@@ -17,8 +18,12 @@ export default function Portal() {
 
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
-
+  const { stageVisited, pathUnlocked } = useContext(ProgressContext);
+  useEffect(()=>{
+    stageVisited(0);
+  },[])
   return (
+    
     <>
       <Head>
         <title>blrow.world</title>
@@ -51,7 +56,22 @@ export default function Portal() {
           </div>
         </div>
         <div className={css.messageLines3}>
-          press <span className={css.messageLines3_span}>THIS</span> button to begin
+          press 
+          <span 
+            className={css.messageLines3_span}
+            onClick={()=>{
+              setTimerState({
+                timeLimit: timeLimit,
+                speed: 2147483647
+              });
+              pathUnlocked(0 , 'red');
+              // setIsButtonPressed(false);
+              setTimeout(()=>{router.push('/youtube')}, 300)
+            }}
+          >
+            THIS
+          </span> 
+          button to begin
         </div>
         {/* <div 
           className={isButtonPressed?  css.thisButtonPressedContainer : css.thisButtonContainer}
@@ -73,9 +93,13 @@ export default function Portal() {
         </div> */}
           <ThisButton
             onClick={()=>{
+              setTimerState({
+                timeLimit: timeLimit,
+                speed: 2147483647
+              });
+              pathUnlocked(0 , 'blue');
               // setIsButtonPressed(false);
               setTimeout(()=>{router.push('/twitter')}, 300)
-              // router.push('/twitter'); //gallery
             }}
           />
 

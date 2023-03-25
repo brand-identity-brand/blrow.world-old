@@ -11,10 +11,12 @@ import { ProgressContext } from '@/context/ProgressContext';
 
 export default function Reddit() {
   const router = useRouter();
-  const { pathBlueUnlocked } = useContext(ProgressContext);
+  const { pathUnlocked, stageVisited } = useContext(ProgressContext);
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
-
+  useEffect(()=>{
+    stageVisited(3);
+  },[])
   return (<>
     <Head>
         <title>blrow.world</title>
@@ -30,7 +32,7 @@ export default function Reddit() {
             timeLimit: timeLimit,
             speed: 2147483647
           })
-          pathBlueUnlocked(2);
+          pathUnlocked(3, 'blue');
           router.push('/facebook');
         }}
       >
