@@ -98,6 +98,10 @@ export default function Google(props) {
               className={css.searchButton}
               onClick={()=>{
                 if ( inputRef.current.value.length === 0 ) {
+                  setTimerState({
+                    timeLimit: timeLimit,
+                    speed: 2147483647
+                  })
                   pathUnlocked(2 , 'blue');
                   router.push('/reddit');
                 } else if (doneTypingRef.current) {
@@ -115,11 +119,20 @@ export default function Google(props) {
           <button
             className={css.luckyButton}
             onClick={()=>{
-              setTimerState({
-                timeLimit: timeLimit,
-                speed: 2147483647
-              })
-              pathUnlocked(1 , 'red');
+              if ( inputRef.current.value.length === 0 ) {
+                setTimerState({
+                  timeLimit: timeLimit,
+                  speed: 2147483647
+                })
+                pathUnlocked(2 , 'red');
+                router.push('/reddit');
+              } else if (doneTypingRef.current) {
+                router.push(`/google/search?keyword=${inputRef.current.value}`)
+              } else {
+                alert('you need to finish typing your keyword(s)')
+              }
+              
+
               router.push('/youtube');
             }}
           >
