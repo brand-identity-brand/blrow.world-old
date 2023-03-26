@@ -98,7 +98,7 @@ export default function Google(props) {
               className={css.searchButton}
               onClick={()=>{
                 if ( inputRef.current.value.length === 0 ) {
-                  pathUnlocked(1 , 'blue');
+                  pathUnlocked(2 , 'blue');
                   router.push('/reddit');
                 } else if (doneTypingRef.current) {
                   router.push(`/google/search?keyword=${inputRef.current.value}`)

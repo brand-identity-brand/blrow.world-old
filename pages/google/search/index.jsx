@@ -69,29 +69,32 @@ export default function Google(props) {
                   <div
                     className = { css.searchResultCard_left}
                   >
-                    <Image
-                      alt={'mask'}
-                      src={Art1}
-                      fill
-                      style={{
-                        // width: '100%',
-                        // height: 'auto',
-                        objectFit: 'contain'
-                      }}
-                    />
+                    <div className = { css.searchResultCard_left_top} >
+                      <Image
+                        alt={'mask'}
+                        src={Art1}
+                        fill
+                        style={{
+                          // width: '100%',
+                          // height: 'auto',
+                          objectFit: 'contain'
+                        }}
+                      />
+                    </div>
+                    <div>{'#000001'}</div>
                   </div>
                   <div
                     className = { css.searchResultCard_right}
                   >
                     <div className={css.searchResultCard_right_top}>
-                      {keyword}
+                      {'add title'}
                     </div>
                     <div className={css.searchResultCard_right_mid}>
-                      {keyword}
+                      {'add description'}
                     </div>
-                    <div className={css.searchResultCard_right_bot}>
-                      {keyword}
-                    </div>
+                    {/* <div className={css.searchResultCard_right_bot}>
+                      {'#0000001'}
+                    </div> */}
                   </div>
                   
                 </div>

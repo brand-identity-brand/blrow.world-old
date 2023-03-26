@@ -94,22 +94,22 @@
   flex-direction: column-reverse;
 }
 
-.size0{
+.size1{
   width: 64vw;
   height: 80vw;
 }
 
-.size1{
+.size2{
   width: 40vw;
   height: 45vw; 
 }
 
-.size2{
+.size3{
   width: 30vw;
   height: 39vw;  
 }
 
-.size3{
+.size4{
   width: 24vw;
   height: 24vw;  
 }

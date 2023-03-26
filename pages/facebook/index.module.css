@@ -1,5 +1,5 @@
 .main {
-    background-image: url('./public/background.png');
+    background-image: url('../../public/facebook/background.png');
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
     background-color: white;
@@ -7,3 +7,86 @@
     width: 100vw;
     height: 100vh;
 }
+.hoverMessage{
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+
+    transition: width, height, top, left ease-in;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    mix-blend-mode: lighten;
+    
+    top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	/* transition: 10s ease-out; */
+    font-size: 11vw; 
+}
+.fade {
+	top: 54vh;
+	left: 52vw;
+	width: 0px;
+	height: 0px;
+    font-size: 0vw; 
+	transition: 1s ease-in;
+	transition-delay: 0s;
+	opacity: 0.5;
+}
+.messageLines0{
+    margin: 2vw 0 2vw 0 ;
+    font-weight: bold;
+    font-family: 'Courier', monospace;
+    mix-blend-mode: darken;
+}
+.top {
+    width: 100vw;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    /* align-items: baseline;
+    justify-content: flex-start; */
+    gap: 7vw;
+    font-size: 9.4vw; 
+    margin-top: 16vw;
+    font-family: 'Courier', monospace;
+    font-weight: bold;
+}
+
+.messageLines{
+    
+    padding: 3vw 1vw 0vw 3vw;
+    background-color: rgba(237, 28, 36, 0.78);
+    width: fit-content;
+    mix-blend-mode:hard-light;
+}
+
+.messageLines2{
+    padding: 3vw 1vw 0vw 3vw;
+    background-color: rgba(237, 28, 36, 0.78);
+    width: fit-content;
+    mix-blend-mode:color-burn;
+}
+
+.redPath{
+    font-size: 10.3vw; 
+
+    font-family: 'VT323', monospace;
+    mix-blend-mode:color-burn;
+}
+
+.bot {
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    padding-left: 21vw;
+    
+  }

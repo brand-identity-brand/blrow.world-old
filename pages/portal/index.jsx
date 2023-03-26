@@ -3,8 +3,8 @@ import css from './index.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import thisButton from './thisButton.png'
-import thisButtonPressed from './thisButtonPressed.png'
+import thisButton from '@/public/portal/thisButton.png'
+import thisButtonPressed from '@/public/portal/thisButtonPressed.png'
 import { useState, useEffect } from 'react'
 import { useContext } from 'react';
 import { TimerContext, convertTime } from '@/context/TimerContext';
@@ -93,10 +93,10 @@ export default function Portal() {
         </div> */}
           <ThisButton
             onClick={()=>{
-              setTimerState({
-                timeLimit: timeLimit,
-                speed: 2147483647
-              });
+              // setTimerState({
+              //   timeLimit: timeLimit,
+              //   speed: 2147483647
+              // });
               pathUnlocked(0 , 'blue');
               // setIsButtonPressed(false);
               setTimeout(()=>{router.push('/twitter')}, 300)
@@ -120,9 +120,12 @@ export async function getStaticProps(context) {
 function ThisButton({onClick}){
   const [ isButtonPressed, setIsButtonPressed ] = useState(false);
 
-  if ( isButtonPressed ){
-    onClick();
-  }
+  useEffect(()=>{
+    if ( isButtonPressed ){
+      onClick();
+    }
+  },[isButtonPressed])
+
 
   return (
   <div className={css.bot}>

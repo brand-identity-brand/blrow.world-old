@@ -51,7 +51,7 @@ const imageSrc=[
 ]
 export default function Twitter() {
   
-  const { progressState, setProgressState, pathUnlocked } = useContext(ProgressContext);
+  const { progressState, setProgressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
 
   const router = useRouter();
   const { TimerState, setTimerState } = useContext(TimerContext);
@@ -94,14 +94,7 @@ export default function Twitter() {
       <div
         className={css.paintingSetContainer}
       >
-        <ZePlaceholder progressState={progressState} stage={0} art={0}/>
-      </div>
-
-      <div
-        className={css.paintingSetContainer}
-      >
         <ZePlaceholder progressState={progressState} stage={1} art={0}/>
-        <ZePlaceholder progressState={progressState} stage={1} art={1}/>
       </div>
 
       <div
@@ -109,7 +102,6 @@ export default function Twitter() {
       >
         <ZePlaceholder progressState={progressState} stage={2} art={0}/>
         <ZePlaceholder progressState={progressState} stage={2} art={1}/>
-        <ZePlaceholder progressState={progressState} stage={2} art={2}/>
       </div>
 
       <div
@@ -118,7 +110,15 @@ export default function Twitter() {
         <ZePlaceholder progressState={progressState} stage={3} art={0}/>
         <ZePlaceholder progressState={progressState} stage={3} art={1}/>
         <ZePlaceholder progressState={progressState} stage={3} art={2}/>
-        <ZePlaceholder progressState={progressState} stage={3} art={3}/>
+      </div>
+
+      <div
+        className={css.paintingSetContainer}
+      >
+        <ZePlaceholder progressState={progressState} stage={4} art={0}/>
+        <ZePlaceholder progressState={progressState} stage={4} art={1}/>
+        <ZePlaceholder progressState={progressState} stage={4} art={2}/>
+        <ZePlaceholder progressState={progressState} stage={4} art={3}/>
       </div>
     </main>
   </>)
@@ -134,7 +134,7 @@ export async function getStaticProps(context) {
 function ZePlaceholder({progressState, stage, art}){
 
   let counter = 0;
-  let value = stage;
+  let value = stage - 1;
   while ( value ) {
     counter = counter + value;
     value = value - 1;

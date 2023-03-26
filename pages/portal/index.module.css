@@ -1,5 +1,5 @@
 .main {
-  background-image: url("portal.png");
+  background-image: url("../../public/portal/background.png");
   background-size: 100%;
   background-repeat: no-repeat;
   background-color: white;
@@ -12,6 +12,7 @@
   width: 100vw;
   height: 100vh;
 }
+
 .messageContainer{
   width: 100vw;
   color: white;
@@ -61,14 +62,7 @@
   margin-right: 2vw;
 }
 
-.bot {
-  width: 100vw;
-  height: fit-content;
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  padding-left: 21vw;
-}
+
 .thisButtonContainer{
   position: relative;
   width: 40vw;

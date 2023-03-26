@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 import Timer from '@/component/Timer';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
 
