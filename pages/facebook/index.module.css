@@ -40,7 +40,7 @@
 	opacity: 0.5;
 }
 .messageLines0{
-    margin: 2vw 0 2vw 0 ;
+    margin: 1vw 0 0.5vw 0 ;
     font-weight: bold;
     font-family: 'Courier', monospace;
     mix-blend-mode: darken;

@@ -22,7 +22,7 @@ export default function Facebook() {
     
   },[]);
 
-  setTimeout(()=>{setMessageFade(true)},30000);
+  setTimeout(()=>{setMessageFade(true)},20000);
 
   return (<>
     <Head>
