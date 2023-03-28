@@ -52,7 +52,7 @@ export default function Facebook() {
         <div className={css.messageLines}>press</div>
         <div className={css.messageLines}>this</div>
         <div 
-          className={css.messageLines + ' ' + css.redPath}
+          className={`${css.messageLines} ${css.redPath}`}
           onClick={()=>{
             setTimerState({
               timeLimit: timeLimit,

@@ -78,7 +78,9 @@
     font-size: 10.3vw; 
 
     font-family: 'VT323', monospace;
-    mix-blend-mode:color-burn;
+    mix-blend-mode:hard-light;
+
+    color: white;
 }
 
 .bot {
