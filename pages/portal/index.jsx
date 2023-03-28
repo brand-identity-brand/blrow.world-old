@@ -10,7 +10,8 @@ import { useContext } from 'react';
 import { TimerContext, convertTime } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
 
-export default function Portal() {
+export default function Portal(props) {
+  const { artistId } = props;
   const router = useRouter()
   const { id } = router.query
 
@@ -34,7 +35,7 @@ export default function Portal() {
       <main className={css.main}>
         <div className={css.messageContainer}>
           <div className={css.messageLines}>
-            Hi Aritsts #00000001
+            {`Hi Aritsts #${artistId}`}
           </div>
           <div
             className={css.messageLines}
@@ -109,10 +110,14 @@ export default function Portal() {
   )
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
+  const artistCookie = context.req.cookies['artist'];
+  console.log(artistCookie);
 
   return {
-    props: {}, // will be passed to the page component as props
+    props: {
+      artistId: artistCookie
+    }, // will be passed to the page component as props
   }
 }
 
