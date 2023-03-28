@@ -6,6 +6,7 @@ ProgressContext.displayName = 'ProgressContext';
 export default function ProgressContextProvider({children}){
     const [ progressState, setProgressState ] = useState([
         {
+            speed: 2147483647,
             stageUrl: '/portal',
             stageName: 'Portal',
             paths: {
@@ -14,6 +15,7 @@ export default function ProgressContextProvider({children}){
             },
             visits: 0
         },{
+            speed: 2147483647,
             stageUrl: '/twitter',
             stageName: 'The Gallery',
             paths: {
@@ -22,6 +24,7 @@ export default function ProgressContextProvider({children}){
             },
             visits: 0
         },{
+            speed: 200,
             stageUrl: '/google',
             stageName: 'Goggles.com',
             paths: {
@@ -30,6 +33,7 @@ export default function ProgressContextProvider({children}){
             },
             visits: 0
         },{
+            speed: 1000,
             stageUrl: '/reddit',
             stageName: 'reddit',
             paths: {
@@ -38,6 +42,7 @@ export default function ProgressContextProvider({children}){
             },
             visits: 0
         },{
+            speed: 100,
             stageUrl: '/facebook',
             stageName: 'facebook',
             paths: {
@@ -46,6 +51,7 @@ export default function ProgressContextProvider({children}){
             },
             visits: 0
         },{
+            speed: 50,
             stageUrl: '/youtube',
             stageName: 'Invitation',
             paths: {

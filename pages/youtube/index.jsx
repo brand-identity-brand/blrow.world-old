@@ -10,7 +10,8 @@ import { ProgressContext } from '@/context/ProgressContext';
 
 export default function Youtube() {
   const router = useRouter();
-  const { pathUnlocked, stageVisited } = useContext(ProgressContext);
+  const { progressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
+  const { speed, visits } = progressState[4];
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
   useEffect(()=>{
@@ -24,7 +25,7 @@ export default function Youtube() {
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={css.main}>
-      <Timer speed={50}/>
+      <Timer speed={speed}/>
       <button
         onClick={()=>{
           setTimerState({

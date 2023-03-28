@@ -20,7 +20,9 @@ export default function Google(props) {
     searchResult
   } = props;
   const router = useRouter();
-  const { stageVisited } = useState(ProgressContext);
+  const { progressState, stageVisited } = useContext(ProgressContext);
+  const { speed } = progressState[1];
+  
   const { TimerState, setTimerState } = useContext(TimerContext);
 
 
@@ -34,7 +36,7 @@ export default function Google(props) {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={css.main}>
-          <Timer speed={1000}/>
+          <Timer speed={speed}/>
           <div className={css.top}>
             {/* <div className={css.logoContainer}>
               <Image

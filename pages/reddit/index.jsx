@@ -11,7 +11,9 @@ import { ProgressContext } from '@/context/ProgressContext';
 
 export default function Reddit() {
   const router = useRouter();
-  const { pathUnlocked, stageVisited } = useContext(ProgressContext);
+  const { progressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
+  const { speed, visits } = progressState[3];
+
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
   useEffect(()=>{
@@ -25,7 +27,7 @@ export default function Reddit() {
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={css.main}>
-      <Timer speed={600}/>
+      <Timer speed={speed}/>
       <button
         onClick={()=>{
           setTimerState({

@@ -19,6 +19,8 @@ export default function Google(props) {
 
   const router = useRouter();
   const { progressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
+  const { speed, visits } = progressState[2];
+  
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
 
@@ -36,11 +38,10 @@ export default function Google(props) {
     // inputRef.current.focus();
     stageVisited(2);
     ReactTestUtils.Simulate.click(inputRef.current);
-    if ( progressState[2].visits < 2 ) {
+    if ( visits < 2 ) {
       ReactTestUtils.Simulate.change(inputRef.current, { target: { value: searchTerms[0]} });
     }
     // ReactTestUtils.Simulate.click(inputRef.current);
-    console.log(progressState)
   },[]); 
 
   return (
@@ -52,7 +53,7 @@ export default function Google(props) {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={css.main}>
-          <Timer speed={1000}/>
+          <Timer speed={speed}/>
           <div className={css.top}>
             <div className={css.logoContainer}>
               <Image

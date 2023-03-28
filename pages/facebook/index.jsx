@@ -12,7 +12,8 @@ import ThisButton from '@/component/ThisButton';
 
 export default function Facebook() {
   const router = useRouter();
-  const { pathUnlocked, stageVisited } = useContext(ProgressContext);
+  const { progressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
+  const { speed, visits } = progressState[4];
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
 
@@ -22,7 +23,7 @@ export default function Facebook() {
     
   },[]);
 
-  setTimeout(()=>{setMessageFade(true)},20000);
+  setTimeout(()=>{setMessageFade(true)},18000);
 
   return (<>
     <Head>
@@ -43,7 +44,7 @@ export default function Facebook() {
       <div className={css.messageLines0}>YOU CANNOT DO. </div>
     </div>
     <main className={css.main}>
-      <Timer speed={100}/>
+      <Timer speed={speed}/>
       <div className={css.top}>
         <div className={css.messageLines}> Except this time</div>
         <div className={css.messageLines}> you really</div>
