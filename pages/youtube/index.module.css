@@ -1,5 +1,5 @@
 .main {
-    background-image: url('./public/background.png');
+    background-image: url('../../public/youtube/background.png');
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
     background-color: white;
