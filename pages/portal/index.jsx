@@ -9,9 +9,12 @@ import { useState, useEffect } from 'react'
 import { useContext } from 'react';
 import { TimerContext, convertTime } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
+import { getCookie } from 'cookies-next';
 
 export default function Portal(props) {
-  const { artistId } = props;
+  const {} = props;
+  const [ artistCookie, setArtistCookie ] = useState('');
+
   const router = useRouter()
   const { id } = router.query
 
@@ -22,6 +25,7 @@ export default function Portal(props) {
   const { stageVisited, pathUnlocked } = useContext(ProgressContext);
   useEffect(()=>{
     stageVisited(0);
+    setArtistCookie( getCookie('artist') );
   },[])
   return (
     
@@ -35,7 +39,7 @@ export default function Portal(props) {
       <main className={css.main}>
         <div className={css.messageContainer}>
           <div className={css.messageLines}>
-            {`Hi Aritsts #${artistId}`}
+            {`Hi Aritsts #${artistCookie}`}
           </div>
           <div
             className={css.messageLines}
@@ -111,12 +115,9 @@ export default function Portal(props) {
 }
 
 export async function getServerSideProps(context) {
-  const artistCookie = context.req.cookies['artist'];
-  console.log(artistCookie);
 
   return {
     props: {
-      artistId: artistCookie
     }, // will be passed to the page component as props
   }
 }

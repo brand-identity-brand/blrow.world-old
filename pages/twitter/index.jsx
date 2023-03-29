@@ -7,10 +7,12 @@ import Hand from '@/public/twitter/Hand.png';
 import Face from '@/public/twitter/face.png';
 import { use, useEffect } from 'react'
 import NavBar from './component/NavBar'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { TimerContext, convertTime } from '@/context/TimerContext';
 
 import { ProgressContext } from '@/context/ProgressContext';
+import { getCookie } from 'cookies-next';
+
 
 import Art00 from '@/public/fakeFileServer/Asset 1.png';
 import Art01 from '@/public/fakeFileServer/Asset 2.png';
@@ -54,11 +56,13 @@ export default function Twitter() {
   const { progressState, setProgressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
 
   const router = useRouter();
+  const [ artistCookie, setArtistCookie ] = useState('');
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
 
   useEffect(()=>{
     stageVisited(1);
+    setArtistCookie( getCookie('artist') );
   },[]);
   
   return (<>
@@ -82,7 +86,7 @@ export default function Twitter() {
         </div>
         <div className={css.subTitleContainer}>
           <div>
-            Artist #0000001
+            {`Artist #${artistCookie}`}
           </div>
           <div>
             begins in <span style={{color: 'greenyellow'}}>{convertTime(timeLimit)}</span>
