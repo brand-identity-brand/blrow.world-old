@@ -34,6 +34,15 @@ export default function Post(props){
             <div>
                 {`${stage} - ${art}`}
             </div>
+            <div className={css.imageContainer}>
+                <Image
+                    src = { imageSrc[counter(stage,art)]}
+                    alt = { stage }
+                    style = {
+                        contentFit = 'cover'
+                    }
+                />
+            </div>
         </main>
     </>)
 }
@@ -46,4 +55,28 @@ export function getServerSideProps(context){
             art
         }
     }
+}
+
+const imageSrc = [
+    'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/1%20eye.png',
+    'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/2%20left.png',
+    'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/2%20right.png',
+    'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/3%20left.png',
+    'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/3%20middle.png',
+    'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/3%20right.png',
+    'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/4%20blue%20green.png',
+    'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/4%20green%20yellow.png',
+    'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/4%20red%20blue.png',
+    'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/4%20yellow%20red.png'
+]
+
+const counter = (stage, art) => {
+    let counter = 0;
+    let value = stage - 1;
+    while ( value ) {
+      counter = counter + value;
+      value = value - 1;
+    }
+    counter = counter + art;
+    return counter;
 }
