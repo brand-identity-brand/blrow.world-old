@@ -104,25 +104,25 @@ export default function Twitter() {
       <div
         className={css.paintingSetContainer}
       >
-        <ZePlaceholder progressState={progressState} stage={2} art={0}/>
-        <ZePlaceholder progressState={progressState} stage={2} art={1}/>
+        <ZePlaceholder progressState={progressState} stage={2} art={0} router={router}/>
+        <ZePlaceholder progressState={progressState} stage={2} art={1} router={router}/>
       </div>
 
       <div
         className={css.paintingSetContainer}
       >
-        <ZePlaceholder progressState={progressState} stage={3} art={0}/>
-        <ZePlaceholder progressState={progressState} stage={3} art={1}/>
-        <ZePlaceholder progressState={progressState} stage={3} art={2}/>
+        <ZePlaceholder progressState={progressState} stage={3} art={0} router={router}/>
+        <ZePlaceholder progressState={progressState} stage={3} art={1} router={router}/>
+        <ZePlaceholder progressState={progressState} stage={3} art={2} router={router}/>
       </div>
 
       <div
         className={css.paintingSetContainer}
       >
-        <ZePlaceholder progressState={progressState} stage={4} art={0}/>
-        <ZePlaceholder progressState={progressState} stage={4} art={1}/>
-        <ZePlaceholder progressState={progressState} stage={4} art={2}/>
-        <ZePlaceholder progressState={progressState} stage={4} art={3}/>
+        <ZePlaceholder progressState={progressState} stage={4} art={0} router={router}/>
+        <ZePlaceholder progressState={progressState} stage={4} art={1} router={router}/>
+        <ZePlaceholder progressState={progressState} stage={4} art={2} router={router}/>
+        <ZePlaceholder progressState={progressState} stage={4} art={3} router={router}/>
       </div>
     </main>
   </>)
@@ -158,7 +158,7 @@ function ZePlaceholder({progressState, stage, art, router}){
         : {}
       }
       onClick = {progressState[stage].paths.blue
-        ? ()=>{ router.push('/twitter/post'); }
+        ? ()=>{ router.push(`/twitter/post?stage=${stage}&art=${art}`); }
         : null
       }
     >

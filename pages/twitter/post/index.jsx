@@ -9,6 +9,10 @@ import { TimerContext, convertTime } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
 
 export default function Post(props){
+    const {
+        stage,
+        art
+    } = props;
 
     const { progressState, setProgressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
 
@@ -27,14 +31,19 @@ export default function Post(props){
         </Head>
         <main className={css.main}>
             <Timer speed={2147483647}/>
+            <div>
+                {`${stage} - ${art}`}
+            </div>
         </main>
     </>)
 }
 
-// export function getServerSideProps(context){
-//     return {
-//         props:{
-//             artId: 2
-//         }
-//     }
-// }
+export function getServerSideProps(context){
+    const { query: { stage, art } } = context;
+    return {
+        props:{
+            stage,
+            art
+        }
+    }
+}
