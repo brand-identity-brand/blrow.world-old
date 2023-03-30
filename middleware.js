@@ -59,7 +59,7 @@ export async function middleware(req) {
 
 function ignorePaths(pathname, runFunction){
   if (
-    pathname.startsWith("/") ||
+    pathname === '/' ||
     pathname.startsWith("/_next") || // exclude Next.js internals
     pathname.startsWith("/api") || //  exclude all API routes
     pathname.startsWith("/static") || // exclude static files
