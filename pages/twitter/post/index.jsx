@@ -38,9 +38,9 @@ export default function Post(props){
                 <Image
                     src = { imageSrc[counter(stage,art)]}
                     alt = { stage }
-                    style = {
-                        contentFit = 'cover'
-                    }
+                    style = {{
+                        contentFit: 'cover'
+                    }}
                 />
             </div>
         </main>
