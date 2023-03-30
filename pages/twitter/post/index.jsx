@@ -3,9 +3,10 @@ import css from './index.module.css'
 
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-
+import Timer from '@/component/Timer'
 import { useContext, useState } from 'react';
 import { TimerContext, convertTime } from '@/context/TimerContext';
+import { ProgressContext } from '@/context/ProgressContext';
 
 export default function Post(props){
 
@@ -25,7 +26,7 @@ export default function Post(props){
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={css.main}>
-            <Timer speed={speed}/>
+            <Timer speed={2147483647}/>
         </main>
     </>)
 }
