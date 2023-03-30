@@ -1,5 +1,18 @@
-.imageContainer {
+.a {
     width: 100vw;
-    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.imageContainer {
+    width: 80vw;
+    height: 150vw;
     position: relative;
+}
+.b {
+    padding: 0vw 10vw 10vw 10vw;
+}
+.title {
+    font-size: 7vw;
 }

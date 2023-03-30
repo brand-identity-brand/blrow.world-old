@@ -21,7 +21,6 @@ export default function Post(props){
     const { TimerState, setTimerState } = useContext(TimerContext);
     const { timeLimit } = TimerState;
 
-    
     return (<>
         <Head>
             <title>blrow.world</title>
@@ -31,17 +30,25 @@ export default function Post(props){
         </Head>
         <main className={css.main}>
             <Timer speed={2147483647}/>
-            <div>
-                {`${stage} - ${art}`}
+            <div className={css.a}>
+                <div className={css.imageContainer}>
+                    <Image
+                        src = { imageSrc[ counter(stage,art) ] }
+                        alt = { stage }
+                        fill
+                        style = {{
+                            objectFit: 'contain'
+                        }}
+                    />
+                </div>
             </div>
-            <div className={css.imageContainer}>
-                <Image
-                    src = { imageSrc[counter(stage,art)]}
-                    alt = { stage }
-                    style = {{
-                        contentFit: 'cover'
-                    }}
-                />
+            <div className={css.b}>
+                <div className={css.title}>
+                    {`Assign Title`}
+                </div>
+                <div>
+                    {`give statement`}
+                </div>
             </div>
         </main>
     </>)
@@ -71,6 +78,8 @@ const imageSrc = [
 ]
 
 const counter = (stage, art) => {
+    stage = +stage;
+    art = +art;
     let counter = 0;
     let value = stage - 1;
     while ( value ) {
