@@ -4,7 +4,7 @@ import css from './index.module.css'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Timer from '@/component/Timer'
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef } from 'react';
 import { TimerContext, convertTime } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
 
@@ -21,6 +21,7 @@ export default function Post(props){
     const { TimerState, setTimerState } = useContext(TimerContext);
     const { timeLimit } = TimerState;
 
+    const [ titleEditing, setTitleEditing ] = useState(false);
     return (<>
         <Head>
             <title>blrow.world</title>
@@ -28,7 +29,11 @@ export default function Post(props){
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <main className={css.main}>
+        <main className={css.main}
+            onClick={()=>{
+                setTitleEditing(false);
+            }}
+        >
             <Timer speed={2147483647}/>
             <div className={css.a}>
                 <div className={css.imageContainer}>
@@ -43,12 +48,10 @@ export default function Post(props){
                 </div>
             </div>
             <div className={css.b}>
-                <div className={css.title}>
-                    {`Assign Title`}
-                </div>
-                <div>
-                    {`give statement`}
-                </div>
+                <EditableDiv controller={[ titleEditing, setTitleEditing ] }/>
+                {/* <div contentEditable={true}>
+                    {`Click here to write a statement.`}
+                </div> */}
             </div>
         </main>
     </>)
@@ -64,6 +67,19 @@ export function getServerSideProps(context){
     }
 }
 
+function EditableDiv(props){
+    const {
+        controller
+    } = props;
+    const [ titleEditing, setTitleEditing ] = controller;
+    const inputValue = useRef('click here to edit Title');
+    return (
+        titleEditing
+        ? <input className={css.titleInput} type={'text'} onChange={(e)=>{ inputValue.current = e.target.value }}/>
+        
+        : <div className={css.title} onClick={()=>{setTitleEditing(true)}}> {inputValue.current} </div>
+    )
+}
 const imageSrc = [
     'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/1%20eye.png',
     'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/2%20left.png',

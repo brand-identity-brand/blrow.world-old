@@ -13,6 +13,13 @@
 .b {
     padding: 0vw 10vw 10vw 10vw;
 }
+.titleInput {
+    font-size: 7vw;
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+}
 .title {
     font-size: 7vw;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    width: 100%;
 }
