@@ -17,13 +17,22 @@ export default function Post(props){
     const { isStageVisited, getArtTitle, getArtStatement, setArtTitle, setArtStatement } = useContext(ProgressContext);
 
     if ( isStageVisited(stage) === false ) {
-        return (
-            <div>
-                art missing.
-            </div>
-        )
+        return (<>
+            <Head>
+                <title>blrow.world</title>
+                <meta name="description" content="blrow.world" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <main className={css.main}>
+                <Timer speed={2147483647}/>
+                <div className={css.a}>
+                    {'art missing.'}
+                </div>
+            </main>
+        </>)
     }
-    
+
     const router = useRouter();
     const [ artistCookie, setArtistCookie ] = useState('');
     const { TimerState, setTimerState } = useContext(TimerContext);
@@ -107,6 +116,7 @@ const imageSrc = [
     'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/4%20yellow%20red.png'
 ]
 
+// TODO will return counter even if stage = 1, art = 9... add the restriction
 const counter = (stage, art) => {
     stage = +stage;
     art = +art;
