@@ -14,8 +14,16 @@ export default function Post(props){
         art
     } = props;
 
-    const { progressState, setProgressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
+    const { isStageVisited, getArtTitle, getArtStatement, setArtTitle, setArtStatement } = useContext(ProgressContext);
 
+    if ( isStageVisited(stage) === false ) {
+        return (
+            <div>
+                art missing.
+            </div>
+        )
+    }
+    
     const router = useRouter();
     const [ artistCookie, setArtistCookie ] = useState('');
     const { TimerState, setTimerState } = useContext(TimerContext);
@@ -55,10 +63,10 @@ export default function Post(props){
                     onFocus={()=>{setTitleEditing(true)}}
                     onBlur={()=>{
                         setTitleEditing(false);
-                        console.log(titleRef.current.innerHTML);
+                        setArtTitle(stage, art, titleRef.current.innerHTML);
                     }}
                 > 
-                    {'Click here to assign title' }
+                    { getArtTitle(stage, art) }
                 </div>
                 <div
                     ref={statementRef}
@@ -67,14 +75,10 @@ export default function Post(props){
                     onFocus={()=>{setStatementEditing(true)}}
                     onBlur={()=>{
                         setStatementEditing(false);
-                        console.log(statementRef.current.innerHTML);
+                        setArtStatement(stage, art, statementRef.current.innerHTML);
                     }}
-                >
-                    Click <br/>
-                    here <br/>
-                    to write <br/>
-                    a statement.
-                </div>
+                    dangerouslySetInnerHTML={{ __html: getArtStatement(stage, art) }}
+                />
             </div>
         </main>
     </>)

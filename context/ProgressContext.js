@@ -140,13 +140,70 @@ export default function ProgressContextProvider({children}){
         }
     }
  
+    const isStageVisited = function (stage){
+        const isVisited = progressState[stage].visits > 0;
+        return isVisited;
+    }
     const stageVisited = function (stage){
         const updatedProgressState = [...progressState];
         updatedProgressState[stage].visits = progressState[stage].visits + 1;
         setProgressState(updatedProgressState);
     }
+
+    const getArtTitle = function ( stage, art ) {
+        const title =  progressState[stage].art[art].title;
+        const placeholder = 'Click here to assign title.'
+        if ( title === null ) {
+            return placeholder;
+        } else if ( title === undefined ) {
+            return placeholder;
+        } else if ( title === '' ) {
+            return placeholder;
+        } else {
+            return title;
+        }
+    }
+    const getArtStatement = function ( stage, art ) {
+        const statement =  progressState[stage].art[art].statement;
+        const placeholder = ` 
+            Click <br/>
+            here <br/>
+            to write <br/>
+            a statement.
+        `;
+        if ( statement === null ) {
+            return placeholder;
+        } else if ( statement === undefined ) {
+            return placeholder;
+        } else if ( statement === '' ) {
+            return placeholder;
+        } else {
+            return statement;
+        }
+    }
+    const setArtTitle = function (stage, art, title){
+        const updatedProgressState = [...progressState];
+        updatedProgressState[stage].art[art].title = title;
+        setProgressState(updatedProgressState);
+    }
+    const setArtStatement = function (stage, art, statement){
+        const updatedProgressState = [...progressState];
+        updatedProgressState[stage].art[art].statement = statement;
+        setProgressState(updatedProgressState);
+    }
+
     return (
-        <ProgressContext.Provider value={{ progressState, setProgressState, pathUnlocked, stageVisited }}>
+        <ProgressContext.Provider value={{ 
+            progressState, 
+            setProgressState, 
+            pathUnlocked, 
+            isStageVisited,
+            stageVisited, 
+            getArtTitle,
+            getArtStatement, 
+            setArtTitle, 
+            setArtStatement 
+        }}>
             {children}
         </ProgressContext.Provider>
     )
