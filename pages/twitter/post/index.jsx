@@ -4,7 +4,7 @@ import css from './index.module.css'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Timer from '@/component/Timer'
-import { useContext, useState, useRef } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 import { TimerContext, convertTime } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
 
@@ -73,6 +73,9 @@ function EditableDiv(props){
     } = props;
     const [ titleEditing, setTitleEditing ] = controller;
     const inputValue = useRef('click here to edit Title');
+    useEffect(()=>{
+
+    },[titleEditing])
     return (
         titleEditing
         ? <input className={css.titleInput} type={'text'} onChange={(e)=>{ inputValue.current = e.target.value }}/>
