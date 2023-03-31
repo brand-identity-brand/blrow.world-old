@@ -76,7 +76,7 @@ export default function Post(props){
                         if ( getArtTitle(stage, art) === titleRef.current.innerHTML.replace(/^\s+|\s+$/g, '') ){
                             setTimerState ({
                                 timeLimit: timeLimit + 60,
-                                speed: speed - 100
+                                speed: speed - 200
                             });
                         } else {
                             setArtTitle(stage, art, titleRef.current.innerHTML);
@@ -96,10 +96,10 @@ export default function Post(props){
                     onFocus={()=>{setStatementEditing(true)}}
                     onBlur={()=>{
                         setStatementEditing(false);
-                        if ( getArtTitle(stage, art) === titleRef.current.innerHTML.replace(/^\s+|\s+$/g, '') ){
+                        if ( getArtStatement(stage, art) === statementRef.current.innerHTML.replace(/^\s+|\s+$/g, '') ){
                             setTimerState ({
-                                timeLimit: timeLimit + 60,
-                                speed: speed - 100
+                                timeLimit: timeLimit + 600,
+                                speed: speed - 200
                             });
                         } else {
                             setArtStatement(stage, art, statementRef.current.innerHTML);
