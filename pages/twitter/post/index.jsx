@@ -21,7 +21,11 @@ export default function Post(props){
     const { TimerState, setTimerState } = useContext(TimerContext);
     const { timeLimit } = TimerState;
 
-    const [ titleEditing, setTitleEditing ] = useState(false);
+    const [titleEditing, setTitleEditing] = useState(false);
+    const [statementEditing, setStatementEditing] = useState(false);
+
+    const titleRef = useRef();
+    const statementRef = useRef();
     return (<>
         <Head>
             <title>blrow.world</title>
@@ -29,11 +33,7 @@ export default function Post(props){
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <main className={css.main}
-            onClick={()=>{
-                setTitleEditing(false);
-            }}
-        >
+        <main className={css.main}>
             <Timer speed={2147483647}/>
             <div className={css.a}>
                 <div className={css.imageContainer}>
@@ -48,10 +48,33 @@ export default function Post(props){
                 </div>
             </div>
             <div className={css.b}>
-                <EditableDiv controller={[ titleEditing, setTitleEditing ] }/>
-                {/* <div contentEditable={true}>
-                    {`Click here to write a statement.`}
-                </div> */}
+                <div 
+                    ref = {titleRef}
+                    contentEditable={true}
+                    className={titleEditing? css.titleInput : css.title} 
+                    onFocus={()=>{setTitleEditing(true)}}
+                    onBlur={()=>{
+                        setTitleEditing(false);
+                        console.log(titleRef.current.innerHTML);
+                    }}
+                > 
+                    {'Click here to assign title' }
+                </div>
+                <div
+                    ref={statementRef}
+                    contentEditable={true}
+                    className={statementEditing? css.statementInput : css.statement} 
+                    onFocus={()=>{setStatementEditing(true)}}
+                    onBlur={()=>{
+                        setStatementEditing(false);
+                        console.log(statementRef.current.innerHTML);
+                    }}
+                >
+                    Click <br/>
+                    here <br/>
+                    to write <br/>
+                    a statement.
+                </div>
             </div>
         </main>
     </>)
@@ -67,22 +90,6 @@ export function getServerSideProps(context){
     }
 }
 
-function EditableDiv(props){
-    const {
-        controller
-    } = props;
-    const [ titleEditing, setTitleEditing ] = controller;
-    const inputValue = useRef('click here to edit Title');
-    useEffect(()=>{
-
-    },[titleEditing])
-    return (
-        titleEditing
-        ? <input className={css.titleInput} type={'text'} onChange={(e)=>{ inputValue.current = e.target.value }}/>
-        
-        : <div className={css.title} onClick={()=>{setTitleEditing(true)}}> {inputValue.current} </div>
-    )
-}
 const imageSrc = [
     'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/1%20eye.png',
     'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/2%20left.png',

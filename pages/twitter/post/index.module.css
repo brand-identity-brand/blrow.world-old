@@ -10,16 +10,44 @@
     height: 150vw;
     position: relative;
 }
+
+
 .b {
     padding: 0vw 10vw 10vw 10vw;
+
+    display: flex;
+    flex-direction: column;
+    /* gap: 2vw; */
 }
 .titleInput {
-    font-size: 7vw;
+    padding: 2vw;
+
+    font-size: 3vw;
     font-family: 'Courier New', Courier, monospace;
     width: 100%;
+
+    color: white;
+    background-color: black;
 }
 .title {
+    padding-top: 2vw;
+
     font-size: 7vw;
     font-family:Georgia, 'Times New Roman', Times, serif;
     width: 100%;
+}
+.statementInput{
+    padding: 2vw;
+
+    font-size: 3vw;
+    font-family: 'Courier New', Courier, monospace;
+
+    color: white;
+    background-color: black;
+}
+.statement{
+    padding-top: 2vw;
+
+    font-size: 4vw;
+    font-family:Georgia, 'Times New Roman', Times, serif;
 }

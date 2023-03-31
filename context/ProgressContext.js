@@ -13,7 +13,8 @@ export default function ProgressContextProvider({children}){
                 blue: false,
                 red: false
             },
-            visits: 0
+            visits: 0,
+            art:[]
         },{
             speed: 2147483647,
             stageUrl: '/twitter',
@@ -22,7 +23,13 @@ export default function ProgressContextProvider({children}){
                 blue: false,
                 red: false
             },
-            visits: 0
+            visits: 0,
+            art: [
+                {
+                    title: '',
+                    statement: ''
+                }
+            ]
         },{
             speed: 200,
             stageUrl: '/google',
@@ -31,7 +38,17 @@ export default function ProgressContextProvider({children}){
                 blue: false,
                 red: false
             },
-            visits: 0
+            visits: 0,
+            art: [
+                {
+                    title: '',
+                    statement: ''
+                },
+                {
+                    title: '',
+                    statement: ''
+                }
+            ]
         },{
             speed: 1000,
             stageUrl: '/reddit',
@@ -40,7 +57,21 @@ export default function ProgressContextProvider({children}){
                 blue: false,
                 red: false
             },
-            visits: 0
+            visits: 0,
+            art: [
+                {
+                    title: '',
+                    statement: ''
+                },
+                {
+                    title: '',
+                    statement: ''
+                },
+                {
+                    title: '',
+                    statement: ''
+                }
+            ]
         },{
             speed: 100,
             stageUrl: '/facebook',
@@ -49,7 +80,25 @@ export default function ProgressContextProvider({children}){
                 blue: false,
                 red: false
             },
-            visits: 0
+            visits: 0,
+            art: [
+                {
+                    title: '',
+                    statement: ''
+                },
+                {
+                    title: '',
+                    statement: ''
+                },
+                {
+                    title: '',
+                    statement: ''
+                },
+                {
+                    title: '',
+                    statement: ''
+                }
+            ]
         },{
             speed: 50,
             stageUrl: '/youtube',
@@ -58,7 +107,29 @@ export default function ProgressContextProvider({children}){
                 blue: false,
                 red: false
             },
-            visits: 0
+            visits: 0,
+            art: [
+                {
+                    title: '',
+                    statement: ''
+                },
+                {
+                    title: '',
+                    statement: ''
+                },
+                {
+                    title: '',
+                    statement: ''
+                },
+                {
+                    title: '',
+                    statement: ''
+                },
+                {
+                    title: '',
+                    statement: ''
+                }
+            ]
         }
     ]);
     const pathUnlocked = function (stage, colour){
@@ -68,13 +139,7 @@ export default function ProgressContextProvider({children}){
             setProgressState(updatedProgressState);
         }
     }
-    // const pathBlueUnlocked = function (stage){
-    //     if ( progressState[stage].paths.blue === false ) {
-    //         const updatedProgressState = [...progressState];
-    //         updatedProgressState[stage].paths.blue = true;
-    //         setProgressState(updatedProgressState);
-    //     }
-    // }
+ 
     const stageVisited = function (stage){
         const updatedProgressState = [...progressState];
         updatedProgressState[stage].visits = progressState[stage].visits + 1;
