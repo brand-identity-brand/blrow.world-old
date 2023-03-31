@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Timer from '@/component/Timer'
 import { useContext, useState, useRef, useEffect } from 'react';
-import { TimerContext, convertTime } from '@/context/TimerContext';
+import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
 
 export default function Post(props){
@@ -25,24 +25,25 @@ export default function Post(props){
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={css.main}>
-                <Timer speed={2147483647}/>
+                <Timer speed={100}/>
                 <div className={css.a}>
                     {'art missing.'}
                 </div>
-            </main>
+            </main>s
         </>)
     }
 
     const router = useRouter();
-    const [ artistCookie, setArtistCookie ] = useState('');
+    // const [ artistCookie, setArtistCookie ] = useState('');
     const { TimerState, setTimerState } = useContext(TimerContext);
-    const { timeLimit } = TimerState;
+    const { timeLimit, speed } = TimerState;
 
     const [titleEditing, setTitleEditing] = useState(false);
     const [statementEditing, setStatementEditing] = useState(false);
 
     const titleRef = useRef();
     const statementRef = useRef();
+
     return (<>
         <Head>
             <title>blrow.world</title>
@@ -51,7 +52,7 @@ export default function Post(props){
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={css.main}>
-            <Timer speed={2147483647}/>
+            <Timer speed={speed}/>
             <div className={css.a}>
                 <div className={css.imageContainer}>
                     <Image
@@ -72,7 +73,18 @@ export default function Post(props){
                     onFocus={()=>{setTitleEditing(true)}}
                     onBlur={()=>{
                         setTitleEditing(false);
-                        setArtTitle(stage, art, titleRef.current.innerHTML);
+                        if ( getArtTitle(stage, art) === titleRef.current.innerHTML.replace(/^\s+|\s+$/g, '') ){
+                            setTimerState ({
+                                timeLimit: timeLimit + 60,
+                                speed: speed - 100
+                            });
+                        } else {
+                            setArtTitle(stage, art, titleRef.current.innerHTML);
+                            setTimerState ({
+                                timeLimit: timeLimit + 60,
+                                speed: speed 
+                            });
+                        }
                     }}
                 > 
                     { getArtTitle(stage, art) }
@@ -84,7 +96,18 @@ export default function Post(props){
                     onFocus={()=>{setStatementEditing(true)}}
                     onBlur={()=>{
                         setStatementEditing(false);
-                        setArtStatement(stage, art, statementRef.current.innerHTML);
+                        if ( getArtTitle(stage, art) === titleRef.current.innerHTML.replace(/^\s+|\s+$/g, '') ){
+                            setTimerState ({
+                                timeLimit: timeLimit + 60,
+                                speed: speed - 100
+                            });
+                        } else {
+                            setArtStatement(stage, art, statementRef.current.innerHTML);
+                            setTimerState ({
+                                timeLimit: timeLimit + 600,
+                                speed: speed
+                            });
+                        }
                     }}
                     dangerouslySetInnerHTML={{ __html: getArtStatement(stage, art) }}
                 />

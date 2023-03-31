@@ -158,7 +158,13 @@ function ZePlaceholder({progressState, stage, art, router}){
         : {}
       }
       onClick = {progressState[stage].paths.blue
-        ? ()=>{ router.push(`/twitter/post?stage=${stage}&art=${art}`); }
+        ? ()=>{ 
+          setTimerState({
+            timeLimit: timeLimit,
+            speed: 1000
+          });
+          router.push(`/twitter/post?stage=${stage}&art=${art}`); 
+        }
         : null
       }
     >
