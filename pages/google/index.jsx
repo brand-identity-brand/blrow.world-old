@@ -41,7 +41,8 @@ export default function Google(props) {
     // inputRef.current.focus();
     stageVisited(2);
     ReactTestUtils.Simulate.click(inputRef.current);
-    if ( visits < 2 ) {
+    if ( visits < 1 ) {
+      // simulare onChange event using test utilities.
       ReactTestUtils.Simulate.change(inputRef.current, { target: { value: searchTerms[0]} });
     }
     // ReactTestUtils.Simulate.click(inputRef.current);
