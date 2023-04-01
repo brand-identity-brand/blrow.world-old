@@ -14,10 +14,12 @@ export default function ProgressContextProvider({children}){
                 red: false
             },
             visits: 0,
-            art:[{
-                title: 'The Game',
-                statement: 'This is freedom.'
-            }]
+            art: [
+                {
+                    title: 'The Game',
+                    statement: 'This is freedom.'
+                }
+            ]
         },{
             speed: 2147483647,
             stageUrl: '/twitter',
@@ -28,6 +30,10 @@ export default function ProgressContextProvider({children}){
             },
             visits: 0,
             art: [ //exhibition
+                {
+                    title: '',
+                    statement: ''
+                },
                 {
                     title: '',
                     statement: ''
@@ -43,6 +49,10 @@ export default function ProgressContextProvider({children}){
             },
             visits: 0,
             art: [
+                {
+                    title: '',
+                    statement: ''
+                },
                 {
                     title: '',
                     statement: ''
@@ -73,6 +83,10 @@ export default function ProgressContextProvider({children}){
                 {
                     title: '',
                     statement: ''
+                },
+                {
+                    title: '',
+                    statement: ''
                 }
             ]
         },{
@@ -89,18 +103,6 @@ export default function ProgressContextProvider({children}){
                     title: '',
                     statement: ''
                 },
-                {
-                    title: '',
-                    statement: ''
-                },
-                {
-                    title: '',
-                    statement: ''
-                },
-                {
-                    title: '',
-                    statement: ''
-                }
             ]
         },{
             speed: 50,

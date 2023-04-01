@@ -42,15 +42,20 @@ export default function Youtube() {
               pathUnlocked(5, 'blue');
               router.push('/twitter');
             }
-          } else if ( exhibitionProgress[1] ) {
-            alert('you need a title and a brief statement for your exhibition on the invitation.');
-          } else {
+          } else if ( 
+            exhibitionProgress[1] === false ||
+            exhibitionProgress[2] === false ||
+            exhibitionProgress[3] === false ||
+            exhibitionProgress[4] === false
+          ) {
             alert(`
-              set 1 ${exhibitionProgress[2]}
-              set 2 ${exhibitionProgress[3]}
-              set 3 ${exhibitionProgress[4]}
-              set 4 ${exhibitionProgress[5]}
-            `)
+              set 1 ${exhibitionProgress[1]}
+              set 2 ${exhibitionProgress[2]}
+              set 3 ${exhibitionProgress[3]}
+              set 4 ${exhibitionProgress[4]}
+            `);
+          } else if ( exhibitionProgress[5]  === false ) {
+            alert('you need a title and a brief statement for your exhibition on the invitation.');
           }
         }}
       >
