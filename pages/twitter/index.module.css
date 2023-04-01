@@ -88,28 +88,28 @@
   background-color: rgb(128, 0, 128, 0.8);
   position: relative;
 
-  margin-bottom: 250px;
+  margin-bottom: 30vw;
 
   display: flex;
   flex-direction: column-reverse;
 }
 
 .size1{
-  width: 64vw;
-  height: 80vw;
-}
-
-.size2{
   width: 40vw;
   height: 45vw; 
 }
 
-.size3{
+.size2{
   width: 30vw;
   height: 39vw;  
 }
 
-.size4{
+.size3{
   width: 24vw;
   height: 24vw;  
+}
+
+.size4{
+  width: 64vw;
+  height: 80vw;
 }

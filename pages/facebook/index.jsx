@@ -58,7 +58,7 @@ export default function Facebook() {
               timeLimit: timeLimit,
               speed: 2147483647
             });
-            pathUnlocked(4 , 'blue');
+            pathUnlocked(4 , 'red');
             // setIsButtonPressed(false);
             setTimeout(()=>{router.push('/youtube')}, 300)
           }}
@@ -71,7 +71,7 @@ export default function Facebook() {
             timeLimit: timeLimit,
             speed: 2147483647
           });
-          pathUnlocked(4 , 'red');
+          pathUnlocked(4 , 'blue');
           // setIsButtonPressed(false);
           setTimeout(()=>{router.push('/twitter')}, 300)
         }}

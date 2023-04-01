@@ -14,7 +14,10 @@ export default function ProgressContextProvider({children}){
                 red: false
             },
             visits: 0,
-            art:[]
+            art:[{
+                title: 'The Game',
+                statement: 'This is freedom.'
+            }]
         },{
             speed: 2147483647,
             stageUrl: '/twitter',
@@ -24,7 +27,7 @@ export default function ProgressContextProvider({children}){
                 red: false
             },
             visits: 0,
-            art: [
+            art: [ //exhibition
                 {
                     title: '',
                     statement: ''
@@ -108,27 +111,11 @@ export default function ProgressContextProvider({children}){
                 red: false
             },
             visits: 0,
-            art: [
+            art: [ // 1piece art
                 {
                     title: '',
                     statement: ''
                 },
-                {
-                    title: '',
-                    statement: ''
-                },
-                {
-                    title: '',
-                    statement: ''
-                },
-                {
-                    title: '',
-                    statement: ''
-                },
-                {
-                    title: '',
-                    statement: ''
-                }
             ]
         }
     ]);
@@ -191,7 +178,14 @@ export default function ProgressContextProvider({children}){
         updatedProgressState[stage].art[art].statement = statement;
         setProgressState(updatedProgressState);
     }
-
+    const isExhibitionReady = function (){
+        return progressState.map( (stage, index) => {
+            const isArtComplete = stage.art.map( art => {
+                return (art.title !== '') && (art.statement !== '');
+            });
+            return isArtComplete.reduce((accum, curr)=> accum && curr ,true);
+        });
+    }
     return (
         <ProgressContext.Provider value={{ 
             progressState, 
@@ -202,7 +196,8 @@ export default function ProgressContextProvider({children}){
             getArtTitle,
             getArtStatement, 
             setArtTitle, 
-            setArtStatement 
+            setArtStatement,
+            isExhibitionReady
         }}>
             {children}
         </ProgressContext.Provider>

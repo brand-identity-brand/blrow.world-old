@@ -4,19 +4,23 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Timer from '@/component/Timer'
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
 
 export default function Youtube() {
   const router = useRouter();
-  const { progressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
-  const { speed, visits } = progressState[4];
+  const { progressState, pathUnlocked, stageVisited, isExhibitionReady } = useContext(ProgressContext);
+  const { speed, visits } = progressState[5];
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
   useEffect(()=>{
     stageVisited(5);
-  },[])
+    console.log(isExhibitionReady())
+  },[]);
+
+  const exhibitionProgress = isExhibitionReady();
+
   return (<>
     <Head>
         <title>blrow.world</title>
@@ -28,12 +32,26 @@ export default function Youtube() {
       <Timer speed={speed}/>
       <button
         onClick={()=>{
-          setTimerState({
-            timeLimit: timeLimit,
-            speed: 2147483647
-          });
-          pathUnlocked(5, 'blue');
-          router.push('/twitter');
+          if ( exhibitionProgress.reduce( (accum,curr) => accum&&curr, true ) ) {
+            const lockProgress = confirm('start your exhibition?');
+            if ( lockProgress ) {
+              setTimerState({
+                timeLimit: timeLimit,
+                speed: 2147483647
+              });
+              pathUnlocked(5, 'blue');
+              router.push('/twitter');
+            }
+          } else if ( exhibitionProgress[1] ) {
+            alert('you need a title and a brief statement for your exhibition on the invitation.');
+          } else {
+            alert(`
+              set 1 ${exhibitionProgress[2]}
+              set 2 ${exhibitionProgress[3]}
+              set 3 ${exhibitionProgress[4]}
+              set 4 ${exhibitionProgress[5]}
+            `)
+          }
         }}
       >
         QR

@@ -88,6 +88,7 @@ export default function Twitter() {
         className={css.paintingSetContainer}
       >
         <ZePlaceholder progressState={progressState} stage={1} art={0} router={router} setTimerState={setTimerState} timeLimit={timeLimit}/>
+        <ZePlaceholder progressState={progressState} stage={1} art={1} router={router} setTimerState={setTimerState} timeLimit={timeLimit}/>
       </div>
 
       <div
@@ -95,6 +96,7 @@ export default function Twitter() {
       >
         <ZePlaceholder progressState={progressState} stage={2} art={0} router={router} setTimerState={setTimerState} timeLimit={timeLimit}/>
         <ZePlaceholder progressState={progressState} stage={2} art={1} router={router} setTimerState={setTimerState} timeLimit={timeLimit}/>
+        <ZePlaceholder progressState={progressState} stage={2} art={2} router={router} setTimerState={setTimerState} timeLimit={timeLimit}/>
       </div>
 
       <div
@@ -103,15 +105,13 @@ export default function Twitter() {
         <ZePlaceholder progressState={progressState} stage={3} art={0} router={router} setTimerState={setTimerState} timeLimit={timeLimit}/>
         <ZePlaceholder progressState={progressState} stage={3} art={1} router={router} setTimerState={setTimerState} timeLimit={timeLimit}/>
         <ZePlaceholder progressState={progressState} stage={3} art={2} router={router} setTimerState={setTimerState} timeLimit={timeLimit}/>
+        <ZePlaceholder progressState={progressState} stage={3} art={3} router={router} setTimerState={setTimerState} timeLimit={timeLimit}/>
       </div>
 
       <div
         className={css.paintingSetContainer}
       >
-        <ZePlaceholder progressState={progressState} stage={4} art={0} router={router} setTimerState={setTimerState} timeLimit={timeLimit}/>
-        <ZePlaceholder progressState={progressState} stage={4} art={1} router={router} setTimerState={setTimerState} timeLimit={timeLimit}/>
-        <ZePlaceholder progressState={progressState} stage={4} art={2} router={router} setTimerState={setTimerState} timeLimit={timeLimit}/>
-        <ZePlaceholder progressState={progressState} stage={4} art={3} router={router} setTimerState={setTimerState} timeLimit={timeLimit}/>
+        <ZePlaceholder progressState={progressState} stage={4} art={0} router={router} setTimerState={setTimerState} timeLimit={timeLimit} inverse={true}/>
       </div>
     </main>
   </>)
@@ -124,7 +124,7 @@ export async function getStaticProps(context) {
   }
 }
 
-function ZePlaceholder({progressState, stage, art, router, setTimerState, timeLimit}){
+function ZePlaceholder({progressState, stage, art, router, setTimerState, timeLimit, inverse = false}){
 
   // let counter = 0;
   // let value = stage - 1;
@@ -133,10 +133,13 @@ function ZePlaceholder({progressState, stage, art, router, setTimerState, timeLi
   //   value = value - 1;
   // }
   // counter = counter + art;
+  const unlocked = inverse
+    ? progressState[stage].paths.red
+    : progressState[stage].paths.blue;
   return(
     <div
       className={css.paintingContainer + ' ' + css[`size${stage}`]}
-      style={progressState[stage].paths.blue
+      style={unlocked
         ? { 
           backgroundColor: 'rgb(128, 0, 128, 0)',
           filter: stage === 3
@@ -145,7 +148,7 @@ function ZePlaceholder({progressState, stage, art, router, setTimerState, timeLi
         }
         : {}
       }
-      onClick = {progressState[stage].paths.blue
+      onClick = {unlocked
         ? ()=>{ 
           setTimerState({
             timeLimit: timeLimit,
@@ -156,7 +159,7 @@ function ZePlaceholder({progressState, stage, art, router, setTimerState, timeLi
         : null
       }
     >
-      {progressState[stage].paths.blue
+      {unlocked
         ? <ZeArt src={imageSrc[counter( stage, art )]} alt={`${stage}-${art}`} /> 
         : <ZeHand/>
       }
