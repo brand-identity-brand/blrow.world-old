@@ -34,8 +34,6 @@ export default function Google(props) {
   const validSearchTermsRef = useRef(searchTerms);
 
   const doneTypingRef = useRef(false);
-  
-  
 
   useEffect(()=>{
     // inputRef.current.focus();
@@ -165,7 +163,8 @@ export async function getServerSideProps(context) {
   const { data, error } = await supabase
     .from('gallery')
     .select('title')
-    .eq('player_id', artist);
+    .eq('player_id', artist)
+    .neq('title', null);
   
   const searchTerms = [
     'this is freedom',

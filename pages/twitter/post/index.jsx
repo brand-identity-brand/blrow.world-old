@@ -84,6 +84,7 @@ export default function Post(props){
                                 speed: speed - 200
                             });
                         } else {
+                            // TODO: check for duplicated title withint the same account before uploading
                             api_art_title({ 
                                 player: getCookie('artist'),
                                 stage: stage, 
