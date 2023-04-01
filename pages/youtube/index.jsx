@@ -7,6 +7,7 @@ import Timer from '@/component/Timer'
 import { useContext, useEffect, useRef } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
+import QRCodeRickRoll from '@/public/youtube/qrCode.png';
 
 export default function Youtube() {
   const router = useRouter();
@@ -30,7 +31,8 @@ export default function Youtube() {
     </Head>
     <main className={css.main}>
       <Timer speed={speed}/>
-      <button
+      <div 
+        className={css.qrCodeContainer}
         onClick={()=>{
           if ( exhibitionProgress.reduce( (accum,curr) => accum&&curr, true ) ) {
             const lockProgress = confirm('start your exhibition?');
@@ -59,8 +61,12 @@ export default function Youtube() {
           }
         }}
       >
-        QR
-      </button>
+        <Image
+          alt={'QR Code'}
+          src={QRCodeRickRoll}
+          fill
+        />
+      </div>
     </main>
   </>)
 }

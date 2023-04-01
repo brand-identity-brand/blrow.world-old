@@ -1,9 +1,15 @@
 .main {
-    background-image: url('../../public/youtube/background.png');
+    /* background-image: url('../../public/youtube/background.png'); */
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
     background-color: white;
 
     width: 100vw;
     height: 100vh;
+}
+
+.qrCodeContainer {
+    position: relative;
+    width: 30vw;
+    height: 30vw;
 }
