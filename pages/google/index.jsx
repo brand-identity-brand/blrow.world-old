@@ -12,6 +12,9 @@ import { ProgressContext } from '@/context/ProgressContext';
 
 import ReactTestUtils from "react-dom/test-utils";
 
+import { supabase } from '@/lib/supabaseClient';
+
+
 export default function Google(props) {
   const {
     searchTerms
@@ -145,14 +148,33 @@ export default function Google(props) {
 }
 
 export async function getServerSideProps(context) {
+  // if user loaded /google on first visit, artist cookie will not exist
+  const { artist } = context.req.cookies;
+
+  if ( artist === undefined ) {
+    return {
+      props: {
+        searchTerms: [
+          'this is freedom',
+        ]
+      },
+    }
+  }
+  // or use local state
+  const { data, error } = await supabase
+    .from('gallery')
+    .select('title')
+    .eq('player_id', artist);
+  
+  const searchTerms = [
+    'this is freedom',
+    ...data.map( item => item.title )
+  ]
 
   return {
     props: {
-      searchTerms: [
-        'this is freedom',
-        'eye eye eye'
-      ]
-    }, // will be passed to the page component as props
+      searchTerms
+    }, 
   }
 }
 

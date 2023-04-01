@@ -13,7 +13,7 @@ import { TimerContext, convertTime } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
 import { getCookie } from 'cookies-next';
 
-
+import { imageSrc, counter } from '@/lib/art';
 // import Art00 from '@/public/fakeFileServer/Asset 1.png';
 // import Art01 from '@/public/fakeFileServer/Asset 2.png';
 // import Art02 from '@/public/fakeFileServer/Asset 3.png';
@@ -24,18 +24,7 @@ import { getCookie } from 'cookies-next';
 // import Art07 from '@/public/fakeFileServer/Asset 8.png';
 // import Art08 from '@/public/fakeFileServer/Asset 9.png';
 // import Art09 from '@/public/fakeFileServer/Asset 10.png';
-const imageSrc = [
-  'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/1%20eye.png',
-  'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/2%20left.png',
-  'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/2%20right.png',
-  'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/3%20left.png',
-  'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/3%20middle.png',
-  'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/3%20right.png',
-  'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/4%20blue%20green.png',
-  'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/4%20green%20yellow.png',
-  'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/4%20red%20blue.png',
-  'https://xgzssoosjqorfdzkfxbw.supabase.co/storage/v1/object/public/vault/4%20yellow%20red.png'
-]
+
 // const imageSrc=[
 //   Art09,
 
@@ -137,14 +126,13 @@ export async function getStaticProps(context) {
 
 function ZePlaceholder({progressState, stage, art, router, setTimerState, timeLimit}){
 
-  let counter = 0;
-  let value = stage - 1;
-  while ( value ) {
-    counter = counter + value;
-    value = value - 1;
-  }
-  counter = counter + art;
-
+  // let counter = 0;
+  // let value = stage - 1;
+  // while ( value ) {
+  //   counter = counter + value;
+  //   value = value - 1;
+  // }
+  // counter = counter + art;
   return(
     <div
       className={css.paintingContainer + ' ' + css[`size${stage}`]}
@@ -169,7 +157,7 @@ function ZePlaceholder({progressState, stage, art, router, setTimerState, timeLi
       }
     >
       {progressState[stage].paths.blue
-        ? <ZeArt src={imageSrc[counter]} alt={`${stage}-${art}`} /> 
+        ? <ZeArt src={imageSrc[counter( stage, art )]} alt={`${stage}-${art}`} /> 
         : <ZeHand/>
       }
     </div>

@@ -12,7 +12,10 @@ import { ProgressContext } from '@/context/ProgressContext';
 
 import ReactTestUtils from "react-dom/test-utils";
 
-import Art1 from '@/public/fakeFileServer/Asset 10.png'
+
+import { supabase } from '@/lib/supabaseClient';
+
+import { imageSrc, counter } from '@/lib/art';
 
 export default function Google(props) {
   const {
@@ -63,9 +66,21 @@ export default function Google(props) {
           </div>
           <div className={css.mid}>
             { searchResult.map(item => {
+              const {
+                id,
+                created_at,
+                updated_at,
+                player_id,
+                stage,
+                art,
+                title,
+                statement
+              } = item;
+
+              
               return (
                 <div
-                    key = { item }  
+                    key = { id }  
                     className = { css.searchResultCard}
                 >
                   <div
@@ -73,8 +88,8 @@ export default function Google(props) {
                   >
                     <div className = { css.searchResultCard_left_top} >
                       <Image
-                        alt={'mask'}
-                        src={Art1}
+                        alt={`${stage}-${art}`}
+                        src={imageSrc[counter( stage, art )]}
                         fill
                         style={{
                           // width: '100%',
@@ -83,16 +98,16 @@ export default function Google(props) {
                         }}
                       />
                     </div>
-                    <div>{'#000001'}</div>
+                    <div>{player_id}</div>
                   </div>
                   <div
                     className = { css.searchResultCard_right}
                   >
                     <div className={css.searchResultCard_right_top}>
-                      {'add title'}
+                      {title}
                     </div>
                     <div className={css.searchResultCard_right_mid}>
-                      {'add description'}
+                      {statement}
                     </div>
                     {/* <div className={css.searchResultCard_right_bot}>
                       {'#0000001'}
@@ -108,19 +123,50 @@ export default function Google(props) {
   )
 }
 
-export async function getServerSideProps({query}) {
-    const { keyword } = query;
+export async function getServerSideProps({req, query}) {
+  const { keyword } = query;
+  // if user loaded /google on first visit, artist cookie will not exist
+  const { artist } = req.cookies;
 
-    let randomResultLength = Math.floor(Math.random() * 29) + 1;
-    let randomSearchResult = [];
-    while (randomResultLength > 0) {
-      randomSearchResult = [ ...randomSearchResult, randomResultLength ]
-      randomResultLength = randomResultLength - 1;
-    }
+  if ( keyword === 'this is freedom' ) {
+    // return none or everything and rank by "engagement"
     return {
-        props: {
-            keyword,
-            searchResult: [0]//randomSearchResult
-        }, // will be passed to the page component as props
+      props: {
+        keyword,
+        searchResult: []
+      }
     }
+  }
+
+  if ( keyword === 'this is freedom!' ) {
+    // return everything and rank by "engagement"
+    return {
+      props: {
+        keyword,
+        searchResult: []
+      }
+    }
+  }
+
+  const { data, _error } = await supabase
+    .from('gallery')
+    .select('stage, art')
+    .eq('player_id', artist)
+    .eq('title', keyword);
+
+  const { data: searchResult, error } = await supabase
+    .from('gallery')
+    .select()
+    .eq('stage', data[0].stage)
+    .eq('art', data[0].art)
+    .neq('title', null)
+    .neq('statement', null);
+
+
+  return {
+      props: {
+          keyword,
+          searchResult
+      },
+  }
 }
