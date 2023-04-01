@@ -7,13 +7,15 @@ import Timer from '@/component/Timer'
 import { useContext, useState, useRef, useEffect } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
+import { getCookie } from 'cookies-next';
+import { api_art_title, api_art_statement } from '@/lib/swr';
 
 export default function Post(props){
     const {
         stage,
         art
     } = props;
-
+// console.log('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone)
     const { isStageVisited, getArtTitle, getArtStatement, setArtTitle, setArtStatement } = useContext(ProgressContext);
 
     if ( isStageVisited(stage) === false ) {
@@ -29,7 +31,7 @@ export default function Post(props){
                 <div className={css.a}>
                     {'art missing.'}
                 </div>
-            </main>s
+            </main>
         </>)
     }
 
@@ -69,6 +71,7 @@ export default function Post(props){
                 <div 
                     ref = {titleRef}
                     contentEditable={true}
+                    suppressContentEditableWarning={true}
                     className={titleEditing? css.titleInput : css.title} 
                     onFocus={()=>{setTitleEditing(true)}}
                     onBlur={()=>{
@@ -79,7 +82,13 @@ export default function Post(props){
                                 speed: speed - 200
                             });
                         } else {
-                            setArtTitle(stage, art, titleRef.current.innerHTML);
+                            api_art_title({ 
+                                player: getCookie('artist'),
+                                stage: stage, 
+                                art: art, 
+                                title: titleRef.current.innerHTML.replace(/^\s+|\s+$/g, '') 
+                            });
+                            setArtTitle(stage, art, titleRef.current.innerHTML.replace(/^\s+|\s+$/g, ''));
                             setTimerState ({
                                 timeLimit: timeLimit + 60,
                                 speed: speed 
@@ -92,16 +101,23 @@ export default function Post(props){
                 <div
                     ref={statementRef}
                     contentEditable={true}
+                    suppressContentEditableWarning={true}
                     className={statementEditing? css.statementInput : css.statement} 
                     onFocus={()=>{setStatementEditing(true)}}
                     onBlur={()=>{
                         setStatementEditing(false);
-                        if ( getArtStatement(stage, art) === statementRef.current.innerHTML.replace(/^\s+|\s+$/g, '') ){
+                        if ( getArtStatement(stage, art) === statementRef.current.innerHTML ){
                             setTimerState ({
                                 timeLimit: timeLimit + 600,
                                 speed: speed - 200
                             });
                         } else {
+                            api_art_statement({ 
+                                player: getCookie('artist'),
+                                stage: stage, 
+                                art: art, 
+                                statement: statementRef.current.innerHTML
+                            });
                             setArtStatement(stage, art, statementRef.current.innerHTML);
                             setTimerState ({
                                 timeLimit: timeLimit + 600,
