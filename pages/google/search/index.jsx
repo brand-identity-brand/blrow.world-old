@@ -107,9 +107,10 @@ export default function Google(props) {
                     <div className={css.searchResultCard_right_top}>
                       {title}
                     </div>
-                    <div className={css.searchResultCard_right_mid}>
-                      {statement}
-                    </div>
+                    <div
+                      className={css.searchResultCard_right_mid}
+                      dangerouslySetInnerHTML={{ __html: statement}}
+                    />
                     {/* <div className={css.searchResultCard_right_bot}>
                       {'#0000001'}
                     </div> */}
@@ -139,7 +140,7 @@ export async function getServerSideProps({req, query}) {
     }
   }
 
-  if ( keyword === 'this is freedom!' ) {
+  if ( keyword === 'this is freedom' ) {
     // return everything and rank by "engagement"
     const { data: searchResult, error } = await supabase
       .from('gallery')
