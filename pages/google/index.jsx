@@ -44,8 +44,9 @@ export default function Google(props) {
       ReactTestUtils.Simulate.change(inputRef.current, { target: { value: searchTerms[0]} });
     }
     // ReactTestUtils.Simulate.click(inputRef.current);
+    router.prefetch('/reddit');
   },[]); 
-  router.prefetch('/reddit');
+
   return (
     <>
         <Head>

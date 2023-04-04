@@ -20,11 +20,11 @@ export default function Facebook() {
   const [ messageFade, setMessageFade] = useState(false);
   useEffect(()=>{
     stageVisited(4);
-    
+    router.prefetch('/youtube');
   },[]);
 
   setTimeout(()=>{setMessageFade(true)},18000);
-  router.prefetch('/youtube');
+
   return (<>
     <Head>
       <link rel="preload" as="image" href='../../public/facebook/background.png'/>

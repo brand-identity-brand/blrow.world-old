@@ -74,13 +74,14 @@ export default function Youtube() {
   useEffect(()=>{
     stageVisited(5);
     setArtistCookie( getCookie('artist') );
+    router.prefetch('/twitter');
     console.log('asPath', router.asPath);
     console.log('progressState', progressState)
     console.log('isExhibitionReady()',isExhibitionReady())
   },[]);
 
   const exhibitionProgress = isExhibitionReady();
-  router.prefetch('/twitter');
+
   return (<>
     <Head>
         <title>blrow.world</title>
