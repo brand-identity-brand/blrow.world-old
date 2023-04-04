@@ -7,9 +7,116 @@
     width: 100vw;
     height: 100vh;
 }
+.headerContainer {
+    background-color: black;
+    width: 100vw;
+    height: 60vw;
 
-.qrCodeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding-bottom: 15vw;
+}
+.textHeader{
+    font-family: 'Courier', monospace;
+
+    color:white;
+    
+    font-size: 5vw;
+}
+.title{
+    margin: 0vw 10vw 0vw 10vw; 
+
+    font-family: 'Courier', monospace;
+
+    color:white;
+
+    font-weight: bold;
+    font-size: 7vw;
+
+    height: 40vw;
+
+    text-align: center;
+    
+    display: flex;
+    align-items: center;
+}   
+.titleInput{
+    margin: 0vw 10vw 0vw 10vw; 
+
+    font-family: 'Courier', monospace;
+
+    color:black;
+    background-color: white;
+
+    font-weight: bold;
+    font-size: 7vw;
+
+    height: 40vw;
+
+    text-align: center;
+    
+    display: flex;
+    align-items: center;
+}
+.bodyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100vw;
+    height: 80vw;
+
+    bottom: 15vw;
+}
+.paintingContainer {
     position: relative;
-    width: 30vw;
-    height: 30vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100vw;
+    height: 60vw;
+
+    bottom: 15vw;
+}
+.frameContainer {
+    position: absolute;
+    width: 60vw;
+    height: 60vw;
+}
+.qrCodeContainer {
+    position: absolute;
+    width: 43vw;
+    height: 43vw;
+}
+.textPlayer{
+    font-family: 'Courier', monospace;
+
+    position: relative;
+    color:black;
+
+    bottom: 10vw;
+
+    width: 60vw;
+
+    padding: 0 3vw 0 3vw;
+}
+.textPlayer:nth-child(1){
+    width: 60vw;
+    text-align: left;
+}
+.textPlayer:nth-child(2){
+    width: 60vw;
+    text-align: right;
+}
+.footerContainer {
+    display: flex;
+    flex-direction: column;
+
 }
