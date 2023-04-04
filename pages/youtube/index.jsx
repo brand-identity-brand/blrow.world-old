@@ -10,7 +10,7 @@ import { ProgressContext } from '@/context/ProgressContext';
 import QRCodeRickRoll from '@/public/youtube/qrCode.png';
 import Frame from '@/public/youtube/frame.png';
 import { getCookie } from 'cookies-next';
-
+import { api_art_title, api_art_statement } from '@/lib/fetcher';
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -57,18 +57,23 @@ import {
   WorkplaceIcon
 } from "react-share";
 export default function Youtube() {
+  const stage = 5;
+  const art = 0;
   const router = useRouter();
   const [ artistCookie, setArtistCookie ] = useState('');
-  const { progressState, pathUnlocked, stageVisited, isExhibitionReady } = useContext(ProgressContext);
+  const { progressState, pathUnlocked, stageVisited, isExhibitionReady, getArtTitle, getArtStatement, setArtTitle, setArtStatement  } = useContext(ProgressContext);
   const { speed, visits } = progressState[5];
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
 
   const [ titleEditing, setTitleEditing ] = useState(false);
   const titleRef= useRef();
+  const [ statementEditing, setStatementEditing ] = useState(false);
+  const statementRef= useRef();
   useEffect(()=>{
     stageVisited(5);
     setArtistCookie( getCookie('artist') );
+    console.log(progressState)
     console.log(isExhibitionReady())
   },[]);
 
@@ -92,10 +97,60 @@ export default function Youtube() {
           className={titleEditing? css.titleInput : css.title} 
           onFocus={()=>{setTitleEditing(true)}}
           onBlur={()=>{
-            setTitleEditing(false)
-          }}
+            setTitleEditing(false);
+            const titleCandidate = titleRef.current.innerHTML.replace(/^\s+|\s+$/g, '');
+            if ( getArtTitle(stage, art) === titleCandidate ){
+              setTimerState ({
+                timeLimit: timeLimit + 60,
+                speed: speed - 200
+            });
+            } else {
+                api_art_title({ 
+                    player: getCookie('artist'),
+                    stage: stage, 
+                    art: art, 
+                    title: titleCandidate
+                });
+                setArtTitle(stage, art, titleCandidate);
+                setTimerState ({
+                  timeLimit: timeLimit + 60,
+                  speed: speed 
+              });
+            }
+        }}
         >
-          Click here to title the exhibition
+          { getArtTitle(stage, art) }
+        </div>
+        <div 
+          ref = {statementRef}
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+          className={statementEditing? css.sloganInput : css.slogan} 
+          onFocus={()=>{setStatementEditing(true)}}
+          onBlur={()=>{
+            setStatementEditing(false);
+            const statementCandidate = statementRef.current.innerHTML.replace(/^\s+|\s+$/g, '');
+            if ( getArtStatement(stage, art) === statementCandidate ){
+              setTimerState ({
+                timeLimit: timeLimit + 60,
+                speed: speed - 200
+            });
+            } else {
+                api_art_statement({ 
+                    player: getCookie('artist'),
+                    stage: stage, 
+                    art: art, 
+                    statement: statementCandidate
+                });
+                setArtStatement(stage, art, statementCandidate);
+                setTimerState ({
+                  timeLimit: timeLimit + 60,
+                  speed: speed 
+              });
+            }
+        }}
+        >
+          { getArtStatement(stage, art) }
         </div>
       </div>
       <div className={css.bodyContainer}>

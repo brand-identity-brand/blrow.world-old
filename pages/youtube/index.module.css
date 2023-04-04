@@ -29,7 +29,7 @@
     margin-top: 3vw;
 }
 .title{
-    margin: 0vw 10vw 0vw 10vw; 
+    margin: 0vw 5vw 0vw 5vw; 
 
     font-family: 'Courier', monospace;
 
@@ -38,7 +38,7 @@
     font-weight: bold;
     font-size: 7vw;
 
-    height: 37vw;
+    height: 27vw;
 
     text-align: center;
     
@@ -46,7 +46,7 @@
     align-items: center;
 }   
 .titleInput{
-    margin: 0vw 10vw 0vw 10vw; 
+    margin: 0vw 5vw 0vw 5vw; 
 
     font-family: 'Courier', monospace;
 
@@ -56,7 +56,41 @@
     font-weight: bold;
     font-size: 7vw;
 
-    height: 40vw;
+    height: 27vw;
+
+    text-align: center;
+    
+    display: flex;
+    align-items: center;
+}
+
+.slogan{
+    margin: 0vw 5vw 0vw 5vw; 
+
+    font-family: 'Courier', monospace;
+
+    color:white;
+
+    font-size: 5vw;
+
+    height: 10vw;
+
+    text-align: center;
+    
+    display: flex;
+    align-items: center;
+}
+.sloganInput{
+    margin: 0vw 5vw 0vw 5vw; 
+
+    font-family: 'Courier', monospace;
+
+    color:black;
+    background-color: white;
+
+    font-size: 5vw;
+
+    height: 10vw;
 
     text-align: center;
     

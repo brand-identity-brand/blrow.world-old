@@ -141,7 +141,10 @@ export default function ProgressContextProvider({children}){
 
     const getArtTitle = function ( stage, art ) {
         const title =  progressState[stage].art[art].title;
-        const placeholder = 'Click here to assign title.'
+        const placeholder = (stage == 5)
+            ? 'Click here to assign title.'
+            : 'Click here to assign title.'
+        ;
         if ( title === null ) {
             return placeholder;
         } else if ( title === undefined ) {
@@ -154,12 +157,15 @@ export default function ProgressContextProvider({children}){
     }
     const getArtStatement = function ( stage, art ) {
         const statement =  progressState[stage].art[art].statement;
-        const placeholder = ` 
-            Click <br/>
-            here <br/>
-            to write <br/>
-            a statement.
-        `;
+        const placeholder = (stage == 5)
+            ? 'click here to write slogan.'
+            : ` 
+                Click <br/>
+                here <br/>
+                to write <br/>
+                a statement.
+            `
+        ;
         if ( statement === null ) {
             return placeholder;
         } else if ( statement === undefined ) {
