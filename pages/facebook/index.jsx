@@ -24,7 +24,7 @@ export default function Facebook() {
   },[]);
 
   setTimeout(()=>{setMessageFade(true)},18000);
-
+  router.prefetch('/youtube');
   return (<>
     <Head>
       <link rel="preload" as="image" href='../../public/facebook/background.png'/>

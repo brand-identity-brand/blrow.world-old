@@ -18,7 +18,8 @@ export default function Reddit() {
   const { timeLimit } = TimerState;
   useEffect(()=>{
     stageVisited(3);
-  },[])
+  },[]);
+  router.prefetch('/facebook');
   return (<>
     <Head>
       <link rel="preload" as="image" href='../../public/reddit/background.png'/>

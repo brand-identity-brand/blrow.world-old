@@ -53,7 +53,7 @@ export default function Twitter() {
     stageVisited(1);
     setArtistCookie( getCookie('artist') );
   },[]);
-  
+  router.prefetch('/google');
   return (<>
     <Head>
       <link rel="preload" as="image" href='../../public/twitter/background.png'/>

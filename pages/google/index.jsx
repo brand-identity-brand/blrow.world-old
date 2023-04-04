@@ -45,7 +45,7 @@ export default function Google(props) {
     }
     // ReactTestUtils.Simulate.click(inputRef.current);
   },[]); 
-
+  router.prefetch('/reddit');
   return (
     <>
         <Head>

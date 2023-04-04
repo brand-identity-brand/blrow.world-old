@@ -26,7 +26,8 @@ export default function Portal(props) {
   useEffect(()=>{
     stageVisited(0);
     setArtistCookie( getCookie('artist') );
-  },[])
+  },[]);
+  router.prefetch('/twitter');
   return (
     
     <>

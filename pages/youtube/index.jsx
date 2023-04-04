@@ -80,7 +80,7 @@ export default function Youtube() {
   },[]);
 
   const exhibitionProgress = isExhibitionReady();
-
+  router.prefetch('/twitter');
   return (<>
     <Head>
         <title>blrow.world</title>
