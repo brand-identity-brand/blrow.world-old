@@ -129,8 +129,8 @@ export async function getServerSideProps({req, query}) {
   // if user loaded /google on first visit, artist cookie will not exist
   const { artist } = req.cookies;
 
-  if ( keyword === 'this is freedom' ) {
-    // return none or everything and rank by "engagement"
+  if ( keyword === 'freedom is' ) {
+    // return none .. end game default prompt
     return {
       props: {
         keyword,
@@ -141,10 +141,14 @@ export async function getServerSideProps({req, query}) {
 
   if ( keyword === 'this is freedom!' ) {
     // return everything and rank by "engagement"
+    const { data: searchResult, error } = await supabase
+      .from('gallery')
+      .select();
+
     return {
       props: {
         keyword,
-        searchResult: []
+        searchResult
       }
     }
   }
