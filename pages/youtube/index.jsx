@@ -59,6 +59,7 @@ import {
 export default function Youtube() {
   const stage = 5;
   const art = 0;
+  const shareUrl = (artistCookie) => `https://blrow.world/portal?artist=${artistCookie}`;
   const router = useRouter();
   const [ artistCookie, setArtistCookie ] = useState('');
   const { progressState, pathUnlocked, stageVisited, isExhibitionReady, getArtTitle, getArtStatement, setArtTitle, setArtStatement  } = useContext(ProgressContext);
@@ -73,8 +74,9 @@ export default function Youtube() {
   useEffect(()=>{
     stageVisited(5);
     setArtistCookie( getCookie('artist') );
-    console.log(progressState)
-    console.log(isExhibitionReady())
+    console.log('asPath', router.asPath);
+    console.log('progressState', progressState)
+    console.log('isExhibitionReady()',isExhibitionReady())
   },[]);
 
   const exhibitionProgress = isExhibitionReady();
@@ -207,23 +209,33 @@ export default function Youtube() {
       </div>
 
       <div className={css.footerContainer}>
-        <FacebookShareButton>
+        <FacebookShareButton
+          url={shareUrl(artistCookie)}
+        >
           <FacebookIcon size={32} round={true} />
         </FacebookShareButton>
 
-        <TwitterShareButton>
+        <TwitterShareButton
+          url={shareUrl(artistCookie)}
+        >
           <TwitterIcon size={32} round={true} />
         </TwitterShareButton>
 
-        <LineShareButton>
+        <LineShareButton
+          url={shareUrl(artistCookie)}
+        >
           <LineIcon size={32} round={true} />
         </LineShareButton>
 
-        <WeiboShareButton>
+        <WeiboShareButton
+          url={shareUrl(artistCookie)}
+        >
           <WeiboIcon size={32} round={true} />
         </WeiboShareButton>
 
-        <RedditShareButton>
+        <RedditShareButton
+          url={shareUrl(artistCookie)}
+        >
           <RedditIcon size={32} round={true} />
         </RedditShareButton>
       </div>
