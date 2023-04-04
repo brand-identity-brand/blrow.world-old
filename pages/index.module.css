@@ -1,0 +1,16 @@
+.master {
+}
+.portalContainer {
+    position: fixed;
+    width: 100vw;
+    height: 100vw;
+
+    top: 10vh;
+}
+
+.crowdContainer {
+    position: fixed;
+    width: 100vw;
+    height: 100vw;
+    bottom: -22vw;
+}
