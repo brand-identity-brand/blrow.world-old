@@ -25,6 +25,8 @@
     color:white;
     
     font-size: 5vw;
+
+    margin-top: 3vw;
 }
 .title{
     margin: 0vw 10vw 0vw 10vw; 
@@ -36,7 +38,7 @@
     font-weight: bold;
     font-size: 7vw;
 
-    height: 40vw;
+    height: 37vw;
 
     text-align: center;
     
@@ -115,8 +117,13 @@
     width: 60vw;
     text-align: right;
 }
+
 .footerContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 
+    width: 100vw;
+    /* height: fit-content; */
 }

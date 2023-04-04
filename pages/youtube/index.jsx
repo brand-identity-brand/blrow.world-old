@@ -11,6 +11,51 @@ import QRCodeRickRoll from '@/public/youtube/qrCode.png';
 import Frame from '@/public/youtube/frame.png';
 import { getCookie } from 'cookies-next';
 
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  HatenaShareButton,
+  InstapaperShareButton,
+  LineShareButton,
+  LinkedinShareButton,
+  LivejournalShareButton,
+  MailruShareButton,
+  OKShareButton,
+  PinterestShareButton,
+  PocketShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  TumblrShareButton,
+  TwitterShareButton,
+  ViberShareButton,
+  VKShareButton,
+  WeiboShareButton,
+  WhatsappShareButton,
+  WorkplaceShareButton
+} from "react-share";
+import {
+  EmailIcon,
+  FacebookIcon,
+  FacebookMessengerIcon,
+  HatenaIcon,
+  InstapaperIcon,
+  LineIcon,
+  LinkedinIcon,
+  LivejournalIcon,
+  MailruIcon,
+  OKIcon,
+  PinterestIcon,
+  PocketIcon,
+  RedditIcon,
+  TelegramIcon,
+  TumblrIcon,
+  TwitterIcon,
+  ViberIcon,
+  VKIcon,
+  WeiboIcon,
+  WhatsappIcon,
+  WorkplaceIcon
+} from "react-share";
 export default function Youtube() {
   const router = useRouter();
   const [ artistCookie, setArtistCookie ] = useState('');
@@ -107,7 +152,25 @@ export default function Youtube() {
       </div>
 
       <div className={css.footerContainer}>
-        
+        <FacebookShareButton>
+          <FacebookIcon size={32} round={true} />
+        </FacebookShareButton>
+
+        <TwitterShareButton>
+          <TwitterIcon size={32} round={true} />
+        </TwitterShareButton>
+
+        <LineShareButton>
+          <LineIcon size={32} round={true} />
+        </LineShareButton>
+
+        <WeiboShareButton>
+          <WeiboIcon size={32} round={true} />
+        </WeiboShareButton>
+
+        <RedditShareButton>
+          <RedditIcon size={32} round={true} />
+        </RedditShareButton>
       </div>
 
     </main>
