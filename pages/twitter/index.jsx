@@ -56,10 +56,11 @@ export default function Twitter() {
   
   return (<>
     <Head>
-        <title>blrow.world</title>
-        <meta name="description" content="blrow.world" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+      <link rel="preload" as="image" href='../../public/twitter/background.png'/>
+      <title>blrow.world</title>
+      <meta name="description" content="blrow.world" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={css.main}>
       <NavBar/>

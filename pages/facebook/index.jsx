@@ -27,10 +27,11 @@ export default function Facebook() {
 
   return (<>
     <Head>
-        <title>blrow.world</title>
-        <meta name="description" content="blrow.world" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+      <link rel="preload" as="image" href='../../public/facebook/background.png'/>
+      <title>blrow.world</title>
+      <meta name="description" content="blrow.world" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="icon" href="/favicon.ico" />
     </Head>
     <div className={`${css.hoverMessage} ${messageFade? css.fade : ''}`}>
       <div className={css.messageLines0}>THE</div>
