@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 
+import Brain from '@/public/facebook/brain.png'
+
 import Timer from '@/component/Timer';
 import { useContext, useEffect, useState } from 'react';
 import { TimerContext } from '@/context/TimerContext';
@@ -65,8 +67,19 @@ export default function Facebook() {
           }}
         >button</div>
       </div>
+      <div className={css.brainContainer}>
+        <Image
+          alt={'brain'}
+          src={Brain}
+          fill
+          style={{
+            objectFit: 'contain'
+          }}
+        />
+      </div>
       {/* <div className={css.bot}> */}
       <ThisButton 
+        className={css.thisButton}
         onClick={()=>{
           setTimerState({
             timeLimit: timeLimit,

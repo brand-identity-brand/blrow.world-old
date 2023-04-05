@@ -5,7 +5,7 @@ import thisButtonPressed from '@/public/portal/thisButtonPressed.png';
 import { useState, useEffect } from 'react';
 
 export default function ThisButton(props){
-    const { onClick } = props;
+    const { onClick, className } = props;
     const [ isButtonPressed, setIsButtonPressed ] = useState(false);
 
     useEffect(()=>{
@@ -16,7 +16,7 @@ export default function ThisButton(props){
   
   
     return (
-    <div className={css.bot}>
+    <div className={`${css.bot} ${className}`}>
   
       <div 
         style={isButtonPressed

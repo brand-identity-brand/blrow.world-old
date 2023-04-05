@@ -46,6 +46,7 @@
     mix-blend-mode: darken;
 }
 .top {
+    z-index: 2;
     width: 100vw;
     color: white;
     display: flex;
@@ -57,6 +58,8 @@
     margin-top: 16vw;
     font-family: 'Courier', monospace;
     font-weight: bold;
+
+    position: relative;
 }
 
 .messageLines{
@@ -91,4 +94,18 @@
     justify-content: center;
     padding-left: 21vw;
     
-  }
+}
+.thisButton {
+    z-index: 1;
+    position: absolute;
+
+    bottom: 34vh;
+}
+.brainContainer {
+    z-index: 1;
+    position: absolute;
+    width: 100vw;
+    height: 50vw;
+
+    bottom: 40vh;
+}
