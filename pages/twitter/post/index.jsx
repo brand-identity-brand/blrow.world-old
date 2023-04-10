@@ -11,6 +11,7 @@ import { getCookie } from 'cookies-next';
 import { api_art_title, api_art_statement } from '@/lib/fetcher';
 
 import { imageSrc, counter } from '@/lib/art';
+import { api_player_updateScore } from '@/lib/fetcher'
 
 export default function Post(props){
     const {
@@ -29,7 +30,7 @@ export default function Post(props){
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={css.main}>
-                <Timer speed={100}/>
+                <Timer speed={100} router={router}/>
                 <div className={css.a}>
                     {'art missing.'}
                 </div>
@@ -56,7 +57,7 @@ export default function Post(props){
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={css.main}>
-            <Timer speed={speed}/>
+            <Timer speed={speed} router={router}/>
             <div className={css.a}>
                 <div className={css.imageContainer}>
                     <Image
@@ -96,6 +97,7 @@ export default function Post(props){
                                 timeLimit: timeLimit + 60,
                                 speed: speed 
                             });
+                            
                         }
                     }}
                 > 

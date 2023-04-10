@@ -105,7 +105,7 @@
     z-index: 1;
     position: absolute;
     width: 100vw;
-    height: 50vw;
+    height: 100vw;
 
-    bottom: 40vh;
+    bottom: 20vh;
 }

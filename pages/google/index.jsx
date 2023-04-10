@@ -9,11 +9,14 @@ import Timer from '@/component/Timer'
 import { useContext, useRef, useEffect, useState } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
+import { PlayerContext } from '@/context/PlayerContext'
 
 import ReactTestUtils from "react-dom/test-utils";
 
 import { supabase } from '@/lib/supabaseClient';
+import { api_player_updateScore } from '@/lib/fetcher'
 
+import useSaveScore from '@/hook/useSaveScore'
 
 export default function Google(props) {
   const {
@@ -21,6 +24,8 @@ export default function Google(props) {
   } = props;
 
   const router = useRouter();
+  const { playerState } = useContext(PlayerContext);
+
   const { progressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
   const { speed, visits } = progressState[2];
   
@@ -47,6 +52,9 @@ export default function Google(props) {
     router.prefetch('/reddit');
   },[]); 
 
+  useSaveScore( { playerState, timeLimit }, router );
+
+
   return (
     <>
         <Head>
@@ -57,7 +65,7 @@ export default function Google(props) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={css.main}>
-          <Timer speed={speed}/>
+          <Timer speed={speed} router={router}/>
           <div className={css.top}>
             <div className={css.logoContainer}>
               <Image
@@ -107,6 +115,10 @@ export default function Google(props) {
                     timeLimit: timeLimit,
                     speed: 2147483647
                   })
+                  // api_player_updateScore({
+                  //   player: playerState.id,
+                  //   timeLimit: timeLimit
+                  // })
                   pathUnlocked(2 , 'blue');
                   router.push('/reddit');
                 } else if (doneTypingRef.current) {
@@ -129,6 +141,11 @@ export default function Google(props) {
                   timeLimit: timeLimit,
                   speed: 2147483647
                 })
+                // api_player_updateScore({
+                //   player: playerState.id,
+                //   timeLimit: timeLimit
+                // })
+
                 pathUnlocked(2 , 'red');
                 router.push('/reddit');
               } else if (doneTypingRef.current) {
@@ -151,7 +168,7 @@ export default function Google(props) {
 export async function getServerSideProps(context) {
   // if user loaded /google on first visit, artist cookie will not exist
   const { artist } = context.req.cookies;
-
+  const { id, score } = JSON.parse( artist );
   if ( artist === undefined ) {
     return {
       props: {
@@ -165,9 +182,9 @@ export async function getServerSideProps(context) {
   const { data, error } = await supabase
     .from('gallery')
     .select('title')
-    .eq('player_id', artist)
+    .eq('player_id', id)
     .neq('title', null);
-  
+
   const searchTerms = [
     'this is freedom',
     ...data.map( item => item.title )

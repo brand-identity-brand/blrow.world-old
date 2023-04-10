@@ -5,10 +5,29 @@ const PUBLIC_FILE = /\.(.*)$/;
 
 export async function middleware(req) {
   const { pathname, search } = req.nextUrl;
-  const artistCookie = req.cookies.get('artist');
 
   return ignorePaths(pathname, async ()=>{
-    if ( artistCookie === undefined ) {
+    if ( req.cookies.has('artist') ) {
+      const { id, score } = JSON.parse(req.cookies.get('artist').value);
+      const { data, error } = await supabase
+        .from('player')
+        .select('score')
+        .eq('id', id)
+      ;
+
+      // To change a cookie, first create a response
+      const response = NextResponse.next();
+      // Setting a cookie with additional options
+      response.cookies.set({
+        name: 'artist',
+        value: JSON.stringify({
+          id: id,
+          score: data[0].score
+        })
+      });
+
+      return response; 
+    } else {
       const { data, error } = await supabase
         .from('player')
         .insert({ access_page: `${pathname}${search}`, updated_at: 'now()' })
@@ -18,7 +37,7 @@ export async function middleware(req) {
         id,
         created_at,
         access_page,
-        time_context,
+        score,
         progress_context,
         updated_at
       } = data[0];
@@ -28,12 +47,12 @@ export async function middleware(req) {
       // Setting a cookie with additional options
       response.cookies.set({
         name: 'artist',
-        value: id
+        value: JSON.stringify({
+          id,
+          score
+        } )
       });
       return response; 
-    } else {
-      // update_at 
-      // console.log(artistCookie.value);
     }
   });
 }

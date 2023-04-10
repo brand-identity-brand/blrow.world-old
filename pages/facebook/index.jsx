@@ -11,8 +11,11 @@ import { useContext, useEffect, useState } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
 import ThisButton from '@/component/ThisButton';
+import { PlayerContext } from '@/context/PlayerContext'
+import { api_player_updateScore } from '@/lib/fetcher'
 
 export default function Facebook() {
+  const { playerState } = useContext(PlayerContext);
   const router = useRouter();
   const { progressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
   const { speed, visits } = progressState[4];
@@ -47,7 +50,7 @@ export default function Facebook() {
       <div className={css.messageLines0}>YOU CANNOT DO. </div>
     </div>
     <main className={css.main}>
-      <Timer speed={speed}/>
+      <Timer speed={speed} router={router}/>
       <div className={css.top}>
         <div className={css.messageLines}> Except this time</div>
         <div className={css.messageLines}> you really</div>
@@ -61,6 +64,10 @@ export default function Facebook() {
               timeLimit: timeLimit,
               speed: 2147483647
             });
+            api_player_updateScore({
+              player: playerState.id,
+              timeLimit: timeLimit
+            })
             pathUnlocked(4 , 'red');
             // setIsButtonPressed(false);
             setTimeout(()=>{router.push('/youtube')}, 300)
@@ -85,6 +92,10 @@ export default function Facebook() {
             timeLimit: timeLimit,
             speed: 2147483647
           });
+          api_player_updateScore({
+            player: playerState.id,
+            timeLimit: timeLimit
+          })
           pathUnlocked(4 , 'blue');
           // setIsButtonPressed(false);
           setTimeout(()=>{router.push('/twitter')}, 300)

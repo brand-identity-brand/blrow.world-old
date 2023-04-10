@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import { getCookie } from 'cookies-next';
 
 const TimerContext = createContext(null);
 TimerContext.displayName = 'TimerContext';
@@ -7,7 +8,18 @@ export default function TimerContextProvider({children}){
     const [ TimerState, setTimerState ] = useState({
         timeLimit: 1800,
         speed: 2147483647 //32bit max
-    })
+    });
+
+    useEffect(()=>{
+        const artist = getCookie('artist');
+        const { id, score } = JSON.parse(artist);
+        setTimerState({
+            timeLimit: score,
+            speed: 2147483647 //32bit max
+        })
+        
+    },[]);
+
     return (
         <TimerContext.Provider value={{ TimerState, setTimerState }}>
             {children}

@@ -9,11 +9,13 @@ import { useState, useEffect } from 'react'
 import { useContext } from 'react';
 import { TimerContext, convertTime } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
-import { getCookie } from 'cookies-next';
+
+import { PlayerContext } from '@/context/PlayerContext'
 
 export default function Portal(props) {
   const {} = props;
-  const [ artistCookie, setArtistCookie ] = useState('');
+
+  const { playerState } = useContext(PlayerContext);
 
   const router = useRouter()
   const { id } = router.query
@@ -25,10 +27,8 @@ export default function Portal(props) {
   const { stageVisited, pathUnlocked } = useContext(ProgressContext);
   useEffect(()=>{
     stageVisited(0);
-    setArtistCookie( getCookie('artist') );
     router.prefetch('/twitter');
   },[]);
-
   return (
     
     <>
@@ -42,7 +42,7 @@ export default function Portal(props) {
       <main className={css.main}>
         <div className={css.messageContainer}>
           <div className={css.messageLines}>
-            {`Hi Artist #${artistCookie}`}
+            {`Hi Artist #${playerState.id}`}
           </div>
           <div
             className={css.messageLines}

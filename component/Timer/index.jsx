@@ -1,15 +1,16 @@
 import css from './index.module.css';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { useState, useEffect, useContext } from 'react';
 
 import { TimerContext, convertTime } from '@/context/TimerContext';
 
 export default function Timer(props){
     const {
-        speed = 2147483647
+        speed = 2147483647,
+        router
     } = props;
 
-    const router = useRouter();
+    // const router = useRouter();
 
     const { TimerState, setTimerState } = useContext(TimerContext);
     const { timeLimit } = TimerState;

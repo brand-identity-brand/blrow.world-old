@@ -8,8 +8,11 @@ import Timer from '@/component/Timer';
 import { useContext, useEffect } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
+import { PlayerContext } from '@/context/PlayerContext'
+import { api_player_updateScore } from '@/lib/fetcher'
 
 export default function Reddit() {
+  const { playerState } = useContext(PlayerContext);
   const router = useRouter();
   const { progressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
   const { speed, visits } = progressState[3];
@@ -30,13 +33,17 @@ export default function Reddit() {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={css.main}>
-      <Timer speed={speed}/>
+      <Timer speed={speed} router={router}/>
       <button
         onClick={()=>{
           setTimerState({
             timeLimit: timeLimit,
             speed: 2147483647
-          })
+          });
+          api_player_updateScore({
+            player: playerState.id,
+            timeLimit: timeLimit
+          });
           pathUnlocked(3, 'blue');
           router.push('/facebook');
         }}

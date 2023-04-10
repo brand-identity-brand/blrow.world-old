@@ -11,9 +11,10 @@ import { useContext, useState } from 'react';
 import { TimerContext, convertTime } from '@/context/TimerContext';
 
 import { ProgressContext } from '@/context/ProgressContext';
-import { getCookie } from 'cookies-next';
 
+import { PlayerContext } from '@/context/PlayerContext';
 import { imageSrc, counter } from '@/lib/art';
+import { api_player_updateScore } from '@/lib/fetcher'
 // import Art00 from '@/public/fakeFileServer/Asset 1.png';
 // import Art01 from '@/public/fakeFileServer/Asset 2.png';
 // import Art02 from '@/public/fakeFileServer/Asset 3.png';
@@ -41,17 +42,17 @@ import { imageSrc, counter } from '@/lib/art';
 //   Art04,
 // ]
 export default function Twitter() {
-  
+  const { playerState } = useContext(PlayerContext);
   const { progressState, setProgressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
 
   const router = useRouter();
-  const [ artistCookie, setArtistCookie ] = useState('');
+
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
 
   useEffect(()=>{
     stageVisited(1);
-    setArtistCookie( getCookie('artist') );
+
     router.prefetch('/google');
   },[]);
   
@@ -77,7 +78,7 @@ export default function Twitter() {
         </div>
         <div className={css.subTitleContainer}>
           <div>
-            {`Artist #${artistCookie}`}
+            {`Artist #${playerState.id}`}
           </div>
           <div>
             begins in <span style={{color: 'greenyellow'}}>{convertTime(timeLimit)}</span>

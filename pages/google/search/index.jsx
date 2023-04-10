@@ -16,6 +16,7 @@ import ReactTestUtils from "react-dom/test-utils";
 import { supabase } from '@/lib/supabaseClient';
 
 import { imageSrc, counter } from '@/lib/art';
+import { api_player_updateScore } from '@/lib/fetcher'
 
 export default function Google(props) {
   const {
@@ -40,7 +41,7 @@ export default function Google(props) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={css.main}>
-          <Timer speed={60000}/>
+          <Timer speed={60000} router={router}/>
           <div className={css.top}>
             {/* <div className={css.logoContainer}>
               <Image

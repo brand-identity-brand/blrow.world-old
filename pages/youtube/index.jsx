@@ -11,6 +11,9 @@ import QRCodeRickRoll from '@/public/youtube/qrCode.png';
 import Frame from '@/public/youtube/frame.png';
 import { getCookie } from 'cookies-next';
 import { api_art_title, api_art_statement } from '@/lib/fetcher';
+import { PlayerContext } from '@/context/PlayerContext'
+import { api_player_updateScore } from '@/lib/fetcher'
+
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -59,9 +62,10 @@ import {
 export default function Youtube() {
   const stage = 5;
   const art = 0;
-  const shareUrl = (artistCookie) => `https://blrow.world/portal?artist=${artistCookie}`;
+  const shareUrl = (player_id) => `https://blrow.world/portal?artist=${player_id}`;
   const router = useRouter();
-  const [ artistCookie, setArtistCookie ] = useState('');
+  const { playerState } = useContext(PlayerContext);
+
   const { progressState, pathUnlocked, stageVisited, isExhibitionReady, getArtTitle, getArtStatement, setArtTitle, setArtStatement  } = useContext(ProgressContext);
   const { speed, visits } = progressState[5];
   const { TimerState, setTimerState } = useContext(TimerContext);
@@ -73,7 +77,7 @@ export default function Youtube() {
   const statementRef= useRef();
   useEffect(()=>{
     stageVisited(5);
-    setArtistCookie( getCookie('artist') );
+
     router.prefetch('/twitter');
     console.log('asPath', router.asPath);
     console.log('progressState', progressState)
@@ -90,7 +94,7 @@ export default function Youtube() {
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={css.main}>
-      <Timer speed={speed}/>
+      <Timer speed={speed} router={router}/>
       <div className={css.headerContainer}>
         <div className={css.textHeader}> You're invited to</div>
         <div 
@@ -108,16 +112,20 @@ export default function Youtube() {
                 speed: speed - 200
             });
             } else {
-                api_art_title({ 
-                    player: getCookie('artist'),
-                    stage: stage, 
-                    art: art, 
-                    title: titleCandidate
-                });
-                setArtTitle(stage, art, titleCandidate);
-                setTimerState ({
-                  timeLimit: timeLimit + 60,
-                  speed: speed 
+              api_art_title({ 
+                  player: playerState.id,
+                  stage: stage, 
+                  art: art, 
+                  title: titleCandidate
+              });
+              setArtTitle(stage, art, titleCandidate);
+              setTimerState ({
+                timeLimit: timeLimit + 60,
+                speed: speed 
+              });
+              api_player_updateScore({
+                player: playerState.id,
+                timeLimit: timeLimit
               });
             }
         }}
@@ -175,6 +183,10 @@ export default function Youtube() {
                     timeLimit: timeLimit,
                     speed: 2147483647
                   });
+                  api_player_updateScore({
+                    player: playerState.id,
+                    timeLimit: timeLimit
+                  });
                   pathUnlocked(5, 'blue');
                   router.push('/twitter');
                 }
@@ -204,38 +216,38 @@ export default function Youtube() {
         </div>
         <div className={css.textPlayer}> 
           <div > {'an exhibition of'} </div>
-          <div >{`#${artistCookie}`}</div>
+          <div >{`#${playerState.id}`}</div>
         </div>
         
       </div>
 
       <div className={css.footerContainer}>
         <FacebookShareButton
-          url={shareUrl(artistCookie)}
+          url={shareUrl(playerState.id)}
         >
           <FacebookIcon size={32} round={true} />
         </FacebookShareButton>
 
         <TwitterShareButton
-          url={shareUrl(artistCookie)}
+          url={shareUrl(playerState.id)}
         >
           <TwitterIcon size={32} round={true} />
         </TwitterShareButton>
 
         <LineShareButton
-          url={shareUrl(artistCookie)}
+          url={shareUrl(playerState.id)}
         >
           <LineIcon size={32} round={true} />
         </LineShareButton>
 
         <WeiboShareButton
-          url={shareUrl(artistCookie)}
+          url={shareUrl(playerState.id)}
         >
           <WeiboIcon size={32} round={true} />
         </WeiboShareButton>
 
         <RedditShareButton
-          url={shareUrl(artistCookie)}
+          url={shareUrl(playerState.id)}
         >
           <RedditIcon size={32} round={true} />
         </RedditShareButton>
