@@ -14,9 +14,10 @@ import { PlayerContext } from '@/context/PlayerContext'
 import ReactTestUtils from "react-dom/test-utils";
 
 import { supabase } from '@/lib/supabaseClient';
-import { api_player_updateScore } from '@/lib/fetcher'
+// import { api_player_updateScore } from '@/lib/fetcher'
 
 import useSaveScore from '@/hook/useSaveScore'
+import useSaveProgress from '@/hook/useSaveProgress'
 
 export default function Google(props) {
   const {
@@ -28,7 +29,7 @@ export default function Google(props) {
 
   const { progressState, pathUnlocked, stageVisited } = useContext(ProgressContext);
   const { speed, visits } = progressState[2];
-  
+
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
 
@@ -53,7 +54,7 @@ export default function Google(props) {
   },[]); 
 
   useSaveScore( { playerState, timeLimit }, router );
-
+  useSaveProgress( { playerState, progressState }, router );
 
   return (
     <>
@@ -168,7 +169,7 @@ export default function Google(props) {
 export async function getServerSideProps(context) {
   // if user loaded /google on first visit, artist cookie will not exist
   const { artist } = context.req.cookies;
-  const { id, score } = JSON.parse( artist );
+  
   if ( artist === undefined ) {
     return {
       props: {
@@ -178,6 +179,7 @@ export async function getServerSideProps(context) {
       },
     }
   }
+  const { id, score } = JSON.parse( artist );
   // or use local state
   const { data, error } = await supabase
     .from('gallery')

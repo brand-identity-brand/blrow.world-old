@@ -1,5 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { supabase } from '@/lib/supabaseClient';
+import { defaultProgressState } from './context/ProgressContext';
 
 const PUBLIC_FILE = /\.(.*)$/;
 
@@ -8,10 +9,10 @@ export async function middleware(req) {
 
   return ignorePaths(pathname, async ()=>{
     if ( req.cookies.has('artist') ) {
-      const { id, score } = JSON.parse(req.cookies.get('artist').value);
+      const { id, score, progress_context } = JSON.parse(req.cookies.get('artist').value);
       const { data, error } = await supabase
         .from('player')
-        .select('score')
+        .select('score, progress_context')
         .eq('id', id)
       ;
 
@@ -22,7 +23,8 @@ export async function middleware(req) {
         name: 'artist',
         value: JSON.stringify({
           id: id,
-          score: data[0].score
+          score: data[0].score,
+          progress_context: data[0].progress_context
         })
       });
 
@@ -30,7 +32,11 @@ export async function middleware(req) {
     } else {
       const { data, error } = await supabase
         .from('player')
-        .insert({ access_page: `${pathname}${search}`, updated_at: 'now()' })
+        .insert({ 
+          access_page: `${pathname}${search}`, 
+          updated_at: 'now()',
+          progress_context: defaultProgressState
+        })
         .select();
       
       const {
@@ -45,11 +51,13 @@ export async function middleware(req) {
       // To change a cookie, first create a response
       const response = NextResponse.next();
       // Setting a cookie with additional options
+
       response.cookies.set({
         name: 'artist',
         value: JSON.stringify({
           id,
-          score
+          score,
+          progress_context
         } )
       });
       return response; 

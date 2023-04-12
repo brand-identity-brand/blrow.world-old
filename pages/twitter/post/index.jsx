@@ -11,7 +11,8 @@ import { getCookie } from 'cookies-next';
 import { api_art_title, api_art_statement } from '@/lib/fetcher';
 
 import { imageSrc, counter } from '@/lib/art';
-import { api_player_updateScore } from '@/lib/fetcher'
+import useSaveScore from '@/hook/useSaveScore';
+import useSaveProgress from '@/hook/useSaveProgress'
 
 export default function Post(props){
     const {
@@ -48,6 +49,9 @@ export default function Post(props){
 
     const titleRef = useRef();
     const statementRef = useRef();
+
+    useSaveScore( { playerState, timeLimit }, router );
+    useSaveProgress( { playerState, progressState }, router );
 
     return (<>
         <Head>

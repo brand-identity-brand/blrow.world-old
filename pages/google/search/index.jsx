@@ -16,7 +16,9 @@ import ReactTestUtils from "react-dom/test-utils";
 import { supabase } from '@/lib/supabaseClient';
 
 import { imageSrc, counter } from '@/lib/art';
-import { api_player_updateScore } from '@/lib/fetcher'
+import { PlayerContext } from '@/context/PlayerContext'
+import useSaveScore from '@/hook/useSaveScore'
+import useSaveProgress from '@/hook/useSaveProgress'
 
 export default function Google(props) {
   const {
@@ -24,12 +26,14 @@ export default function Google(props) {
     searchResult
   } = props;
   const router = useRouter();
+
+  const { playerState } = useContext(PlayerContext);
+  const { TimerState, setTimerState } = useContext(TimerContext);
+  const { timeLimit } = TimerState;
   // const { progressState, stageVisited } = useContext(ProgressContext);
   // const { speed } = progressState[1];
-  
-  // const { TimerState, setTimerState } = useContext(TimerContext);
 
-
+  useSaveScore( { playerState, timeLimit }, router );
 
   return (
     <>

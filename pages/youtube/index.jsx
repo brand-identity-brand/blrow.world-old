@@ -12,7 +12,9 @@ import Frame from '@/public/youtube/frame.png';
 import { getCookie } from 'cookies-next';
 import { api_art_title, api_art_statement } from '@/lib/fetcher';
 import { PlayerContext } from '@/context/PlayerContext'
-import { api_player_updateScore } from '@/lib/fetcher'
+import useSaveScore from '@/hook/useSaveScore'
+import useSaveProgress from '@/hook/useSaveProgress'
+
 
 import {
   EmailShareButton,
@@ -59,6 +61,7 @@ import {
   WhatsappIcon,
   WorkplaceIcon
 } from "react-share";
+
 export default function Youtube() {
   const stage = 5;
   const art = 0;
@@ -85,6 +88,9 @@ export default function Youtube() {
   },[]);
 
   const exhibitionProgress = isExhibitionReady();
+
+  useSaveScore( { playerState, timeLimit }, router );
+  useSaveProgress( { playerState, progressState }, router );
 
   return (<>
     <Head>

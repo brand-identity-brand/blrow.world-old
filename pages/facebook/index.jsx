@@ -12,7 +12,8 @@ import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
 import ThisButton from '@/component/ThisButton';
 import { PlayerContext } from '@/context/PlayerContext'
-import { api_player_updateScore } from '@/lib/fetcher'
+import useSaveScore from '@/hook/useSaveScore'
+import useSaveProgress from '@/hook/useSaveProgress'
 
 export default function Facebook() {
   const { playerState } = useContext(PlayerContext);
@@ -29,6 +30,9 @@ export default function Facebook() {
   },[]);
 
   setTimeout(()=>{setMessageFade(true)},18000);
+
+  useSaveScore( { playerState, timeLimit }, router );
+  useSaveProgress( { playerState, progressState }, router );
 
   return (<>
     <Head>
@@ -64,10 +68,6 @@ export default function Facebook() {
               timeLimit: timeLimit,
               speed: 2147483647
             });
-            api_player_updateScore({
-              player: playerState.id,
-              timeLimit: timeLimit
-            })
             pathUnlocked(4 , 'red');
             // setIsButtonPressed(false);
             setTimeout(()=>{router.push('/youtube')}, 300)
@@ -92,10 +92,7 @@ export default function Facebook() {
             timeLimit: timeLimit,
             speed: 2147483647
           });
-          api_player_updateScore({
-            player: playerState.id,
-            timeLimit: timeLimit
-          })
+
           pathUnlocked(4 , 'blue');
           // setIsButtonPressed(false);
           setTimeout(()=>{router.push('/twitter')}, 300)

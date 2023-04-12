@@ -9,7 +9,8 @@ import { useContext, useEffect } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
 import { PlayerContext } from '@/context/PlayerContext'
-import { api_player_updateScore } from '@/lib/fetcher'
+import useSaveScore from '@/hook/useSaveScore'
+import useSaveProgress from '@/hook/useSaveProgress'
 
 export default function Reddit() {
   const { playerState } = useContext(PlayerContext);
@@ -19,11 +20,15 @@ export default function Reddit() {
 
   const { TimerState, setTimerState } = useContext(TimerContext);
   const { timeLimit } = TimerState;
+
   useEffect(()=>{
     stageVisited(3);
     router.prefetch('/facebook');
   },[]);
 
+  useSaveScore( { playerState, timeLimit }, router );
+  useSaveProgress( { playerState, progressState }, router );
+  
   return (<>
     <Head>
       <link rel="preload" as="image" href='../../public/reddit/background.png'/>
@@ -39,10 +44,6 @@ export default function Reddit() {
           setTimerState({
             timeLimit: timeLimit,
             speed: 2147483647
-          });
-          api_player_updateScore({
-            player: playerState.id,
-            timeLimit: timeLimit
           });
           pathUnlocked(3, 'blue');
           router.push('/facebook');

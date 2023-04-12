@@ -15,6 +15,8 @@ import { ProgressContext } from '@/context/ProgressContext';
 import { PlayerContext } from '@/context/PlayerContext';
 import { imageSrc, counter } from '@/lib/art';
 import { api_player_updateScore } from '@/lib/fetcher'
+import useSaveProgress from '@/hook/useSaveProgress'
+
 // import Art00 from '@/public/fakeFileServer/Asset 1.png';
 // import Art01 from '@/public/fakeFileServer/Asset 2.png';
 // import Art02 from '@/public/fakeFileServer/Asset 3.png';
@@ -55,7 +57,8 @@ export default function Twitter() {
 
     router.prefetch('/google');
   },[]);
-  
+  useSaveProgress( { playerState, progressState }, router );
+
   return (<>
     <Head>
       <link rel="preload" as="image" href='../../public/twitter/background.png'/>

@@ -1,126 +1,21 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { getCookie } from 'cookies-next';
 
-const ProgressContext = createContext(null);
+export const ProgressContext = createContext(null);
 ProgressContext.displayName = 'ProgressContext';
 
 export default function ProgressContextProvider({children}){
-    const [ progressState, setProgressState ] = useState([
-        {
-            speed: 2147483647,
-            stageUrl: '/portal',
-            stageName: 'Portal',
-            paths: {
-                blue: false,
-                red: false
-            },
-            visits: 0,
-            art: [
-                {
-                    title: 'The Game',
-                    statement: 'This is freedom.'
-                }
-            ]
-        },{
-            speed: 2147483647,
-            stageUrl: '/twitter',
-            stageName: 'The Gallery',
-            paths: {
-                blue: false,
-                red: false
-            },
-            visits: 0,
-            art: [ //exhibition
-                {
-                    title: '',
-                    statement: ''
-                },
-                {
-                    title: '',
-                    statement: ''
-                }
-            ]
-        },{
-            speed: 200,
-            stageUrl: '/google',
-            stageName: 'Goggles.com',
-            paths: {
-                blue: false,
-                red: false
-            },
-            visits: 0,
-            art: [
-                {
-                    title: '',
-                    statement: ''
-                },
-                {
-                    title: '',
-                    statement: ''
-                },
-                {
-                    title: '',
-                    statement: ''
-                }
-            ]
-        },{
-            speed: 1000,
-            stageUrl: '/reddit',
-            stageName: 'reddit',
-            paths: {
-                blue: false,
-                red: false
-            },
-            visits: 0,
-            art: [
-                {
-                    title: '',
-                    statement: ''
-                },
-                {
-                    title: '',
-                    statement: ''
-                },
-                {
-                    title: '',
-                    statement: ''
-                },
-                {
-                    title: '',
-                    statement: ''
-                }
-            ]
-        },{
-            speed: 100,
-            stageUrl: '/facebook',
-            stageName: 'facebook',
-            paths: {
-                blue: false,
-                red: false
-            },
-            visits: 0,
-            art: [
-                {
-                    title: '',
-                    statement: ''
-                },
-            ]
-        },{
-            speed: 50,
-            stageUrl: '/youtube',
-            stageName: 'Invitation',
-            paths: {
-                blue: false,
-                red: false
-            },
-            visits: 0,
-            art: [ // 1piece art
-                {
-                    title: '',
-                    statement: ''
-                },
-            ]
-        }
-    ]);
+    const artist = getCookie('artist');
+    useEffect(()=>{
+        const artist = getCookie('artist');
+
+        const { id, score, progress_context } = JSON.parse(artist);
+        setProgressState(progress_context)
+        
+    },[]);
+    const [ progressState, setProgressState ] = useState( defaultProgressState );
+
+    
     const pathUnlocked = function (stage, colour){
         if ( progressState[stage].paths[colour] === false ) {
             const updatedProgressState = [...progressState];
@@ -212,6 +107,120 @@ export default function ProgressContextProvider({children}){
     )
 }
 
-export {
-    ProgressContext
-}
+export const defaultProgressState = [
+    {
+        speed: 2147483647,
+        stageUrl: '/portal',
+        stageName: 'Portal',
+        paths: {
+            blue: false,
+            red: false
+        },
+        visits: 0,
+        art: [
+            {
+                title: 'The Game',
+                statement: 'This is freedom.'
+            }
+        ]
+    },{
+        speed: 2147483647,
+        stageUrl: '/twitter',
+        stageName: 'The Gallery',
+        paths: {
+            blue: false,
+            red: false
+        },
+        visits: 0,
+        art: [ //exhibition
+            {
+                title: '',
+                statement: ''
+            },
+            {
+                title: '',
+                statement: ''
+            }
+        ]
+    },{
+        speed: 200,
+        stageUrl: '/google',
+        stageName: 'Goggles.com',
+        paths: {
+            blue: false,
+            red: false
+        },
+        visits: 0,
+        art: [
+            {
+                title: '',
+                statement: ''
+            },
+            {
+                title: '',
+                statement: ''
+            },
+            {
+                title: '',
+                statement: ''
+            }
+        ]
+    },{
+        speed: 1000,
+        stageUrl: '/reddit',
+        stageName: 'reddit',
+        paths: {
+            blue: false,
+            red: false
+        },
+        visits: 0,
+        art: [
+            {
+                title: '',
+                statement: ''
+            },
+            {
+                title: '',
+                statement: ''
+            },
+            {
+                title: '',
+                statement: ''
+            },
+            {
+                title: '',
+                statement: ''
+            }
+        ]
+    },{
+        speed: 100,
+        stageUrl: '/facebook',
+        stageName: 'facebook',
+        paths: {
+            blue: false,
+            red: false
+        },
+        visits: 0,
+        art: [
+            {
+                title: '',
+                statement: ''
+            },
+        ]
+    },{
+        speed: 50,
+        stageUrl: '/youtube',
+        stageName: 'Invitation',
+        paths: {
+            blue: false,
+            red: false
+        },
+        visits: 0,
+        art: [ // 1piece art
+            {
+                title: '',
+                statement: ''
+            },
+        ]
+    }
+]

@@ -12,6 +12,7 @@ export default function PlayerContextProvider({children}){
 
     useEffect(()=>{
         const artist = getCookie('artist');
+
         const { id, score } = JSON.parse(artist);
         setPlayerState({
             id,
