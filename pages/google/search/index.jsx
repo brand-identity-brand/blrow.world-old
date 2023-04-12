@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Logo from '@/public/google/logo.png'
 
-import Timer from '@/component/Timer'
+import TimerBar from '@/component/TimerBar';
 import { useContext, useRef, useEffect, useState } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
@@ -44,7 +44,7 @@ export default function Google(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={css.main}>
-        <Timer speed={60000} router={router}/>
+        <TimerBar speed={60000} router={router}/>
         <div className={css.top}>
           {/* <div className={css.logoContainer}>
             <Image

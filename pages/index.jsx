@@ -1,5 +1,5 @@
 import css from './index.module.css'
-import Timer from '@/component/Timer'
+import TimerBar from '@/component/TimerBar';
 import Head from 'next/head'
 import Image from 'next/image'
 // import { Inter } from 'next/font/google'

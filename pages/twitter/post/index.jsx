@@ -3,7 +3,7 @@ import css from './index.module.css'
 
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import Timer from '@/component/Timer'
+import TimerBar from '@/component/TimerBar';
 import { useContext, useState, useRef, useEffect } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
@@ -33,7 +33,7 @@ export default function Post(props){
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={css.main}>
-                <Timer speed={100} router={router}/>
+                <TimerBar speed={100} router={router}/>
                 <div className={css.a}>
                     {'art missing.'}
                 </div>
@@ -64,7 +64,7 @@ export default function Post(props){
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={css.main}>
-            <Timer speed={speed} router={router}/>
+            <TimerBar speed={speed} router={router}/>
             <div className={css.a}>
                 <div className={css.imageContainer}>
                     <Image

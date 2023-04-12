@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 
-import Timer from '@/component/Timer';
+import TimerBar from '@/component/TimerBar';
 import { useContext, useEffect } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
@@ -37,7 +37,7 @@ export default function Reddit() {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className={css.main}>
-      <Timer speed={speed} router={router}/>
+      <TimerBar speed={speed} router={router}/>
       <button
         onClick={()=>{
           setTimerState({

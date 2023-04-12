@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 import Brain from '@/public/facebook/brain.png'
 
-import Timer from '@/component/Timer';
+import TimerBar from '@/component/TimerBar';
 import { useContext, useEffect, useState } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
@@ -53,7 +53,7 @@ export default function Facebook() {
       <div className={css.messageLines0}>YOU CANNOT DO. </div>
     </div>
     <main className={css.main}>
-      <Timer speed={speed} router={router}/>
+      <TimerBar speed={speed} router={router}/>
       <div className={css.top}>
         <div className={css.messageLines}> Except this time</div>
         <div className={css.messageLines}> you really</div>

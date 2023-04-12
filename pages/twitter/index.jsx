@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Hand from '@/public/twitter/Hand.png';
 import Face from '@/public/twitter/face.png';
 import { use, useEffect } from 'react'
-import NavBar from './component/NavBar'
+import NavBar from '../../component/GogglesBar'
 import { useContext, useState } from 'react';
 import { TimerContext, convertTime } from '@/context/TimerContext';
 

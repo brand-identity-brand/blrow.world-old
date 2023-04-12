@@ -1,4 +1,4 @@
-import css from './NavBar.module.css';
+import css from './index.module.css';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import Link from 'next/link';
