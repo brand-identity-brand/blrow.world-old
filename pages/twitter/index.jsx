@@ -61,7 +61,6 @@ export default function Twitter() {
 
   return (<>
     <Head>
-      <link rel="preload" as="image" href='../../public/twitter/background.png'/>
       <title>blrow.world</title>
       <meta name="description" content="blrow.world" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
