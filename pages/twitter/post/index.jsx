@@ -7,6 +7,7 @@ import Timer from '@/component/Timer'
 import { useContext, useState, useRef, useEffect } from 'react';
 import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
+import { PlayerContext } from '@/context/PlayerContext'
 import { getCookie } from 'cookies-next';
 import { api_art_title, api_art_statement } from '@/lib/fetcher';
 
@@ -21,6 +22,7 @@ export default function Post(props){
     } = props;
 // console.log('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone)
     const { isStageVisited, getArtTitle, getArtStatement, setArtTitle, setArtStatement } = useContext(ProgressContext);
+    const router = useRouter();
 
     if ( isStageVisited(stage) === false ) {
         return (<>
@@ -39,8 +41,9 @@ export default function Post(props){
         </>)
     }
 
-    const router = useRouter();
-    // const [ artistCookie, setArtistCookie ] = useState('');
+    
+    const { playerState } = useContext(PlayerContext);
+    const { progressState } = useContext(ProgressContext);
     const { TimerState, setTimerState } = useContext(TimerContext);
     const { timeLimit, speed } = TimerState;
 
