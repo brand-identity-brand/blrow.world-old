@@ -33,7 +33,6 @@ export default function Portal(props) {
     
     <>
       <Head>
-        <link rel="preload" as="image" href='../../public/portal/background.png'/>
         <title>blrow.world</title>
         <meta name="description" content="blrow.world" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
