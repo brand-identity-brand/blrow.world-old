@@ -40,7 +40,7 @@ export default function Google(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={css.main}>
-        <TimerBar speed={60000} router={router} />
+        <TimerBar speed={1000} router={router} />
         <div className={css.top}>
           {/* <div className={css.logoContainer}>
             <Image
@@ -141,7 +141,7 @@ export async function getServerSideProps({ req, query }) {
   const { data, _error } = await supabase
     .from("gallery")
     .select("stage, art")
-    .eq("player_id", artist.id)
+    .eq("player_id", JSON.parse(artist).id)
     .eq("title", keyword);
 
   const { data: searchResult, error } = await supabase
