@@ -96,7 +96,7 @@
     
 }
 .thisButton {
-    z-index: 1;
+    z-index: 9999;
     position: absolute;
 
     bottom: 34vh;
