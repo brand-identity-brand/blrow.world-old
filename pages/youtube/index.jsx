@@ -215,8 +215,11 @@ export default function Youtube() {
                 exhibitionProgress[3] === false ||
                 exhibitionProgress[4] === false
               ) {
-                
-                openModal('not ready');
+                openModal(
+                  <div>
+                    Some of the art piece is missing title or description
+                  </div>
+                );
               //   alert(`
               //     set 1 ${exhibitionProgress[1]}
               //     set 2 ${exhibitionProgress[2]}
@@ -224,7 +227,11 @@ export default function Youtube() {
               //     set 4 ${exhibitionProgress[4]}
               //   `);
               } else if ( exhibitionProgress[5]  === false ) {
-                openModal('you need a title and a brief statement for your exhibition on the invitation.');
+                openModal(
+                  <div>
+                    you need a title and a brief statement for your exhibition on the invitation.
+                  </div> 
+                );
               }
             }}
           >

@@ -166,9 +166,11 @@
 .modal {
     --timer-var-height: 50px;
     --painting-width: 60vw;
-    --modal-width-is-smaller-than-painting-width-by: 15vw;
+    --modal-width-is-smaller-than-painting-width-by: 26vw;
 
     position: absolute;
+
+    top: calc( var( --timer-var-height ) + var( --painting-width ) - 15vw + calc( var( --modal-width-is-smaller-than-painting-width-by ) / 2 ) );
     /* top: 40px;
     left: 40px;
     right: 40px;
@@ -179,7 +181,7 @@
     background-color: black;
     color: white;
 
-    top: calc( var( --timer-var-height ) + var( --painting-width ) - 15vw + calc( var( --modal-width-is-smaller-than-painting-width-by ) / 2 ) );
+    padding: 5vw;
 }
 
 .modalOverlay {
@@ -189,7 +191,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    /* background-color: rgba(0, 21, 255, 0.349); */
+    background-color: rgba(255, 255, 255, 0.336);
 
     display: flex;
     /* align-items: center; */
