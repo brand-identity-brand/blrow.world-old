@@ -161,3 +161,45 @@
     width: 100vw;
     /* height: fit-content; */
 }
+
+
+.modal {
+    --timer-var-height: 50px;
+    --painting-width: 60vw;
+    --modal-width-is-smaller-than-painting-width-by: 15vw;
+
+    position: absolute;
+    /* top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px; */
+    width: calc( var( --painting-width ) - var( --modal-width-is-smaller-than-painting-width-by ));
+    height: calc( var( --painting-width ) - var( --modal-width-is-smaller-than-painting-width-by ));
+
+    background-color: black;
+    color: white;
+
+    top: calc( var( --timer-var-height ) + var( --painting-width ) - 15vw + calc( var( --modal-width-is-smaller-than-painting-width-by ) / 2 ) );
+}
+
+.modalOverlay {
+    z-index: 9999999999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background-color: rgba(0, 21, 255, 0.349); */
+
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.modalExitButton{
+    all: unset;
+    cursor: pointer;
+    width: 5px;
+    height: 5px;
+    font-family: monospace;
+}

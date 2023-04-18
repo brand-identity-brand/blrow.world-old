@@ -184,12 +184,13 @@ export async function getServerSideProps(context) {
     .from('gallery')
     .select('title')
     .eq('player_id', id)
-    .neq('title', null);
+    .neq('title', null)
+  ;
 
   const searchTerms = [
     'this is freedom',
     ...data.map( item => item.title )
-  ]
+  ];
 
   return {
     props: {

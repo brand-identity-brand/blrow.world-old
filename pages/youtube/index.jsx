@@ -9,12 +9,14 @@ import { TimerContext } from '@/context/TimerContext';
 import { ProgressContext } from '@/context/ProgressContext';
 import QRCodeRickRoll from '@/public/youtube/qrCode.png';
 import Frame from '@/public/youtube/frame.png';
-import { getCookie } from 'cookies-next';
+// import { getCookie } from 'cookies-next';
 import { api_art_title, api_art_statement } from '@/lib/fetcher';
 import { PlayerContext } from '@/context/PlayerContext'
 import useSaveScore from '@/hook/useSaveScore'
 import useSaveProgress from '@/hook/useSaveProgress'
 
+// import Modal from '@/component/Modal';
+import ReactModal from 'react-modal';
 
 import {
   EmailShareButton,
@@ -92,6 +94,16 @@ export default function Youtube() {
   useSaveScore( { playerState, timeLimit }, router );
   useSaveProgress( { playerState, progressState }, router );
 
+  const [ modalContent, setModalContent ] = useState(<div></div>);
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal(content) {
+    setModalContent(content);
+    setIsOpen(true);
+  }
+
+
   return (<>
     <Head>
         <title>blrow.world</title>
@@ -154,7 +166,7 @@ export default function Youtube() {
             });
             } else {
                 api_art_statement({ 
-                    player: getCookie('artist'),
+                    player: playerState.id,
                     stage: stage, 
                     art: art, 
                     statement: statementCandidate
@@ -182,34 +194,37 @@ export default function Youtube() {
           <div 
             className={css.qrCodeContainer}
             onClick={()=>{
-              if ( exhibitionProgress.reduce( (accum,curr) => accum&&curr, true ) ) {
-                const lockProgress = confirm('start your exhibition?');
-                if ( lockProgress ) {
-                  setTimerState({
-                    timeLimit: timeLimit,
-                    speed: 2147483647
-                  });
-                  api_player_updateScore({
-                    player: playerState.id,
-                    timeLimit: timeLimit
-                  });
-                  pathUnlocked(5, 'blue');
-                  router.push('/twitter');
-                }
+              
+              if ( exhibitionProgress.reduce( ( accum, curr ) => accum && curr, true ) ) {
+              //   const lockProgress = confirm('start your exhibition?');
+              //   if ( lockProgress ) {
+              //     setTimerState({
+              //       timeLimit: timeLimit,
+              //       speed: 2147483647
+              //     });
+              //     api_player_updateScore({
+              //       player: playerState.id,
+              //       timeLimit: timeLimit
+              //     });
+              //     pathUnlocked(5, 'blue');
+              //     router.push('/twitter');
+              //   }
               } else if ( 
                 exhibitionProgress[1] === false ||
                 exhibitionProgress[2] === false ||
                 exhibitionProgress[3] === false ||
                 exhibitionProgress[4] === false
               ) {
-                alert(`
-                  set 1 ${exhibitionProgress[1]}
-                  set 2 ${exhibitionProgress[2]}
-                  set 3 ${exhibitionProgress[3]}
-                  set 4 ${exhibitionProgress[4]}
-                `);
+                
+                openModal('not ready');
+              //   alert(`
+              //     set 1 ${exhibitionProgress[1]}
+              //     set 2 ${exhibitionProgress[2]}
+              //     set 3 ${exhibitionProgress[3]}
+              //     set 4 ${exhibitionProgress[4]}
+              //   `);
               } else if ( exhibitionProgress[5]  === false ) {
-                alert('you need a title and a brief statement for your exhibition on the invitation.');
+                openModal('you need a title and a brief statement for your exhibition on the invitation.');
               }
             }}
           >
@@ -260,6 +275,28 @@ export default function Youtube() {
       </div>
 
     </main>
+    <ReactModal
+      className={css.modal}
+      overlayClassName={css.modalOverlay}
+      isOpen={modalIsOpen}
+      onAfterOpen={()=>{/*references are now sync'd and can be accessed.*/}}
+      onRequestClose={()=>{
+        setIsOpen(false);
+        setModalContent('');
+      }}
+      contentLabel="Message"
+    >
+      <button
+        className={css.modalExitButton}
+        onClick={()=>{
+          setIsOpen(false);
+          setModalContent('');
+        }}
+      >
+        x
+      </button>
+      <div>{modalContent}</div>
+    </ReactModal>
   </>)
 }
 
