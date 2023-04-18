@@ -166,8 +166,8 @@
 .modal {
     --timer-var-height: 50px;
     --painting-width: 60vw;
-    --modal-width-is-smaller-than-painting-width-by: 26vw;
-
+    /* --modal-width-is-smaller-than-painting-width-by: 26vw; */
+    --modal-width-is-smaller-than-painting-width-by: 20vw;
     position: absolute;
 
     top: calc( var( --timer-var-height ) + var( --painting-width ) - 15vw + calc( var( --modal-width-is-smaller-than-painting-width-by ) / 2 ) );
@@ -178,8 +178,8 @@
     width: calc( var( --painting-width ) - var( --modal-width-is-smaller-than-painting-width-by ));
     height: calc( var( --painting-width ) - var( --modal-width-is-smaller-than-painting-width-by ));
 
-    background-color: black;
-    color: white;
+    color: black;
+    background-color: white;
 
     padding: 5vw;
 }
