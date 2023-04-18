@@ -143,7 +143,7 @@ export const defaultProgressState = [
             }
         ]
     },{
-        speed: 200,
+        speed: 1000,
         stageUrl: '/google',
         stageName: 'Goggles.com',
         paths: {
@@ -166,7 +166,7 @@ export const defaultProgressState = [
             }
         ]
     },{
-        speed: 1000,
+        speed: 200,
         stageUrl: '/reddit',
         stageName: 'reddit',
         paths: {
