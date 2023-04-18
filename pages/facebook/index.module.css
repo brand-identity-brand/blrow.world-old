@@ -8,7 +8,7 @@
     height: 100vh;
 }
 .hoverMessage{
-    z-index: 999;
+    z-index: 99999;
     width: 100%;
     height: 100%;
     background-color: white;
@@ -30,7 +30,7 @@
     font-size: 11vw; 
 }
 .fade {
-    z-index: 99999;
+    
 	top: 54vh;
 	left: 52vw;
 	width: 0px;
